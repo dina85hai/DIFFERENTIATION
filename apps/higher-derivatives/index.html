@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2.4 Higher Derivatives | Terbitan Peringkat Tinggi</title>
+<style>
+  :root{
+    --ink:#0f172a; --sub:#475569; --bg:#f8fafc;
+    --formula:#1d4ed8; --sub-step:#7c3aed; --simplify:#b45309; --answer:#15803d;
+    --card:#ffffff; --border:#e2e8f0;
+    --up:#059669; --down:#dc2626; --flat:#d97706;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;}
+  .app{max-width:1000px;margin:0 auto;padding:0 20px 60px;}
+  .hero{background:linear-gradient(135deg,#0f172a,#312e81 55%,#0d9488);color:#fff;margin:0 -20px 32px;padding:36px 24px 44px;border-radius:0 0 28px 28px;}
+  .hero-inner{max-width:960px;margin:0 auto;}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.04em;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:14px;}
+  .hero h1{margin:0 0 10px;font-size:clamp(26px,4vw,38px);}
+  .hero p{margin:0 0 16px;max-width:60ch;color:rgba(255,255,255,.85);}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;}
+  .badges span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 12px;font-size:13px;}
+
+  nav.toc{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;}
+  nav.toc a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:14px;font-weight:600;}
+  nav.toc a:hover{border-color:var(--formula);color:var(--formula);}
+
+  section.section{margin-bottom:44px;}
+  section.section h2{font-size:22px;margin:0 0 16px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 4px 14px rgba(15,23,42,.05);}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  @media (max-width:720px){.grid-2{grid-template-columns:1fr;}}
+
+  .ladder{display:flex;align-items:center;flex-wrap:wrap;gap:10px;justify-content:center;padding:18px 8px;}
+  .ladder .term{background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;padding:10px 16px;font-family:Georgia,serif;font-size:19px;color:var(--formula);text-align:center;min-width:84px;}
+  .ladder .term small{display:block;font-family:"Segoe UI",sans-serif;font-size:11px;color:var(--sub);margin-top:2px;}
+  .ladder .arrow{color:var(--sub);font-size:20px;}
+
+  .chain{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;}
+  .chain .stop{flex:1;min-width:110px;text-align:center;background:#f0fdfa;border:1px solid #99f6e4;border-radius:12px;padding:14px 8px;}
+  .chain .stop .icon{font-size:26px;}
+  .chain .stop b{display:block;margin-top:6px;font-size:14px;}
+  .chain .stop small{color:var(--sub);}
+
+  svg.diagram{width:100%;height:auto;display:block;}
+
+  .example{margin-bottom:22px;}
+  .example .ex-title{font-weight:700;margin-bottom:10px;font-family:Georgia,serif;font-size:18px;}
+  .step{display:none;padding:14px 16px;border-radius:12px;margin-bottom:10px;border:1px solid var(--border);background:#fafafa;}
+  .step.visible{display:block;}
+  .step .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-bottom:6px;}
+  .step.formula .tag{background:#dbeafe;color:var(--formula);}
+  .step.formula{border-left:4px solid var(--formula);}
+  .step.diff .tag{background:#ede9fe;color:var(--sub-step);}
+  .step.diff{border-left:4px solid var(--sub-step);}
+  .step.simplify .tag{background:#fef3c7;color:var(--simplify);}
+  .step.simplify{border-left:4px solid var(--simplify);}
+  .step.answer .tag{background:#dcfce7;color:var(--answer);}
+  .step.answer{border-left:4px solid var(--answer);}
+  .step .math{font-family:Georgia,serif;font-size:18px;margin-top:2px;}
+  .step .note{color:var(--sub);font-size:13px;margin-top:6px;}
+  .ex-controls{display:flex;gap:8px;flex-wrap:wrap;}
+  button{cursor:pointer;font:inherit;}
+  .btn{border:1px solid var(--border);background:#fff;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;}
+  .btn:hover{border-color:var(--formula);color:var(--formula);}
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .btn.primary:hover{opacity:.9;color:#fff;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+
+  .explorer-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;}
+  @media (max-width:720px){.explorer-layout{grid-template-columns:1fr;}}
+  .readouts{display:flex;flex-direction:column;gap:10px;}
+  .readout{display:flex;justify-content:space-between;background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:Georgia,serif;font-size:16px;}
+  .readout span.label{font-family:"Segoe UI",sans-serif;font-size:13px;color:var(--sub);}
+  .status-pill{text-align:center;font-weight:700;border-radius:999px;padding:8px 14px;font-size:14px;}
+  #xSlider{width:100%;margin-top:10px;}
+
+  .q{margin-bottom:18px;}
+  .q .q-text{font-weight:600;margin-bottom:10px;}
+  .options{display:grid;gap:8px;}
+  .opt{border:1px solid var(--border);border-radius:10px;padding:10px 14px;background:#fff;text-align:left;font-size:14px;}
+  .opt:hover{border-color:var(--formula);}
+  .opt.correct{background:#dcfce7;border-color:var(--answer);}
+  .opt.wrong{background:#fee2e2;border-color:var(--down);}
+  .opt[disabled]{cursor:default;}
+  .numeric-row{display:flex;gap:8px;align-items:center;}
+  .numeric-row input{padding:9px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;width:140px;}
+  .feedback{font-size:13px;margin-top:8px;font-weight:600;}
+  .feedback.correct{color:var(--answer);}
+  .feedback.wrong{color:var(--down);}
+
+  .score-panel{background:linear-gradient(135deg,#0f172a,#312e81);color:#fff;border-radius:16px;padding:22px;text-align:center;margin-top:20px;}
+  .score-panel .big{font-size:34px;font-weight:800;margin:6px 0;}
+  .review{display:none;text-align:left;margin-top:16px;background:rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;}
+  .review.visible{display:block;}
+  .review li{margin-bottom:10px;font-size:14px;}
+  .review li b{color:#a7f3d0;}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">📘 2.4 Higher Derivatives · Nota, Contoh &amp; Latihan</span>
+      <h1>Terbitan Peringkat Tinggi</h1>
+      <p>Dari f'(x) ke f''(x), f'''(x) dan seterusnya — fahami notasi, makna fizikal (halaju &amp; pecutan), kecekungan graf, titik lengkok, dan latih diri anda dengan latihan bersemak automatik.</p>
+      <div class="badges">
+        <span>✓ Nota visual</span>
+        <span>✓ Contoh interaktif berpandu</span>
+        <span>✓ Peneroka kecekungan langsung</span>
+        <span>✓ 10 soalan latihan disemak</span>
+        <span>✓ Berfungsi luar talian</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <a href="#notes">📘 Nota Visual</a>
+    <a href="#examples">✏️ Contoh Interaktif</a>
+    <a href="#explorer">🔍 Peneroka Kecekungan</a>
+    <a href="#exercises">📝 Latihan</a>
+  </nav>
+
+  <section id="notes" class="section">
+    <h2>📘 Nota Visual</h2>
+
+    <div class="card" style="margin-bottom:18px;">
+      <p style="margin-top:0;"><b>Notasi terbitan peringkat tinggi</b> — setiap kali kita membezakan sekali lagi, kita naik satu peringkat:</p>
+      <div class="ladder">
+        <div class="term">f(x)<small>fungsi asal</small></div>
+        <div class="arrow">→</div>
+        <div class="term">f'(x)<small>dy/dx</small></div>
+        <div class="arrow">→</div>
+        <div class="term">f''(x)<small>d²y/dx²</small></div>
+        <div class="arrow">→</div>
+        <div class="term">f'''(x)<small>d³y/dx³</small></div>
+        <div class="arrow">→</div>
+        <div class="term">f⁽ⁿ⁾(x)<small>dⁿy/dxⁿ</small></div>
+      </div>
+      <p class="note" style="color:var(--sub);font-size:13px;">Setiap anak panah bermaksud "bezakan sekali lagi terhadap x".</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <b>Rantaian makna fizikal</b>
+        <p style="font-size:13px;color:var(--sub);margin-top:4px;">Jika s(t) ialah kedudukan objek pada masa t:</p>
+        <div class="chain">
+          <div class="stop"><span class="icon">📍</span><b>s(t)</b><small>kedudukan</small></div>
+          <div class="stop"><span class="icon">🏃</span><b>v(t)=s'(t)</b><small>halaju</small></div>
+          <div class="stop"><span class="icon">🚀</span><b>a(t)=v'(t)=s''(t)</b><small>pecutan</small></div>
+          <div class="stop"><span class="icon">⚡</span><b>j(t)=a'(t)=s'''(t)</b><small>jerk</small></div>
+        </div>
+      </div>
+      <div class="card">
+        <b>Kecekungan graf (concavity)</b>
+        <p style="font-size:13px;color:var(--sub);margin-top:4px;">Tanda f''(x) memberitahu bentuk lengkung:</p>
+        <svg class="diagram" viewBox="0 0 340 140">
+          <rect width="160" height="140" fill="#ecfdf5" rx="12"/>
+          <rect x="180" width="160" height="140" fill="#fef2f2" rx="12"/>
+          <path d="M25,110 Q80,10 135,110" fill="none" stroke="#059669" stroke-width="4" stroke-linecap="round"/>
+          <line x1="45" y1="98" x2="75" y2="88" stroke="#059669" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="90" y1="55" x2="120" y2="85" stroke="#059669" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="80" y="130" text-anchor="middle" font-size="12" fill="#047857">f''(x) &gt; 0 · cekung ke atas</text>
+          <path d="M205,40 Q260,120 315,40" fill="none" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+          <line x1="225" y1="55" x2="255" y2="80" stroke="#dc2626" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="270" y1="95" x2="300" y2="60" stroke="#dc2626" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="260" y="130" text-anchor="middle" font-size="12" fill="#b91c1c">f''(x) &lt; 0 · cekung ke bawah</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <b>Titik lengkok (inflection point)</b>
+      <p style="font-size:13px;color:var(--sub);margin:4px 0 10px;">Titik di mana graf bertukar dari cekung ke atas kepada cekung ke bawah (atau sebaliknya) — berlaku apabila f''(x) = 0 <i>dan</i> tanda f''(x) berubah merentasi titik itu.</p>
+      <svg class="diagram" viewBox="0 0 340 120">
+        <rect width="340" height="120" fill="#f8fafc" rx="12"/>
+        <path d="M20,90 C90,10 130,10 170,55 C210,100 250,100 320,30" fill="none" stroke="#4f46e5" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="170" cy="55" r="6" fill="#d97706"/>
+        <line x1="170" y1="20" x2="170" y2="95" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="170" y="112" text-anchor="middle" font-size="12" fill="#b45309">titik lengkok (f''(x)=0)</text>
+      </svg>
+    </div>
+  </section>
+
+  <section id="examples" class="section">
+    <h2>✏️ Contoh Interaktif</h2>
+
+    <div class="example" data-example>
+      <div class="ex-title">Contoh 1 — Fungsi Polinomial</div>
+      <div class="step formula visible" data-i="0"><span class="tag">Diberi</span><div class="math">f(x) = x⁴ − 3x³ + 2x. Cari f''(x).</div></div>
+      <div class="step diff" data-i="1"><span class="tag">Terbitan pertama</span><div class="math">f'(x) = 4x³ − 9x² + 2</div><div class="note">Bezakan setiap sebutan: d/dx(x⁴)=4x³, d/dx(−3x³)=−9x², d/dx(2x)=2.</div></div>
+      <div class="step diff" data-i="2"><span class="tag">Terbitan kedua</span><div class="math">f''(x) = 12x² − 18x</div><div class="note">Bezakan f'(x) sekali lagi: d/dx(4x³)=12x², d/dx(−9x²)=−18x, d/dx(2)=0.</div></div>
+      <div class="step answer" data-i="3"><span class="tag">Jawapan</span><div class="math">f''(x) = 12x² − 18x</div></div>
+      <div class="ex-controls">
+        <button class="btn" data-act="prev">← Sebelumnya</button>
+        <button class="btn" data-act="next">Seterusnya →</button>
+        <button class="btn primary" data-act="all">Tunjukkan Semua</button>
+      </div>
+    </div>
+
+    <div class="example" data-example>
+      <div class="ex-title">Contoh 2 — Corak Berulang (sin x)</div>
+      <div class="step formula visible" data-i="0"><span class="tag">Diberi</span><div class="math">f(x) = sin x. Cari f⁽⁴⁾(x).</div></div>
+      <div class="step diff" data-i="1"><span class="tag">Terbitan 1</span><div class="math">f'(x) = cos x</div></div>
+      <div class="step diff" data-i="2"><span class="tag">Terbitan 2</span><div class="math">f''(x) = −sin x</div></div>
+      <div class="step diff" data-i="3"><span class="tag">Terbitan 3</span><div class="math">f'''(x) = −cos x</div></div>
+      <div class="step answer" data-i="4"><span class="tag">Jawapan</span><div class="math">f⁽⁴⁾(x) = sin x</div><div class="note">Corak berulang setiap 4 terbitan — f⁽⁴⁾(x) kembali sama seperti f(x)!</div></div>
+      <div class="ex-controls">
+        <button class="btn" data-act="prev">← Sebelumnya</button>
+        <button class="btn" data-act="next">Seterusnya →</button>
+        <button class="btn primary" data-act="all">Tunjukkan Semua</button>
+      </div>
+    </div>
+
+    <div class="example" data-example>
+      <div class="ex-title">Contoh 3 — Kuasa Negatif</div>
+      <div class="step formula visible" data-i="0"><span class="tag">Diberi</span><div class="math">f(x) = 1/x = x⁻¹. Cari f''(x).</div></div>
+      <div class="step diff" data-i="1"><span class="tag">Terbitan pertama</span><div class="math">f'(x) = −x⁻²</div><div class="note">Petua kuasa: n·xⁿ⁻¹ dengan n=−1 memberi −1·x⁻².</div></div>
+      <div class="step diff" data-i="2"><span class="tag">Terbitan kedua</span><div class="math">f''(x) = 2x⁻³</div><div class="note">Bezakan −x⁻² sekali lagi: −1·(−2)·x⁻³ = 2x⁻³.</div></div>
+      <div class="step answer" data-i="3"><span class="tag">Jawapan</span><div class="math">f''(x) = 2/x³</div></div>
+      <div class="ex-controls">
+        <button class="btn" data-act="prev">← Sebelumnya</button>
+        <button class="btn" data-act="next">Seterusnya →</button>
+        <button class="btn primary" data-act="all">Tunjukkan Semua</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="explorer" class="section">
+    <h2>🔍 Peneroka Kecekungan</h2>
+    <div class="card">
+      <p style="margin-top:0;color:var(--sub);font-size:14px;">Fungsi: f(x) = x³/3 − 4x. Gerakkan penggelangsar untuk melihat f(x), f'(x) dan f''(x) berubah — dan perhatikan bila graf bertukar kecekungan.</p>
+      <div class="explorer-layout">
+        <svg id="explorerSvg" class="diagram" viewBox="0 0 420 220">
+          <rect width="420" height="220" fill="#f8fafc" rx="14"/>
+          <line x1="40" y1="110" x2="400" y2="110" stroke="#cbd5e1" stroke-width="1.5"/>
+          <line x1="210" y1="20" x2="210" y2="200" stroke="#cbd5e1" stroke-width="1.5"/>
+          <path id="curvePath" fill="none" stroke="#4f46e5" stroke-width="3.5" stroke-linecap="round"/>
+          <circle id="marker" r="7" fill="#d97706" stroke="#fff" stroke-width="2"/>
+        </svg>
+        <div class="readouts">
+          <div class="readout"><span class="label">x</span><span id="valX">0.0</span></div>
+          <div class="readout"><span class="label">f(x)</span><span id="valF">0.0</span></div>
+          <div class="readout"><span class="label">f'(x)</span><span id="valFp">-4.0</span></div>
+          <div class="readout"><span class="label">f''(x)</span><span id="valFpp">0.0</span></div>
+          <div id="statusPill" class="status-pill">Titik Lengkok</div>
+        </div>
+      </div>
+      <input id="xSlider" type="range" min="-4" max="4" step="0.1" value="0" />
+    </div>
+  </section>
+
+  <section id="exercises" class="section">
+    <h2>📝 Latihan (Mastery Quiz)</h2>
+    <div id="quiz"></div>
+    <button class="btn primary" id="submitQuiz">Semak Semua Jawapan</button>
+    <div id="scorePanel" class="score-panel" style="display:none;">
+      <div>Skor Anda</div>
+      <div class="big" id="scoreBig">0/10</div>
+      <button class="btn" id="toggleReview" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.4);">Lihat Semua Jawapan</button>
+      <ul class="review" id="reviewList"></ul>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  // ---------- Worked examples: step reveal ----------
+  document.querySelectorAll('.example').forEach(function(ex){
+    var steps = Array.prototype.slice.call(ex.querySelectorAll('.step'));
+    var idx = 0;
+    function render(){
+      steps.forEach(function(s,i){ s.classList.toggle('visible', i<=idx); });
+    }
+    ex.querySelector('[data-act="prev"]').addEventListener('click', function(){
+      idx = Math.max(0, idx-1); render();
+    });
+    ex.querySelector('[data-act="next"]').addEventListener('click', function(){
+      idx = Math.min(steps.length-1, idx+1); render();
+    });
+    ex.querySelector('[data-act="all"]').addEventListener('click', function(){
+      idx = steps.length-1; render();
+    });
+    render();
+  });
+
+  // ---------- Concavity explorer ----------
+  function f(x){ return (x*x*x)/3 - 4*x; }
+  function fp(x){ return x*x - 4; }
+  function fpp(x){ return 2*x; }
+  function pxX(x){ return 40 + (x+4)/8*360; }
+  function pxY(y){ return 110 - y*15; }
+
+  var pathEl = document.getElementById('curvePath');
+  var pts = [];
+  for(var i=0;i<=80;i++){
+    var x = -4 + i*0.1;
+    pts.push(pxX(x)+','+pxY(f(x)));
+  }
+  pathEl.setAttribute('d','M'+pts.join('L'));
+
+  var slider = document.getElementById('xSlider');
+  var marker = document.getElementById('marker');
+  var valX = document.getElementById('valX');
+  var valF = document.getElementById('valF');
+  var valFp = document.getElementById('valFp');
+  var valFpp = document.getElementById('valFpp');
+  var statusPill = document.getElementById('statusPill');
+
+  function updateExplorer(){
+    var x = parseFloat(slider.value);
+    var y = f(x), yp = fp(x), ypp = fpp(x);
+    valX.textContent = x.toFixed(1);
+    valF.textContent = y.toFixed(2);
+    valFp.textContent = yp.toFixed(2);
+    valFpp.textContent = ypp.toFixed(2);
+    marker.setAttribute('cx', pxX(x));
+    marker.setAttribute('cy', pxY(y));
+    if (Math.abs(ypp) < 0.15){
+      statusPill.textContent = 'Titik Lengkok (f\'\'(x) ≈ 0)';
+      statusPill.style.background = '#fef3c7'; statusPill.style.color = '#b45309';
+    } else if (ypp > 0){
+      statusPill.textContent = 'Cekung ke Atas (f\'\'(x) > 0)';
+      statusPill.style.background = '#dcfce7'; statusPill.style.color = '#15803d';
+    } else {
+      statusPill.textContent = 'Cekung ke Bawah (f\'\'(x) < 0)';
+      statusPill.style.background = '#fee2e2'; statusPill.style.color = '#dc2626';
+    }
+  }
+  slider.addEventListener('input', updateExplorer);
+  updateExplorer();
+
+  // ---------- Exercises ----------
+  var questions = [
+    { type:'mcq', text:"Jika f(x) = x⁵, apakah f''(x)?",
+      options:["5x⁴","20x²","20x³","5x³"], correct:2,
+      explain:"f'(x)=5x⁴, f''(x)=20x³." },
+    { type:'mcq', text:"f(x) = 3x⁴ − 2x² + 7. Apakah f''(x)?",
+      options:["12x² − 4","36x² − 2","12x³ − 4x","36x² − 4"], correct:3,
+      explain:"f'(x)=12x³−4x, f''(x)=36x²−4." },
+    { type:'numeric', text:"f(x) = x³ − 6x² + 9x. Kira f''(2).", answer:0,
+      explain:"f'(x)=3x²−12x+9, f''(x)=6x−12. f''(2)=12−12=0." },
+    { type:'numeric', text:"f(x) = 2x⁴ + x. Kira f''(1).", answer:24,
+      explain:"f'(x)=8x³+1, f''(x)=24x². f''(1)=24." },
+    { type:'mcq', text:"Pada x=3, keluk f(x)=x²−4x+5 adalah...",
+      options:["Titik lengkok","Cekung ke atas","Tiada maklumat","Cekung ke bawah"], correct:1,
+      explain:"f''(x)=2 (malar dan positif) untuk semua x, jadi keluk sentiasa cekung ke atas." },
+    { type:'mcq', text:"Titik lengkok (inflection point) berlaku apabila...",
+      options:["f'(x)=0","f(x)=0","f''(x)=0 dan tanda f''(x) berubah","f''(x) > 0 sahaja"], correct:2,
+      explain:"Titik lengkok memerlukan f''(x)=0 DAN pertukaran tanda merentasi titik itu." },
+    { type:'numeric', text:"f(x) = x³ − 3x². Cari nilai x di titik lengkok.", answer:1,
+      explain:"f'(x)=3x²−6x, f''(x)=6x−6=0 ⇒ x=1." },
+    { type:'mcq', text:"f(x) = sin x. Apakah f⁽⁴⁾(x)?",
+      options:["−cos x","sin x","cos x","−sin x"], correct:1,
+      explain:"Corak sin x berulang setiap 4 terbitan: cos x, −sin x, −cos x, sin x." },
+    { type:'numeric', text:"f(x) = 1/x. Kira f''(2).", answer:0.25,
+      explain:"f'(x)=−x⁻², f''(x)=2x⁻³=2/x³. f''(2)=2/8=0.25." },
+    { type:'mcq', text:"Dalam fizik, f'''(t) (terbitan ketiga kedudukan) dikenali sebagai...",
+      options:["Momentum","Pecutan","Jerk","Halaju"], correct:2,
+      explain:"Kedudukan → halaju (1st) → pecutan (2nd) → jerk (3rd)." }
+  ];
+
+  var quizEl = document.getElementById('quiz');
+  var userAnswers = new Array(questions.length).fill(null);
+
+  questions.forEach(function(q, qi){
+    var wrap = document.createElement('div');
+    wrap.className = 'q card';
+    var html = '<div class="q-text">Soalan ' + (qi+1) + '. ' + q.text + '</div>';
+    if (q.type === 'mcq'){
+      html += '<div class="options">';
+      q.options.forEach(function(opt, oi){
+        html += '<button type="button" class="opt" data-qi="'+qi+'" data-oi="'+oi+'">'+opt+'</button>';
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="numeric-row"><input type="number" step="any" data-qi="'+qi+'" placeholder="jawapan"/></div>';
+    }
+    html += '<div class="feedback" id="fb-'+qi+'"></div>';
+    wrap.innerHTML = html;
+    quizEl.appendChild(wrap);
+  });
+
+  quizEl.addEventListener('click', function(e){
+    var btn = e.target.closest('.opt');
+    if (!btn) return;
+    var qi = parseInt(btn.dataset.qi,10);
+    userAnswers[qi] = parseInt(btn.dataset.oi,10);
+    var group = btn.parentElement.querySelectorAll('.opt');
+    group.forEach(function(b){ b.classList.remove('correct','wrong'); });
+    btn.classList.add(parseInt(btn.dataset.oi,10)===questions[qi].correct ? 'correct':'wrong');
+  });
+
+  quizEl.addEventListener('input', function(e){
+    if (e.target.matches('input[type="number"]')){
+      var qi = parseInt(e.target.dataset.qi,10);
+      userAnswers[qi] = e.target.value;
+    }
+  });
+
+  function isCorrect(qi){
+    var q = questions[qi];
+    if (q.type === 'mcq') return userAnswers[qi] === q.correct;
+    if (userAnswers[qi] === null || userAnswers[qi] === '') return false;
+    return Math.abs(parseFloat(userAnswers[qi]) - q.answer) < 0.01;
+  }
+
+  document.getElementById('submitQuiz').addEventListener('click', function(){
+    var correctCount = 0;
+    questions.forEach(function(q, qi){
+      var ok = isCorrect(qi);
+      if (ok) correctCount++;
+      var fb = document.getElementById('fb-'+qi);
+      fb.textContent = ok ? 'Betul!' : ('Kurang tepat — jawapan: ' + (q.type==='mcq' ? q.options[q.correct] : q.answer));
+      fb.className = 'feedback ' + (ok ? 'correct' : 'wrong');
+    });
+
+    document.getElementById('scoreBig').textContent = correctCount + '/' + questions.length;
+    document.getElementById('scorePanel').style.display = 'block';
+
+    var reviewList = document.getElementById('reviewList');
+    reviewList.innerHTML = questions.map(function(q, qi){
+      var ans = q.type==='mcq' ? q.options[q.correct] : q.answer;
+      return '<li><b>Soalan '+(qi+1)+':</b> '+q.text+'<br/>Jawapan: '+ans+' — '+q.explain+'</li>';
+    }).join('');
+
+    try {
+      localStorage.setItem('hd24-score', JSON.stringify({ correct: correctCount, total: questions.length, ts: Date.now() }));
+    } catch (err) { /* localStorage disekat — abaikan supaya app tidak gagal */ }
+
+    document.getElementById('scorePanel').scrollIntoView({ behavior:'smooth', block:'center' });
+  });
+
+  document.getElementById('toggleReview').addEventListener('click', function(){
+    document.getElementById('reviewList').classList.toggle('visible');
+  });
+})();
+</script>
+</body>
+</html>

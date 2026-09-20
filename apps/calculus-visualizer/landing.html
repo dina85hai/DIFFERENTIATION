@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Physical Calculus Visualizer</title>
+<link rel="stylesheet" href="../assets/landing.css" />
+</head>
+<body class="landing">
+  <nav class="lp-nav">
+    <div class="lp-brand"><span class="lp-brand-mark">∂</span> Differentiation</div>
+    <div class="lp-nav-links">
+      <a href="../index.html">Home</a>
+      <a href="#about">About</a>
+      <a href="README.md">Setup Guide</a>
+    </div>
+  </nav>
+
+  <main class="lp-hero">
+    <div class="lp-tile lp-tile-a" aria-hidden="true">
+      <svg viewBox="0 0 200 140">
+        <rect width="200" height="140" fill="#fff3e8"/>
+        <text x="100" y="80" font-size="36" text-anchor="middle">🚗</text>
+        <path d="M20,110 Q100,20 180,60" fill="none" stroke="#ea580c" stroke-width="3" stroke-dasharray="6 6" opacity=".6"/>
+      </svg>
+    </div>
+    <div class="lp-tile lp-tile-b" aria-hidden="true">
+      <svg viewBox="0 0 200 140">
+        <rect width="200" height="140" fill="#fff3e8"/>
+        <text x="100" y="60" font-family="Georgia, serif" font-size="20" fill="#ea580c" text-anchor="middle">position</text>
+        <text x="100" y="88" font-family="Georgia, serif" font-size="20" fill="#c2410c" text-anchor="middle">→ velocity</text>
+        <text x="100" y="116" font-family="Georgia, serif" font-size="20" fill="#9a3412" text-anchor="middle">→ acceleration</text>
+      </svg>
+    </div>
+    <div class="lp-tile lp-tile-c" aria-hidden="true">
+      <svg viewBox="0 0 140 260">
+        <rect width="140" height="260" fill="#fff3e8"/>
+        <text x="70" y="70" font-size="34" text-anchor="middle">⚽</text>
+        <line x1="20" y1="230" x2="120" y2="230" stroke="#ea580c" stroke-width="2" opacity=".4"/>
+        <path d="M20,220 Q70,60 120,220" fill="none" stroke="#ea580c" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="lp-tile lp-tile-d" aria-hidden="true">
+      <svg viewBox="0 0 140 140">
+        <rect width="140" height="140" fill="#fff3e8"/>
+        <text x="70" y="80" font-size="34" text-anchor="middle">🚀</text>
+      </svg>
+    </div>
+    <div class="lp-tile lp-tile-e" aria-hidden="true">
+      <svg viewBox="0 0 140 140">
+        <rect width="140" height="140" fill="#fff3e8"/>
+        <text x="70" y="80" font-size="34" text-anchor="middle">🛟</text>
+      </svg>
+    </div>
+    <div class="lp-tile lp-tile-f" aria-hidden="true">
+      <svg viewBox="0 0 140 140">
+        <rect width="140" height="140" fill="#fff3e8"/>
+        <text x="70" y="70" font-family="Georgia, serif" font-size="18" fill="#ea580c" text-anchor="middle">v = dx/dt</text>
+        <text x="70" y="96" font-size="12" fill="#9a3412" text-anchor="middle">a = dv/dt</text>
+      </svg>
+    </div>
+
+    <div class="lp-content">
+      <span class="lp-eyebrow">Physical Calculus Visualizer</span>
+      <h1>Watch Motion<br>Become Math</h1>
+      <p>Animate a car, a thrown ball, a roller coaster, a rocket and an ocean buoy alongside their live position, velocity and acceleration graphs.</p>
+      <a class="lp-cta" href="README.md">View Setup Guide →</a>
+      <p style="max-width:40ch;font-size:13px;">Requires a quick <code>npm install &amp;&amp; npm run dev</code> — it's a React + Vite app, not a static page.</p>
+    </div>
+  </main>
+</body>
+</html>
