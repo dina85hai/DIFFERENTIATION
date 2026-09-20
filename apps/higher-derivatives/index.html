@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2.4 Higher Derivatives | Terbitan Peringkat Tinggi</title>
+<title>2.4 Higher Derivatives | Derivative Peringkat Tinggi</title>
 <style>
   :root{
     --ink:#0f172a; --sub:#475569; --bg:#f8fafc;
@@ -103,12 +103,12 @@
   <header class="hero">
     <div class="hero-inner">
       <span class="eyebrow">📘 2.4 Higher Derivatives · Nota, Contoh &amp; Latihan</span>
-      <h1>Terbitan Peringkat Tinggi</h1>
-      <p>Dari f'(x) ke f''(x), f'''(x) dan seterusnya — fahami notasi, makna fizikal (halaju &amp; pecutan), kecekungan graf, titik lengkok, dan latih diri anda dengan latihan bersemak automatik.</p>
+      <h1>Derivative Peringkat Tinggi</h1>
+      <p>Dari f'(x) ke f''(x), f'''(x) dan seterusnya — fahami notasi, makna fizikal (velocity &amp; acceleration), concavity graph, inflection point, dan latih diri anda dengan latihan bersemak automatik.</p>
       <div class="badges">
         <span>✓ Nota visual</span>
         <span>✓ Contoh interaktif berpandu</span>
-        <span>✓ Peneroka kecekungan langsung</span>
+        <span>✓ Peneroka concavity langsung</span>
         <span>✓ 10 soalan latihan disemak</span>
         <span>✓ Berfungsi luar talian</span>
       </div>
@@ -118,7 +118,7 @@
   <nav class="toc">
     <a href="#notes">📘 Nota Visual</a>
     <a href="#examples">✏️ Contoh Interaktif</a>
-    <a href="#explorer">🔍 Peneroka Kecekungan</a>
+    <a href="#explorer">🔍 Peneroka Concavity</a>
     <a href="#exercises">📝 Latihan</a>
   </nav>
 
@@ -126,9 +126,9 @@
     <h2>📘 Nota Visual</h2>
 
     <div class="card" style="margin-bottom:18px;">
-      <p style="margin-top:0;"><b>Notasi terbitan peringkat tinggi</b> — setiap kali kita membezakan sekali lagi, kita naik satu peringkat:</p>
+      <p style="margin-top:0;"><b>Notasi derivative peringkat tinggi</b> — setiap kali kita membezakan sekali lagi, kita naik satu peringkat:</p>
       <div class="ladder">
-        <div class="term">f(x)<small>fungsi asal</small></div>
+        <div class="term">f(x)<small>function asal</small></div>
         <div class="arrow">→</div>
         <div class="term">f'(x)<small>dy/dx</small></div>
         <div class="arrow">→</div>
@@ -147,14 +147,14 @@
         <p style="font-size:13px;color:var(--sub);margin-top:4px;">Jika s(t) ialah kedudukan objek pada masa t:</p>
         <div class="chain">
           <div class="stop"><span class="icon">📍</span><b>s(t)</b><small>kedudukan</small></div>
-          <div class="stop"><span class="icon">🏃</span><b>v(t)=s'(t)</b><small>halaju</small></div>
-          <div class="stop"><span class="icon">🚀</span><b>a(t)=v'(t)=s''(t)</b><small>pecutan</small></div>
+          <div class="stop"><span class="icon">🏃</span><b>v(t)=s'(t)</b><small>velocity</small></div>
+          <div class="stop"><span class="icon">🚀</span><b>a(t)=v'(t)=s''(t)</b><small>acceleration</small></div>
           <div class="stop"><span class="icon">⚡</span><b>j(t)=a'(t)=s'''(t)</b><small>jerk</small></div>
         </div>
       </div>
       <div class="card">
-        <b>Kecekungan graf (concavity)</b>
-        <p style="font-size:13px;color:var(--sub);margin-top:4px;">Tanda f''(x) memberitahu bentuk lengkung:</p>
+        <b>Graph concavity</b>
+        <p style="font-size:13px;color:var(--sub);margin-top:4px;">Tanda f''(x) memberitahu bentuk curve:</p>
         <svg class="diagram" viewBox="0 0 340 140">
           <rect width="160" height="140" fill="#ecfdf5" rx="12"/>
           <rect x="180" width="160" height="140" fill="#fef2f2" rx="12"/>
@@ -171,14 +171,14 @@
     </div>
 
     <div class="card">
-      <b>Titik lengkok (inflection point)</b>
-      <p style="font-size:13px;color:var(--sub);margin:4px 0 10px;">Titik di mana graf bertukar dari cekung ke atas kepada cekung ke bawah (atau sebaliknya) — berlaku apabila f''(x) = 0 <i>dan</i> tanda f''(x) berubah merentasi titik itu.</p>
+      <b>Inflection point</b>
+      <p style="font-size:13px;color:var(--sub);margin:4px 0 10px;">Titik di mana graph bertukar dari cekung ke atas kepada cekung ke bawah (atau sebaliknya) — berlaku apabila f''(x) = 0 <i>dan</i> tanda f''(x) berubah merentasi titik itu.</p>
       <svg class="diagram" viewBox="0 0 340 120">
         <rect width="340" height="120" fill="#f8fafc" rx="12"/>
         <path d="M20,90 C90,10 130,10 170,55 C210,100 250,100 320,30" fill="none" stroke="#4f46e5" stroke-width="4" stroke-linecap="round"/>
         <circle cx="170" cy="55" r="6" fill="#d97706"/>
         <line x1="170" y1="20" x2="170" y2="95" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <text x="170" y="112" text-anchor="middle" font-size="12" fill="#b45309">titik lengkok (f''(x)=0)</text>
+        <text x="170" y="112" text-anchor="middle" font-size="12" fill="#b45309">inflection point (f''(x)=0)</text>
       </svg>
     </div>
   </section>
@@ -187,10 +187,10 @@
     <h2>✏️ Contoh Interaktif</h2>
 
     <div class="example" data-example>
-      <div class="ex-title">Contoh 1 — Fungsi Polinomial</div>
+      <div class="ex-title">Contoh 1 — Function Polynomial</div>
       <div class="step formula visible" data-i="0"><span class="tag">Diberi</span><div class="math">f(x) = x⁴ − 3x³ + 2x. Cari f''(x).</div></div>
-      <div class="step diff" data-i="1"><span class="tag">Terbitan pertama</span><div class="math">f'(x) = 4x³ − 9x² + 2</div><div class="note">Bezakan setiap sebutan: d/dx(x⁴)=4x³, d/dx(−3x³)=−9x², d/dx(2x)=2.</div></div>
-      <div class="step diff" data-i="2"><span class="tag">Terbitan kedua</span><div class="math">f''(x) = 12x² − 18x</div><div class="note">Bezakan f'(x) sekali lagi: d/dx(4x³)=12x², d/dx(−9x²)=−18x, d/dx(2)=0.</div></div>
+      <div class="step diff" data-i="1"><span class="tag">Derivative pertama</span><div class="math">f'(x) = 4x³ − 9x² + 2</div><div class="note">Bezakan setiap term: d/dx(x⁴)=4x³, d/dx(−3x³)=−9x², d/dx(2x)=2.</div></div>
+      <div class="step diff" data-i="2"><span class="tag">Derivative kedua</span><div class="math">f''(x) = 12x² − 18x</div><div class="note">Bezakan f'(x) sekali lagi: d/dx(4x³)=12x², d/dx(−9x²)=−18x, d/dx(2)=0.</div></div>
       <div class="step answer" data-i="3"><span class="tag">Jawapan</span><div class="math">f''(x) = 12x² − 18x</div></div>
       <div class="ex-controls">
         <button class="btn" data-act="prev">← Sebelumnya</button>
@@ -202,10 +202,10 @@
     <div class="example" data-example>
       <div class="ex-title">Contoh 2 — Corak Berulang (sin x)</div>
       <div class="step formula visible" data-i="0"><span class="tag">Diberi</span><div class="math">f(x) = sin x. Cari f⁽⁴⁾(x).</div></div>
-      <div class="step diff" data-i="1"><span class="tag">Terbitan 1</span><div class="math">f'(x) = cos x</div></div>
-      <div class="step diff" data-i="2"><span class="tag">Terbitan 2</span><div class="math">f''(x) = −sin x</div></div>
-      <div class="step diff" data-i="3"><span class="tag">Terbitan 3</span><div class="math">f'''(x) = −cos x</div></div>
-      <div class="step answer" data-i="4"><span class="tag">Jawapan</span><div class="math">f⁽⁴⁾(x) = sin x</div><div class="note">Corak berulang setiap 4 terbitan — f⁽⁴⁾(x) kembali sama seperti f(x)!</div></div>
+      <div class="step diff" data-i="1"><span class="tag">Derivative 1</span><div class="math">f'(x) = cos x</div></div>
+      <div class="step diff" data-i="2"><span class="tag">Derivative 2</span><div class="math">f''(x) = −sin x</div></div>
+      <div class="step diff" data-i="3"><span class="tag">Derivative 3</span><div class="math">f'''(x) = −cos x</div></div>
+      <div class="step answer" data-i="4"><span class="tag">Jawapan</span><div class="math">f⁽⁴⁾(x) = sin x</div><div class="note">Corak berulang setiap 4 derivative — f⁽⁴⁾(x) kembali sama seperti f(x)!</div></div>
       <div class="ex-controls">
         <button class="btn" data-act="prev">← Sebelumnya</button>
         <button class="btn" data-act="next">Seterusnya →</button>
@@ -214,10 +214,10 @@
     </div>
 
     <div class="example" data-example>
-      <div class="ex-title">Contoh 3 — Kuasa Negatif</div>
+      <div class="ex-title">Contoh 3 — Power Negatif</div>
       <div class="step formula visible" data-i="0"><span class="tag">Diberi</span><div class="math">f(x) = 1/x = x⁻¹. Cari f''(x).</div></div>
-      <div class="step diff" data-i="1"><span class="tag">Terbitan pertama</span><div class="math">f'(x) = −x⁻²</div><div class="note">Petua kuasa: n·xⁿ⁻¹ dengan n=−1 memberi −1·x⁻².</div></div>
-      <div class="step diff" data-i="2"><span class="tag">Terbitan kedua</span><div class="math">f''(x) = 2x⁻³</div><div class="note">Bezakan −x⁻² sekali lagi: −1·(−2)·x⁻³ = 2x⁻³.</div></div>
+      <div class="step diff" data-i="1"><span class="tag">Derivative pertama</span><div class="math">f'(x) = −x⁻²</div><div class="note">Power Rule: n·xⁿ⁻¹ dengan n=−1 memberi −1·x⁻².</div></div>
+      <div class="step diff" data-i="2"><span class="tag">Derivative kedua</span><div class="math">f''(x) = 2x⁻³</div><div class="note">Bezakan −x⁻² sekali lagi: −1·(−2)·x⁻³ = 2x⁻³.</div></div>
       <div class="step answer" data-i="3"><span class="tag">Jawapan</span><div class="math">f''(x) = 2/x³</div></div>
       <div class="ex-controls">
         <button class="btn" data-act="prev">← Sebelumnya</button>
@@ -228,9 +228,9 @@
   </section>
 
   <section id="explorer" class="section">
-    <h2>🔍 Peneroka Kecekungan</h2>
+    <h2>🔍 Peneroka Concavity</h2>
     <div class="card">
-      <p style="margin-top:0;color:var(--sub);font-size:14px;">Fungsi: f(x) = x³/3 − 4x. Gerakkan penggelangsar untuk melihat f(x), f'(x) dan f''(x) berubah — dan perhatikan bila graf bertukar kecekungan.</p>
+      <p style="margin-top:0;color:var(--sub);font-size:14px;">Function: f(x) = x³/3 − 4x. Gerakkan penggelangsar untuk melihat f(x), f'(x) dan f''(x) berubah — dan perhatikan bila graph bertukar concavity.</p>
       <div class="explorer-layout">
         <svg id="explorerSvg" class="diagram" viewBox="0 0 420 220">
           <rect width="420" height="220" fill="#f8fafc" rx="14"/>
@@ -244,7 +244,7 @@
           <div class="readout"><span class="label">f(x)</span><span id="valF">0.0</span></div>
           <div class="readout"><span class="label">f'(x)</span><span id="valFp">-4.0</span></div>
           <div class="readout"><span class="label">f''(x)</span><span id="valFpp">0.0</span></div>
-          <div id="statusPill" class="status-pill">Titik Lengkok</div>
+          <div id="statusPill" class="status-pill">Inflection point</div>
         </div>
       </div>
       <input id="xSlider" type="range" min="-4" max="4" step="0.1" value="0" />
@@ -318,7 +318,7 @@
     marker.setAttribute('cx', pxX(x));
     marker.setAttribute('cy', pxY(y));
     if (Math.abs(ypp) < 0.15){
-      statusPill.textContent = 'Titik Lengkok (f\'\'(x) ≈ 0)';
+      statusPill.textContent = 'Inflection point (f\'\'(x) ≈ 0)';
       statusPill.style.background = '#fef3c7'; statusPill.style.color = '#b45309';
     } else if (ypp > 0){
       statusPill.textContent = 'Cekung ke Atas (f\'\'(x) > 0)';
@@ -344,21 +344,21 @@
     { type:'numeric', text:"f(x) = 2x⁴ + x. Kira f''(1).", answer:24,
       explain:"f'(x)=8x³+1, f''(x)=24x². f''(1)=24." },
     { type:'mcq', text:"Pada x=3, keluk f(x)=x²−4x+5 adalah...",
-      options:["Titik lengkok","Cekung ke atas","Tiada maklumat","Cekung ke bawah"], correct:1,
+      options:["Inflection point","Cekung ke atas","Tiada maklumat","Cekung ke bawah"], correct:1,
       explain:"f''(x)=2 (malar dan positif) untuk semua x, jadi keluk sentiasa cekung ke atas." },
-    { type:'mcq', text:"Titik lengkok (inflection point) berlaku apabila...",
+    { type:'mcq', text:"Inflection point berlaku apabila...",
       options:["f'(x)=0","f(x)=0","f''(x)=0 dan tanda f''(x) berubah","f''(x) > 0 sahaja"], correct:2,
-      explain:"Titik lengkok memerlukan f''(x)=0 DAN pertukaran tanda merentasi titik itu." },
-    { type:'numeric', text:"f(x) = x³ − 3x². Cari nilai x di titik lengkok.", answer:1,
+      explain:"Inflection point memerlukan f''(x)=0 DAN pertukaran tanda merentasi titik itu." },
+    { type:'numeric', text:"f(x) = x³ − 3x². Cari nilai x di inflection point.", answer:1,
       explain:"f'(x)=3x²−6x, f''(x)=6x−6=0 ⇒ x=1." },
     { type:'mcq', text:"f(x) = sin x. Apakah f⁽⁴⁾(x)?",
       options:["−cos x","sin x","cos x","−sin x"], correct:1,
-      explain:"Corak sin x berulang setiap 4 terbitan: cos x, −sin x, −cos x, sin x." },
+      explain:"Corak sin x berulang setiap 4 derivative: cos x, −sin x, −cos x, sin x." },
     { type:'numeric', text:"f(x) = 1/x. Kira f''(2).", answer:0.25,
       explain:"f'(x)=−x⁻², f''(x)=2x⁻³=2/x³. f''(2)=2/8=0.25." },
-    { type:'mcq', text:"Dalam fizik, f'''(t) (terbitan ketiga kedudukan) dikenali sebagai...",
-      options:["Momentum","Pecutan","Jerk","Halaju"], correct:2,
-      explain:"Kedudukan → halaju (1st) → pecutan (2nd) → jerk (3rd)." }
+    { type:'mcq', text:"Dalam fizik, f'''(t) (derivative ketiga kedudukan) dikenali sebagai...",
+      options:["Momentum","Acceleration","Jerk","Velocity"], correct:2,
+      explain:"Kedudukan → velocity (1st) → acceleration (2nd) → jerk (3rd)." }
   ];
 
   var quizEl = document.getElementById('quiz');

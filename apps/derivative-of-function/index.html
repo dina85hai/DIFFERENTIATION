@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#075985">
-<title>Makmal Pembezaan Fungsi — Topik 2.2</title>
+<title>Makmal Differentiation Function — Topik 2.2</title>
 <style>
   :root{
     --navy:#082f49;--blue:#0369a1;--sky:#0ea5e9;--cyan:#22d3ee;
@@ -134,7 +134,7 @@
   <div class="topbar">
     <div class="brand">
       <div class="logo">∂</div>
-      <div><h1>Makmal Pembezaan Fungsi</h1><p>Topik 2.2 • Pembelajaran Interaktif</p></div>
+      <div><h1>Makmal Differentiation Function</h1><p>Topik 2.2 • Pembelajaran Interaktif</p></div>
     </div>
     <div class="progress-wrap" aria-label="Kemajuan keseluruhan">
       <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
@@ -150,15 +150,15 @@
     <div class="journey-title">Perjalanan Pembelajaran</div>
     <nav class="nav-list" id="navList">
       <button class="nav-btn active" data-screen="home"><span class="num">⌂</span><span class="label">Laman Utama</span></button>
-      <button class="nav-btn" data-screen="meaning"><span class="num">1</span><span class="label">Apa Itu Terbitan?</span></button>
+      <button class="nav-btn" data-screen="meaning"><span class="num">1</span><span class="label">Apa Itu Derivative?</span></button>
       <button class="nav-btn" data-screen="notation"><span class="num">2</span><span class="label">Kenali Notasi</span></button>
-      <button class="nav-btn" data-screen="power"><span class="num">3</span><span class="label">Peraturan Kuasa</span></button>
+      <button class="nav-btn" data-screen="power"><span class="num">3</span><span class="label">Power Rule</span></button>
       <button class="nav-btn" data-screen="solver"><span class="num">4</span><span class="label">Penyelesai Berpandu</span></button>
-      <button class="nav-btn" data-screen="types"><span class="num">5</span><span class="label">Jenis Fungsi</span></button>
+      <button class="nav-btn" data-screen="types"><span class="num">5</span><span class="label">Jenis Function</span></button>
       <button class="nav-btn" data-screen="mistakes"><span class="num">6</span><span class="label">Kesilapan Lazim</span></button>
       <button class="nav-btn" data-screen="mastery"><span class="num">★</span><span class="label">Pencapaian Saya</span></button>
     </nav>
-    <div class="side-tip"><strong>💡 Ingat:</strong><br>Terbitan menerangkan <b>seberapa cepat sesuatu berubah</b>. Belajar satu langkah pada satu masa.</div>
+    <div class="side-tip"><strong>💡 Ingat:</strong><br>Derivative menerangkan <b>seberapa cepat sesuatu berubah</b>. Belajar satu langkah pada satu masa.</div>
   </aside>
 
   <section class="content">
@@ -166,7 +166,7 @@
       <div class="hero">
         <div style="position:relative;z-index:2">
           <span class="eyebrow">📈 TOPIK 2.2 • KALKULUS ASAS</span>
-          <h2>Pembezaan<br>Jadi Mudah.</h2>
+          <h2>Differentiation<br>Jadi Mudah.</h2>
           <p class="lead">Lihat perubahan secara visual, isi formula langkah demi langkah, kemudian bina keyakinan melalui latihan yang meningkat secara perlahan.</p>
           <div class="hero-actions">
             <button class="primary" data-go="meaning">Mula Belajar <span>→</span></button>
@@ -180,7 +180,7 @@
         </div>
         <div class="hero-visual">
           <div class="visual-orbit">
-            <div class="formula-core"><div><strong>f′(x)</strong><span>Kadar perubahan<br>atau kecerunan</span></div></div>
+            <div class="formula-core"><div><strong>f′(x)</strong><span>Rate of change<br>atau gradient</span></div></div>
             <div class="orbit-item">xⁿ</div><div class="orbit-item">sin x</div><div class="orbit-item">eˣ</div><div class="orbit-item">ln x</div>
           </div>
         </div>
@@ -188,31 +188,31 @@
     </article>
 
     <article class="screen" id="screen-meaning">
-      <div class="section-head"><div><h2>1. Apa Itu Terbitan?</h2><p>Mulakan dengan idea yang boleh dilihat: kelajuan dan kecerunan garis tangen.</p></div><span class="step-pill">KONKRIT → VISUAL</span></div>
+      <div class="section-head"><div><h2>1. Apa Itu Derivative?</h2><p>Mulakan dengan idea yang boleh dilihat: speed dan gradient tangent line.</p></div><span class="step-pill">KONKRIT → VISUAL</span></div>
       <div class="grid-2">
         <div class="card concept-card">
-          <h3>🚗 Kadar perubahan dalam kehidupan</h3>
-          <p>Meter kelajuan menunjukkan bagaimana jarak berubah terhadap masa. Dalam matematik, terbitan melakukan perkara yang sama: ia mengukur kadar perubahan pada suatu ketika.</p>
+          <h3>🚗 Rate of change dalam kehidupan</h3>
+          <p>Meter speed menunjukkan bagaimana jarak berubah terhadap masa. Dalam matematik, derivative melakukan perkara yang sama: ia mengukur rate of change pada suatu ketika.</p>
           <div class="real-scene">
             <div class="speed-badge"><span id="speedValue">60</span> km/j</div><div class="car" aria-label="Kereta bergerak ke hadapan menaiki bukit"><div class="car-body"><span class="car-window"></span><span class="car-wheel left"></span><span class="car-wheel right"></span></div><span class="car-arrow">→</span></div><div class="sky-line"></div><div class="road"></div>
           </div>
           <div class="callout info" style="margin-top:13px"><b>Idea utama:</b> Semakin cepat kedudukan berubah, semakin besar kadar perubahannya.</div>
         </div>
         <div class="card concept-card">
-          <h3>📐 Terbitan sebagai kecerunan</h3>
-          <p>Gerakkan titik pada graf <b>y = x²</b>. Garis jingga ialah garis tangen. Kecerunannya ialah nilai terbitan pada titik itu.</p>
-          <div class="graph-wrap"><canvas id="slopeCanvas" width="700" height="390" aria-label="Graf y sama dengan x kuasa dua dan garis tangen"></canvas>
+          <h3>📐 Derivative sebagai gradient</h3>
+          <p>Gerakkan titik pada graph <b>y = x²</b>. Garis jingga ialah tangent line. Its gradient ialah nilai derivative pada titik itu.</p>
+          <div class="graph-wrap"><canvas id="slopeCanvas" width="700" height="390" aria-label="Graph y sama dengan x power two dan tangent line"></canvas>
             <div class="slider-row"><b>x =</b><input id="xSlider" type="range" min="-3" max="3" value="1" step="0.1"><strong id="xRead">1.0</strong></div>
-            <div class="metric-row"><div class="metric"><span>Titik</span><strong id="pointRead">(1, 1)</strong></div><div class="metric"><span>Terbitan</span><strong>f′(x)=2x</strong></div><div class="metric"><span>Kecerunan</span><strong id="slopeRead">2.0</strong></div></div>
+            <div class="metric-row"><div class="metric"><span>Titik</span><strong id="pointRead">(1, 1)</strong></div><div class="metric"><span>Derivative</span><strong>f′(x)=2x</strong></div><div class="metric"><span>Gradient</span><strong id="slopeRead">2.0</strong></div></div>
           </div>
         </div>
       </div>
       <div class="card" style="margin-top:18px">
-        <h3>Uji pemahaman ringkas</h3><p>Apakah yang diterangkan oleh terbitan?</p>
+        <h3>Uji pemahaman ringkas</h3><p>Apakah yang diterangkan oleh derivative?</p>
         <div class="quiz-options" data-quiz="meaning">
           <button class="option" data-correct="false">Nilai tetap yang tidak pernah berubah</button>
-          <button class="option" data-correct="true">Kadar perubahan atau kecerunan pada sesuatu titik</button>
-          <button class="option" data-correct="false">Luas di bawah graf sahaja</button>
+          <button class="option" data-correct="true">Rate of change atau gradient pada sesuatu titik</button>
+          <button class="option" data-correct="false">Luas di bawah graph sahaja</button>
         </div><div id="meaningFeedback" class="feedback"></div>
       </div>
       <div class="bottom-nav"><button class="secondary" data-go="home">← Utama</button><button class="primary" data-go="notation">Seterusnya: Notasi →</button></div>
@@ -222,13 +222,13 @@
       <div class="section-head"><div><h2>2. Kenali Notasi</h2><p>Tiga tulisan yang berbeza, tetapi semuanya membawa maksud yang sama.</p></div><span class="step-pill">VISUAL → SIMBOL</span></div>
       <div class="grid-2">
         <div class="card">
-          <h3>Tiga cara menulis “terbitan”</h3>
+          <h3>Tiga cara menulis “derivative”</h3>
           <div class="equivalence">
-            <div class="notation-box blue"><div><strong>f′(x)</strong><br><small>“f prima x”</small></div><span>Notasi fungsi</span></div>
+            <div class="notation-box blue"><div><strong>f′(x)</strong><br><small>“f prima x”</small></div><span>Notasi function</span></div>
             <div class="notation-box orange"><div><strong>dy/dx</strong><br><small>“dee-y dee-x”</small></div><span>Notasi Leibniz</span></div>
             <div class="notation-box green"><div><strong>df/dx</strong><br><small>“dee-f dee-x”</small></div><span>Notasi alternatif</span></div>
           </div>
-          <div class="callout success" style="margin-top:15px"><b>Ketiga-tiganya setara:</b> semuanya merujuk kepada kadar perubahan fungsi terhadap x.</div>
+          <div class="callout success" style="margin-top:15px"><b>Ketiga-tiganya setara:</b> semuanya merujuk kepada rate of change function terhadap x.</div>
         </div>
         <div class="card">
           <h3>Penukar notasi interaktif</h3>
@@ -236,8 +236,8 @@
           <div class="tabs" id="notationTabs">
             <button class="tab-btn active" data-note="prime">f′(x)</button><button class="tab-btn" data-note="dy">dy/dx</button><button class="tab-btn" data-note="df">df/dx</button>
           </div>
-          <div class="formula-panel"><p>Diberi fungsi</p><div class="formula">f(x) = x³</div><p id="notationSentence">Maka, f′(x) = 3x²</p></div>
-          <div class="callout info" style="margin-top:14px"><b>Tip:</b> Soalan boleh menggunakan notasi yang berlainan. Fokus pada operasi pembezaan, bukan rupa simbol.</div>
+          <div class="formula-panel"><p>Diberi function</p><div class="formula">f(x) = x³</div><p id="notationSentence">Maka, f′(x) = 3x²</p></div>
+          <div class="callout info" style="margin-top:14px"><b>Tip:</b> Soalan boleh menggunakan notasi yang berlainan. Fokus pada operasi differentiation, bukan rupa simbol.</div>
         </div>
       </div>
       <div class="card" style="margin-top:18px">
@@ -245,15 +245,15 @@
         <div class="quiz-options" data-quiz="notation"><button class="option" data-correct="true">f′(x)</button><button class="option" data-correct="false">f(x) sahaja</button><button class="option" data-correct="false">∫f(x) dx</button></div>
         <div id="notationFeedback" class="feedback"></div>
       </div>
-      <div class="bottom-nav"><button class="secondary" data-go="meaning">← Sebelum</button><button class="primary" data-go="power">Seterusnya: Peraturan Kuasa →</button></div>
+      <div class="bottom-nav"><button class="secondary" data-go="meaning">← Sebelum</button><button class="primary" data-go="power">Seterusnya: Power Rule →</button></div>
     </article>
 
     <article class="screen" id="screen-power">
-      <div class="section-head"><div><h2>3. Latihan Pembezaan</h2><p>Mulakan dengan Peraturan Kuasa, kemudian cuba fungsi algebra, trigonometri, eksponen dan logaritma.</p></div><span class="step-pill">RUMUS → JALAN KERJA</span></div>
+      <div class="section-head"><div><h2>3. Latihan Differentiation</h2><p>Mulakan dengan Power Rule, kemudian cuba function algebra, trigonometry, exponential dan logarithm.</p></div><span class="step-pill">RUMUS → JALAN KERJA</span></div>
       <div class="formula-panel">
         <p>Gunakan satu formula lengkap tanpa memisahkan langkah:</p>
         <div class="formula">d/dx(axⁿ) = (a)(n)xⁿ⁻¹</div>
-        <div class="legend"><span><b class="constant">a</b> = pekali</span><span><b class="power">n</b> = kuasa asal</span><span><b class="operation">n − 1</b> = kuasa baharu</span></div>
+        <div class="legend"><span><b class="constant">a</b> = coefficient</span><span><b class="power">n</b> = original power</span><span><b class="operation">n − 1</b> = new power</span></div>
       </div>
       <div class="card" style="margin-top:18px">
         <h3>Contoh lengkap</h3>
@@ -262,16 +262,16 @@
           <div class="worked-step-row"><div class="worked-step-label">Contoh</div><div class="worked-step-formula">d/dx(5x<sup>4</sup>) = (5)(4)x<sup>4 − 1</sup></div></div>
           <div class="worked-step-row"><div class="worked-step-label">Jawapan</div><div class="worked-step-formula result">20x<sup>3</sup></div></div>
         </div>
-        <div class="callout info" style="margin-top:14px"><b>Perhatikan:</b> pendaraban ditulis menggunakan kurungan, dan kuasa ditulis sebagai <b>n − 1</b>.</div>
+        <div class="callout info" style="margin-top:14px"><b>Perhatikan:</b> pendaraban ditulis menggunakan kurungan, dan power ditulis sebagai <b>n − 1</b>.</div>
       </div>
 
       <div class="card" style="margin-top:18px">
-        <h3>Contoh 1: satu sebutan</h3>
+        <h3>Contoh 1: satu term</h3>
         <div class="question-banner">Soalan 1: Bezakan f(x) = 3x⁵.</div>
         <div class="formula-fill-card example-stack" style="margin-top:14px">
           <div class="worked-steps">
-            <div class="worked-step-row"><div class="worked-step-label">Langkah 1</div><div class="worked-step-formula">Kenal pasti kuasa: <span class="n-text">n</span> = <input id="p3n1a" class="formula-box n-box" inputmode="numeric" aria-label="n langkah satu contoh satu"></div></div>
-            <div class="worked-step-row"><div class="worked-step-label">Langkah 2</div><div class="worked-step-formula">f′(x) = (3)(<input id="p3n1b" class="formula-box n-box" inputmode="numeric" aria-label="n pekali contoh satu">)x<sup><input id="p3n1c" class="formula-box n-box" inputmode="numeric" aria-label="n kuasa contoh satu"> − 1</sup></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 1</div><div class="worked-step-formula">Kenal pasti power: <span class="n-text">n</span> = <input id="p3n1a" class="formula-box n-box" inputmode="numeric" aria-label="n langkah satu contoh satu"></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 2</div><div class="worked-step-formula">f′(x) = (3)(<input id="p3n1b" class="formula-box n-box" inputmode="numeric" aria-label="n coefficient contoh satu">)x<sup><input id="p3n1c" class="formula-box n-box" inputmode="numeric" aria-label="n power contoh satu"> − 1</sup></div></div>
             <div class="worked-step-row"><div class="worked-step-label">Langkah 3</div><div class="worked-step-formula result">f′(x) = 15x⁴</div></div>
           </div>
           <div style="text-align:center"><button id="checkPowerFormula1" class="primary small">Semak Contoh 1</button></div>
@@ -280,12 +280,12 @@
       </div>
 
       <div class="card" style="margin-top:18px">
-        <h3>Contoh 2: dua sebutan</h3>
+        <h3>Contoh 2: dua term</h3>
         <div class="question-banner">Soalan 2: Bezakan f(x) = 2x³ + 5x².</div>
         <div class="formula-fill-card example-stack" style="margin-top:14px">
           <div class="worked-steps">
-            <div class="worked-step-row"><div class="worked-step-label">Langkah 1</div><div class="worked-step-formula">Sebutan pertama: <span class="n-text">n</span> = <input id="p3n2a1" class="formula-box n-box" inputmode="numeric" aria-label="n sebutan pertama"> &nbsp; | &nbsp; Sebutan kedua: <span class="n-text">n</span> = <input id="p3n2b1" class="formula-box n-box" inputmode="numeric" aria-label="n sebutan kedua"></div></div>
-            <div class="worked-step-row"><div class="worked-step-label">Langkah 2</div><div class="worked-step-formula">f′(x) = (2)(<input id="p3n2a2" class="formula-box n-box" inputmode="numeric" aria-label="n darab sebutan pertama">)x<sup><input id="p3n2a3" class="formula-box n-box" inputmode="numeric" aria-label="n kuasa sebutan pertama"> − 1</sup> + (5)(<input id="p3n2b2" class="formula-box n-box" inputmode="numeric" aria-label="n darab sebutan kedua">)x<sup><input id="p3n2b3" class="formula-box n-box" inputmode="numeric" aria-label="n kuasa sebutan kedua"> − 1</sup></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 1</div><div class="worked-step-formula">Term pertama: <span class="n-text">n</span> = <input id="p3n2a1" class="formula-box n-box" inputmode="numeric" aria-label="n term pertama"> &nbsp; | &nbsp; Term kedua: <span class="n-text">n</span> = <input id="p3n2b1" class="formula-box n-box" inputmode="numeric" aria-label="n term kedua"></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 2</div><div class="worked-step-formula">f′(x) = (2)(<input id="p3n2a2" class="formula-box n-box" inputmode="numeric" aria-label="n multiply term pertama">)x<sup><input id="p3n2a3" class="formula-box n-box" inputmode="numeric" aria-label="n power term pertama"> − 1</sup> + (5)(<input id="p3n2b2" class="formula-box n-box" inputmode="numeric" aria-label="n multiply term kedua">)x<sup><input id="p3n2b3" class="formula-box n-box" inputmode="numeric" aria-label="n power term kedua"> − 1</sup></div></div>
             <div class="worked-step-row"><div class="worked-step-label">Langkah 3</div><div class="worked-step-formula result">f′(x) = 6x² + 10x</div></div>
           </div>
           <div class="formula-note">Semua kotak <span class="n-text"><b>n</b></span> berwarna ungu. Simbol <b>x</b> dan nilai <b>−1</b> tidak dimasukkan ke dalam kotak.</div>
@@ -295,22 +295,22 @@
       </div>
 
       <div class="card" style="margin-top:18px">
-        <h3>Soalan latihan pelbagai fungsi</h3>
-        <p>Bezakan setiap fungsi berikut. Setiap soalan menyediakan ruang jalan kerja, kalkulator dan papan kekunci persamaan matematik.</p>
+        <h3>Soalan latihan pelbagai function</h3>
+        <p>Bezakan setiap function berikut. Setiap soalan menyediakan ruang jalan kerja, kalkulator dan papan kekunci equation matematik.</p>
         <div class="category-launcher" aria-label="Pilih kategori soalan bahagian 3">
-          <button class="category-launch-btn" data-section3-filter="trig">📐 Soalan Trigonometri</button>
-          <button class="category-launch-btn" data-section3-filter="exp">eˣ Soalan Eksponen</button>
-          <button class="category-launch-btn" data-section3-filter="log">ln Soalan ln / Logaritma</button>
+          <button class="category-launch-btn" data-section3-filter="trig">📐 Soalan Trigonometry</button>
+          <button class="category-launch-btn" data-section3-filter="exp">eˣ Soalan Exponential</button>
+          <button class="category-launch-btn" data-section3-filter="log">ln Soalan ln / Logarithm</button>
           <button class="category-launch-btn" data-section3-filter="alg">xⁿ Soalan Algebra</button>
         </div>
         <div class="type-filter" id="section3ExerciseFilters">
           <button class="type-filter-btn active" data-section3-filter="all">🔀 Semua / Campuran</button>
           <button class="type-filter-btn" data-section3-filter="alg">Algebra</button>
-          <button class="type-filter-btn" data-section3-filter="trig">Trigonometri</button>
-          <button class="type-filter-btn" data-section3-filter="exp">Eksponen</button>
-          <button class="type-filter-btn" data-section3-filter="log">ln / Logaritma</button>
+          <button class="type-filter-btn" data-section3-filter="trig">Trigonometry</button>
+          <button class="type-filter-btn" data-section3-filter="exp">Exponential</button>
+          <button class="type-filter-btn" data-section3-filter="log">ln / Logarithm</button>
         </div>
-        <div class="section3-filter-note"><b>Warna diseragamkan:</b> bahagian 3 dan bahagian 6 kini menggunakan tema biru yang sama. Warna ikon hanya membantu membezakan jenis fungsi.</div>
+        <div class="section3-filter-note"><b>Warna diseragamkan:</b> bahagian 3 dan bahagian 6 kini menggunakan tema biru yang sama. Warna ikon hanya membantu membezakan jenis function.</div>
         <div class="question-bank" id="powerQuestionBank"></div>
       </div>
       <div class="bottom-nav"><button class="secondary" data-go="notation">← Sebelum</button><button class="primary" data-go="solver">Seterusnya: Penyelesai →</button></div>
@@ -329,58 +329,58 @@
       </div>
       <div class="card" style="margin-top:18px">
         <div class="solver-problem"><div><small>SOALAN <span id="solverQuestionNo">1</span> DARIPADA <span id="solverQuestionTotal">14</span> — ALGEBRA DARIPADA LATIHAN NOMBOR 3</small><div id="solverProblem" class="problem-eq">f(x) = 4x³</div></div><button id="newSolver" class="secondary small">Soalan Seterusnya →</button></div>
-        <div class="solver-step" id="solverStep1"><h4><span class="step-circle">1</span> Kenal pasti pekali dan kuasa</h4><div id="guidedIdentifyFields" class="guided-term-grid"></div><div class="answer-line" style="margin-top:12px"><button id="checkS1" class="primary small">Semak Langkah 1</button><button class="secondary small hint-btn" data-step="1">💡 Petunjuk</button></div><div id="s1Feedback" class="feedback"></div></div>
+        <div class="solver-step" id="solverStep1"><h4><span class="step-circle">1</span> Kenal pasti coefficient dan power</h4><div id="guidedIdentifyFields" class="guided-term-grid"></div><div class="answer-line" style="margin-top:12px"><button id="checkS1" class="primary small">Semak Langkah 1</button><button class="secondary small hint-btn" data-step="1">💡 Petunjuk</button></div><div id="s1Feedback" class="feedback"></div></div>
         <div class="solver-step locked" id="solverStep2"><h4><span class="step-circle">2</span> Ganti nilai ke dalam formula</h4><div id="guidedFormulaFields" class="guided-formula-line"></div><div class="answer-line" style="margin-top:12px"><button id="checkS2" class="primary small">Semak Langkah 2</button><button class="secondary small hint-btn" data-step="2">💡 Petunjuk</button></div><div id="s2Feedback" class="feedback"></div></div>
         <div class="solver-step locked" id="solverStep5"><h4><span class="step-circle">5</span> Tulis jalan kerja dan jawapan akhir</h4><div class="guided-workspace-wrap"><div class="work-label"><span>Ruang jalan kerja</span><small>Klik simbol dalam kalkulator untuk memasukkannya</small></div><div id="guidedWorkspace" class="math-workspace" contenteditable="true" data-placeholder="Contoh: f′(x) = (4)(3)x^(3 − 1) = 12x²"></div><div id="guidedCalculator"></div></div><div class="exercise-answer-row"><b>Jawapan akhir, f′(x) =</b><input id="sFinal" class="math-input answer-wide" placeholder="contoh: 12x^2"><button id="checkS5" class="success-btn small">Semak Jawapan</button></div><button class="secondary small hint-btn" data-step="5" style="margin-top:10px">💡 Petunjuk</button><div id="s5Feedback" class="feedback"></div></div>
       </div>
 
       <div class="card" style="margin-top:18px">
-        <h3>Contoh fungsi khas</h3>
+        <h3>Contoh function khas</h3>
         <p>Lihat pola asas sebelum menjawab latihan kotak.</p>
         <div class="grid-3">
-          <div class="mini-card"><h3>📐 Trigonometri</h3><div class="formula-panel"><div class="formula">d/dx(sin x)</div><p>↓</p><div class="formula result">cos x</div></div><p>Contoh lain: cos x → −sin x, tan x → sec²x.</p></div>
-          <div class="mini-card"><h3>eˣ Eksponen</h3><div class="formula-panel"><div class="formula">d/dx(eˣ)</div><p>↓</p><div class="formula result">eˣ</div></div><p>Untuk aˣ, gunakan aˣ ln a.</p></div>
-          <div class="mini-card"><h3>ln Logaritma</h3><div class="formula-panel"><div class="formula">d/dx(ln x)</div><p>↓</p><div class="formula result">1/x</div></div><p>Untuk logₐx, gunakan 1/(x ln a).</p></div>
+          <div class="mini-card"><h3>📐 Trigonometry</h3><div class="formula-panel"><div class="formula">d/dx(sin x)</div><p>↓</p><div class="formula result">cos x</div></div><p>Contoh lain: cos x → −sin x, tan x → sec²x.</p></div>
+          <div class="mini-card"><h3>eˣ Exponential</h3><div class="formula-panel"><div class="formula">d/dx(eˣ)</div><p>↓</p><div class="formula result">eˣ</div></div><p>Untuk aˣ, gunakan aˣ ln a.</p></div>
+          <div class="mini-card"><h3>ln Logarithm</h3><div class="formula-panel"><div class="formula">d/dx(ln x)</div><p>↓</p><div class="formula result">1/x</div></div><p>Untuk logₐx, gunakan 1/(x ln a).</p></div>
         </div>
       </div>
 
       <div class="card" style="margin-top:18px">
-        <h3>Latihan kotak: trigonometri, eksponen dan ln</h3>
+        <h3>Latihan kotak: trigonometry, exponential dan ln</h3>
         <p>Pilih kategori, lengkapkan kotak jawapan dan gunakan kalkulator matematik untuk menekan simbol.</p>
         <div class="category-launcher" id="guidedSpecialFilters">
-          <button class="category-launch-btn active" data-guided-special-filter="trig">📐 Trigonometri</button>
-          <button class="category-launch-btn" data-guided-special-filter="exp">eˣ Eksponen</button>
-          <button class="category-launch-btn" data-guided-special-filter="log">ln Logaritma</button>
+          <button class="category-launch-btn active" data-guided-special-filter="trig">📐 Trigonometry</button>
+          <button class="category-launch-btn" data-guided-special-filter="exp">eˣ Exponential</button>
+          <button class="category-launch-btn" data-guided-special-filter="log">ln Logarithm</button>
           <button class="category-launch-btn" data-guided-special-filter="all">🔀 Campuran</button>
         </div>
         <div id="guidedSpecialQuestionBank"></div>
       </div>
-      <div class="bottom-nav"><button class="secondary" data-go="power">← Sebelum</button><button class="primary" data-go="types">Seterusnya: Jenis Fungsi →</button></div>
+      <div class="bottom-nav"><button class="secondary" data-go="power">← Sebelum</button><button class="primary" data-go="types">Seterusnya: Jenis Function →</button></div>
     </article>
 
     <article class="screen" id="screen-types">
-      <div class="section-head"><div><h2>5. Jenis Fungsi Lain</h2><p>Kenal pasti bentuk fungsi dahulu, kemudian pilih rumus yang sesuai.</p></div><span class="step-pill">PENGECAMAN POLA</span></div>
+      <div class="section-head"><div><h2>5. Jenis Function Lain</h2><p>Kenal pasti bentuk function dahulu, kemudian pilih rumus yang sesuai.</p></div><span class="step-pill">PENGECAMAN POLA</span></div>
       <div class="card">
-        <div class="tabs" id="functionTabs"><button class="tab-btn active" data-tab="alg">Algebra</button><button class="tab-btn" data-tab="trig">Trigonometri</button><button class="tab-btn" data-tab="exp">Eksponen</button><button class="tab-btn" data-tab="log">Logaritma</button></div>
-        <div id="tab-alg" class="tab-panel active"><div class="grid-2"><div><h3>🔵 Fungsi Algebra</h3><p>Gunakan Peraturan Kuasa pada setiap sebutan.</p><div class="formula-panel"><div class="formula">3x⁴ + 2x² + 5</div><p>↓</p><div class="formula result">12x³ + 4x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Fungsi</div><div class="head">Terbitan</div><div>xⁿ</div><div>nxⁿ⁻¹</div><div>c</div><div>0</div><div>af(x)</div><div>af′(x)</div></div></div></div></div>
-        <div id="tab-trig" class="tab-panel"><div class="grid-2"><div><h3>🟠 Fungsi Trigonometri</h3><p>Rumus asas ini biasanya digunakan apabila sudut dalam radian.</p><div class="formula-panel"><div class="formula">sin x → cos x</div><div class="formula">cos x → −sin x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Fungsi</div><div class="head">Terbitan</div><div>sin x</div><div>cos x</div><div>cos x</div><div>−sin x</div><div>tan x</div><div>sec²x</div></div></div></div></div>
-        <div id="tab-exp" class="tab-panel"><div class="grid-2"><div><h3>🟢 Fungsi Eksponen</h3><p>Fungsi eˣ istimewa kerana terbitannya sama dengan fungsi asal.</p><div class="formula-panel"><div class="formula">eˣ → eˣ</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Fungsi</div><div class="head">Terbitan</div><div>eˣ</div><div>eˣ</div><div>aˣ</div><div>aˣ ln a</div></div></div></div></div>
-        <div id="tab-log" class="tab-panel"><div class="grid-2"><div><h3>🟣 Fungsi Logaritma</h3><p>Terbitan logaritma asli menghasilkan pecahan.</p><div class="formula-panel"><div class="formula">ln x → 1/x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Fungsi</div><div class="head">Terbitan</div><div>ln x</div><div>1/x</div><div>logₐx</div><div>1/(x ln a)</div></div></div></div></div>
+        <div class="tabs" id="functionTabs"><button class="tab-btn active" data-tab="alg">Algebra</button><button class="tab-btn" data-tab="trig">Trigonometry</button><button class="tab-btn" data-tab="exp">Exponential</button><button class="tab-btn" data-tab="log">Logarithm</button></div>
+        <div id="tab-alg" class="tab-panel active"><div class="grid-2"><div><h3>🔵 Function Algebra</h3><p>Gunakan Power Rule pada setiap term.</p><div class="formula-panel"><div class="formula">3x⁴ + 2x² + 5</div><p>↓</p><div class="formula result">12x³ + 4x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Function</div><div class="head">Derivative</div><div>xⁿ</div><div>nxⁿ⁻¹</div><div>c</div><div>0</div><div>af(x)</div><div>af′(x)</div></div></div></div></div>
+        <div id="tab-trig" class="tab-panel"><div class="grid-2"><div><h3>🟠 Function Trigonometry</h3><p>Rumus asas ini biasanya digunakan apabila angle dalam radian.</p><div class="formula-panel"><div class="formula">sin x → cos x</div><div class="formula">cos x → −sin x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Function</div><div class="head">Derivative</div><div>sin x</div><div>cos x</div><div>cos x</div><div>−sin x</div><div>tan x</div><div>sec²x</div></div></div></div></div>
+        <div id="tab-exp" class="tab-panel"><div class="grid-2"><div><h3>🟢 Function Exponential</h3><p>Function eˣ istimewa kerana its derivative sama dengan function asal.</p><div class="formula-panel"><div class="formula">eˣ → eˣ</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Function</div><div class="head">Derivative</div><div>eˣ</div><div>eˣ</div><div>aˣ</div><div>aˣ ln a</div></div></div></div></div>
+        <div id="tab-log" class="tab-panel"><div class="grid-2"><div><h3>🟣 Function Logarithm</h3><p>Derivative natural logarithm menghasilkan pecahan.</p><div class="formula-panel"><div class="formula">ln x → 1/x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Function</div><div class="head">Derivative</div><div>ln x</div><div>1/x</div><div>logₐx</div><div>1/(x ln a)</div></div></div></div></div>
       </div>
       <div class="card" style="margin-top:18px">
-        <h3>Latihan pelbagai jenis fungsi</h3><p>Pilih kategori atau gunakan pilihan <b>Campuran</b>. Latihan merangkumi algebra, trigonometri, eksponen dan logaritma dengan lebih banyak soalan bagi setiap kategori.</p>
+        <h3>Latihan pelbagai jenis function</h3><p>Pilih kategori atau gunakan pilihan <b>Campuran</b>. Latihan merangkumi algebra, trigonometry, exponential dan logarithm dengan lebih banyak soalan bagi setiap kategori.</p>
         <div class="category-launcher" aria-label="Pilih kategori soalan bahagian 6">
-          <button class="category-launch-btn" data-type-filter="trig">📐 Soalan Trigonometri</button>
-          <button class="category-launch-btn" data-type-filter="exp">eˣ Soalan Eksponen</button>
-          <button class="category-launch-btn" data-type-filter="log">ln Soalan ln / Logaritma</button>
+          <button class="category-launch-btn" data-type-filter="trig">📐 Soalan Trigonometry</button>
+          <button class="category-launch-btn" data-type-filter="exp">eˣ Soalan Exponential</button>
+          <button class="category-launch-btn" data-type-filter="log">ln Soalan ln / Logarithm</button>
           <button class="category-launch-btn" data-type-filter="alg">xⁿ Soalan Algebra</button>
         </div>
         <div class="type-filter" id="typeExerciseFilters">
           <button class="type-filter-btn active" data-type-filter="all">🔀 Semua / Campuran</button>
           <button class="type-filter-btn" data-type-filter="alg">Algebra</button>
-          <button class="type-filter-btn" data-type-filter="trig">Trigonometri</button>
-          <button class="type-filter-btn" data-type-filter="exp">Eksponen</button>
-          <button class="type-filter-btn" data-type-filter="log">ln / Logaritma</button>
+          <button class="type-filter-btn" data-type-filter="trig">Trigonometry</button>
+          <button class="type-filter-btn" data-type-filter="exp">Exponential</button>
+          <button class="type-filter-btn" data-type-filter="log">ln / Logarithm</button>
         </div>
         <div class="type-exercise-card">
           <div class="practice-meta"><span id="typeExerciseTag" class="type-tag">Campuran</span><span>Soalan <b id="typeQuestionNumber">1</b></span></div>
@@ -392,18 +392,18 @@
           <div id="typeExerciseFeedback" class="feedback" style="text-align:center"></div>
           <div class="type-stats"><div class="type-stat"><strong id="typeCorrect">0</strong><span>Betul</span></div><div class="type-stat"><strong id="typeAttempt">0</strong><span>Cubaan</span></div><div class="type-stat"><strong id="typeCoverage">0/4</strong><span>Jenis dikuasai</span></div></div>
         </div>
-        <div class="callout info" style="margin-top:14px"><b>Sasaran penguasaan:</b> jawab sekurang-kurangnya 8 soalan dengan betul dan cuba semua 4 jenis fungsi. Tema warna latihan diseragamkan dengan bahagian 3.</div>
+        <div class="callout info" style="margin-top:14px"><b>Sasaran penguasaan:</b> jawab sekurang-kurangnya 8 soalan dengan betul dan cuba semua 4 jenis function. Tema warna latihan diseragamkan dengan bahagian 3.</div>
       </div>
       <div class="bottom-nav"><button class="secondary" data-go="solver">← Sebelum</button><button class="primary" data-go="mistakes">Seterusnya: Kesilapan →</button></div>
     </article>
 
     <article class="screen" id="screen-mistakes">
       <div class="section-head"><div><h2>6. Kesilapan Lazim</h2><p>Kenali pola kesilapan supaya anda dapat mengelakkannya semasa menjawab.</p></div><span class="step-pill">SEMAK DIRI</span></div>
-      <div class="mistake"><h4>❌ Terlupa mengurangkan kuasa</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(x⁵) = 5x⁵</div><div class="right-box"><b>Betul:</b> d/dx(x⁵) = 5x⁴</div></div><p><b>Sebab:</b> kuasa baharu ialah n − 1.</p></div>
-      <div class="mistake"><h4>❌ Terlupa mendarab pekali</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(3x²) = 2x</div><div class="right-box"><b>Betul:</b> d/dx(3x²) = 6x</div></div><p><b>Sebab:</b> darabkan 3 × 2 dahulu.</p></div>
-      <div class="mistake"><h4>❌ Pemalar tidak ditukar kepada sifar</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(7) = 7</div><div class="right-box"><b>Betul:</b> d/dx(7) = 0</div></div><p><b>Sebab:</b> nombor tetap tidak berubah.</p></div>
-      <div class="mistake"><h4>❌ Keliru antara fungsi dan terbitan</h4><div class="compare"><div class="wrong-box"><b>Fungsi asal:</b> f(x) = x³</div><div class="right-box"><b>Terbitan:</b> f′(x) = 3x²</div></div><p><b>Tip:</b> simbol prima (′) menunjukkan fungsi telah dibezakan.</p></div>
-      <div class="card"><h3>Detektif Kesilapan</h3><p>Ali menulis d/dx(4x³) = 4x². Apakah kesilapannya?</p><div class="quiz-options" data-quiz="mistakes"><button class="option" data-correct="true">Dia tidak mendarab pekali 4 dengan kuasa 3.</button><button class="option" data-correct="false">Dia sepatutnya menambah kuasa.</button><button class="option" data-correct="false">Pemalar perlu dikekalkan.</button></div><div id="mistakesFeedback" class="feedback"></div></div>
+      <div class="mistake"><h4>❌ Terlupa mengurangkan power</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(x⁵) = 5x⁵</div><div class="right-box"><b>Betul:</b> d/dx(x⁵) = 5x⁴</div></div><p><b>Sebab:</b> new power ialah n − 1.</p></div>
+      <div class="mistake"><h4>❌ Terlupa multiply coefficient</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(3x²) = 2x</div><div class="right-box"><b>Betul:</b> d/dx(3x²) = 6x</div></div><p><b>Sebab:</b> darabkan 3 × 2 dahulu.</p></div>
+      <div class="mistake"><h4>❌ Constant tidak ditukar kepada sifar</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(7) = 7</div><div class="right-box"><b>Betul:</b> d/dx(7) = 0</div></div><p><b>Sebab:</b> nombor tetap tidak berubah.</p></div>
+      <div class="mistake"><h4>❌ Keliru antara function dan derivative</h4><div class="compare"><div class="wrong-box"><b>Function asal:</b> f(x) = x³</div><div class="right-box"><b>Derivative:</b> f′(x) = 3x²</div></div><p><b>Tip:</b> simbol prima (′) menunjukkan function telah dibezakan.</p></div>
+      <div class="card"><h3>Detektif Kesilapan</h3><p>Ali menulis d/dx(4x³) = 4x². Apakah kesilapannya?</p><div class="quiz-options" data-quiz="mistakes"><button class="option" data-correct="true">Dia tidak multiply coefficient 4 dengan power 3.</button><button class="option" data-correct="false">Dia sepatutnya menambah power.</button><button class="option" data-correct="false">Constant perlu dikekalkan.</button></div><div id="mistakesFeedback" class="feedback"></div></div>
       <div class="bottom-nav"><button class="secondary" data-go="types">← Sebelum</button><button class="primary" data-go="mastery">Lihat Pencapaian →</button></div>
     </article>
 
@@ -411,7 +411,7 @@
       <div class="section-head"><div><h2>★ Pencapaian Saya</h2><p>Jejaki bahagian yang telah diselesaikan dan kemahiran yang telah dikuasai.</p></div><span class="step-pill">KEMAJUAN</span></div>
       <div class="grid-2">
         <div class="card"><h3>Ringkasan Kemajuan</h3><div style="text-align:center;padding:18px"><div id="bigProgress" style="font-size:64px;font-weight:900;color:var(--navy)">0%</div><p>kemajuan keseluruhan</p></div><button id="continueBtn" class="primary" style="width:100%">Teruskan Pembelajaran</button></div>
-        <div class="card"><h3>Lencana</h3><div class="grid-2"><div class="mini-card" id="badgeExplorer">🔒<br><b>Penjelajah Graf</b><p>Selesaikan modul konsep.</p></div><div class="mini-card" id="badgeRule">🔒<br><b>Juara Kuasa</b><p>Kuasai Peraturan Kuasa.</p></div><div class="mini-card" id="badgeSolver">🔒<br><b>Penyelesai Teliti</b><p>Lengkapkan penyelesai.</p></div><div class="mini-card" id="badgeSpecial">🔒<br><b>Fungsi Khas</b><p>Jawab 6 latihan trig, eksponen atau ln.</p></div></div></div>
+        <div class="card"><h3>Lencana</h3><div class="grid-2"><div class="mini-card" id="badgeExplorer">🔒<br><b>Penjelajah Graph</b><p>Selesaikan modul konsep.</p></div><div class="mini-card" id="badgeRule">🔒<br><b>Juara Power</b><p>Kuasai Power Rule.</p></div><div class="mini-card" id="badgeSolver">🔒<br><b>Penyelesai Teliti</b><p>Lengkapkan penyelesai.</p></div><div class="mini-card" id="badgeSpecial">🔒<br><b>Function Khas</b><p>Jawab 6 latihan trig, exponential atau ln.</p></div></div></div>
       </div>
       <div class="card" style="margin-top:18px"><h3>Kemahiran</h3><div class="mastery-grid" id="masteryGrid"></div></div>
       <div class="bottom-nav"><button class="secondary" data-go="mistakes">← Sebelum</button><button class="primary" data-go="home">Kembali ke Utama ⌂</button></div>
@@ -456,21 +456,21 @@ const powerExercises=[
 const section3ExtraExercises={
   trig:[
     {display:'sin x',answers:['cosx','cos x'],hint:'Gunakan d/dx(sin x) = cos x.'},
-    {display:'4 cos x',answers:['-4sinx','-4 sin x'],hint:'Kekalkan pekali 4 dan gunakan d/dx(cos x) = −sin x.'},
+    {display:'4 cos x',answers:['-4sinx','-4 sin x'],hint:'Kekalkan coefficient 4 dan gunakan d/dx(cos x) = −sin x.'},
     {display:'tan x',answers:['sec^2x','sec²x','sec^2 x'],hint:'Gunakan d/dx(tan x) = sec²x.'},
-    {display:'2 sin x + 3 cos x',answers:['2cosx-3sinx','2 cos x - 3 sin x'],hint:'Bezakan setiap sebutan: sin x → cos x dan cos x → −sin x.'}
+    {display:'2 sin x + 3 cos x',answers:['2cosx-3sinx','2 cos x - 3 sin x'],hint:'Bezakan setiap term: sin x → cos x dan cos x → −sin x.'}
   ],
   exp:[
-    {display:'eˣ',answers:['e^x','ex','eˣ'],hint:'Terbitan eˣ ialah eˣ.'},
-    {display:'3eˣ',answers:['3e^x','3ex','3eˣ'],hint:'Kekalkan pekali 3.'},
+    {display:'eˣ',answers:['e^x','ex','eˣ'],hint:'Derivative eˣ ialah eˣ.'},
+    {display:'3eˣ',answers:['3e^x','3ex','3eˣ'],hint:'Kekalkan coefficient 3.'},
     {display:'2ˣ',answers:['2^xln2','2^x ln2','2ˣln2'],hint:'Gunakan d/dx(aˣ) = aˣ ln a.'},
     {display:'5eˣ + x²',answers:['5e^x+2x','5ex+2x','5eˣ+2x'],hint:'Bezakan eˣ dan x² secara berasingan.'}
   ],
   log:[
     {display:'ln x',answers:['1/x'],hint:'Gunakan d/dx(ln x) = 1/x.'},
-    {display:'4 ln x',answers:['4/x'],hint:'Kekalkan pekali 4.'},
+    {display:'4 ln x',answers:['4/x'],hint:'Kekalkan coefficient 4.'},
     {display:'log₂ x',answers:['1/(xln2)','1/xln2'],hint:'Gunakan d/dx(logₐx) = 1/(x ln a).'},
-    {display:'ln x + x³',answers:['1/x+3x^2','3x^2+1/x'],hint:'Bezakan kedua-dua sebutan secara berasingan.'}
+    {display:'ln x + x³',answers:['1/x+3x^2','3x^2+1/x'],hint:'Bezakan kedua-dua term secara berasingan.'}
   ]
 };
 const guidedSpecialBank={
@@ -478,67 +478,67 @@ const guidedSpecialBank={
     {display:'sin x',answers:['cosx','cos x'],hint:'sin x berubah kepada cos x.'},
     {display:'cos x',answers:['-sinx','-sin x'],hint:'cos x berubah kepada −sin x.'},
     {display:'tan x',answers:['sec^2x','sec²x','sec^2 x'],hint:'tan x berubah kepada sec²x.'},
-    {display:'3 sin x',answers:['3cosx','3 cos x'],hint:'Kekalkan pekali 3.'},
+    {display:'3 sin x',answers:['3cosx','3 cos x'],hint:'Kekalkan coefficient 3.'},
     {display:'4 cos x',answers:['-4sinx','-4 sin x'],hint:'Kekalkan 4 dan gunakan cos x → −sin x.'},
-    {display:'2 sin x + cos x',answers:['2cosx-sinx','2 cos x - sin x'],hint:'Bezakan kedua-dua sebutan.'}
+    {display:'2 sin x + cos x',answers:['2cosx-sinx','2 cos x - sin x'],hint:'Bezakan kedua-dua term.'}
   ],
   exp:[
-    {display:'eˣ',answers:['e^x','ex','eˣ'],hint:'Terbitan eˣ ialah eˣ.'},
-    {display:'5eˣ',answers:['5e^x','5ex','5eˣ'],hint:'Kekalkan pekali 5.'},
+    {display:'eˣ',answers:['e^x','ex','eˣ'],hint:'Derivative eˣ ialah eˣ.'},
+    {display:'5eˣ',answers:['5e^x','5ex','5eˣ'],hint:'Kekalkan coefficient 5.'},
     {display:'2ˣ',answers:['2^xln2','2^x ln2','2ˣln2'],hint:'Gunakan aˣ ln a.'},
     {display:'3ˣ',answers:['3^xln3','3^x ln3','3ˣln3'],hint:'Gunakan 3ˣ ln 3.'},
-    {display:'2eˣ + x²',answers:['2e^x+2x','2ex+2x','2eˣ+2x'],hint:'Bezakan kedua-dua sebutan.'},
-    {display:'4ˣ + eˣ',answers:['4^xln4+e^x','4^x ln4+e^x','4ˣln4+eˣ'],hint:'Gunakan dua rumus eksponen.'}
+    {display:'2eˣ + x²',answers:['2e^x+2x','2ex+2x','2eˣ+2x'],hint:'Bezakan kedua-dua term.'},
+    {display:'4ˣ + eˣ',answers:['4^xln4+e^x','4^x ln4+e^x','4ˣln4+eˣ'],hint:'Gunakan dua rumus exponential.'}
   ],
   log:[
-    {display:'ln x',answers:['1/x'],hint:'Terbitan ln x ialah 1/x.'},
-    {display:'4 ln x',answers:['4/x'],hint:'Kekalkan pekali 4.'},
+    {display:'ln x',answers:['1/x'],hint:'Derivative ln x ialah 1/x.'},
+    {display:'4 ln x',answers:['4/x'],hint:'Kekalkan coefficient 4.'},
     {display:'log₂ x',answers:['1/(xln2)','1/xln2'],hint:'Gunakan 1/(x ln 2).'},
-    {display:'ln x + x²',answers:['1/x+2x','2x+1/x'],hint:'Bezakan kedua-dua sebutan.'},
-    {display:'3 ln x + x',answers:['3/x+1','1+3/x'],hint:'Terbitan x ialah 1.'},
+    {display:'ln x + x²',answers:['1/x+2x','2x+1/x'],hint:'Bezakan kedua-dua term.'},
+    {display:'3 ln x + x',answers:['3/x+1','1+3/x'],hint:'Derivative x ialah 1.'},
     {display:'log₁₀ x',answers:['1/(xln10)','1/xln10'],hint:'Gunakan 1/(x ln 10).'}
   ]
 };
 const typeExerciseBank={
   alg:[
-    {q:'f(x) = 4x³',answers:['12x^2'],hint:'Gunakan peraturan kuasa: 4 × 3 dan 3 − 1.'},
-    {q:'f(x) = 2x⁵ + 3x',answers:['10x^4+3'],hint:'Bezakan setiap sebutan secara berasingan.'},
-    {q:'f(x) = x⁴ − 7',answers:['4x^3'],hint:'Terbitan pemalar −7 ialah 0.'},
-    {q:'f(x) = 6x² − 2x + 5',answers:['12x-2'],hint:'Terbitan 6x² ialah 12x, terbitan −2x ialah −2.'},
-    {q:'f(x) = 5x⁴ − 3x²',answers:['20x^3-6x'],hint:'Gunakan Peraturan Kuasa pada setiap sebutan.'},
-    {q:'f(x) = 7x³ + x² − 4',answers:['21x^2+2x'],hint:'Pemalar −4 menjadi sifar.'},
-    {q:'f(x) = 2x⁶',answers:['12x^5'],hint:'Darab 2 dengan 6 dan kurangkan kuasa satu.'},
-    {q:'f(x) = x⁵ + 4x² + x',answers:['5x^4+8x+1'],hint:'Bezakan ketiga-tiga sebutan.'}
+    {q:'f(x) = 4x³',answers:['12x^2'],hint:'Gunakan Power Rule: 4 × 3 dan 3 − 1.'},
+    {q:'f(x) = 2x⁵ + 3x',answers:['10x^4+3'],hint:'Bezakan setiap term secara berasingan.'},
+    {q:'f(x) = x⁴ − 7',answers:['4x^3'],hint:'Derivative constant −7 ialah 0.'},
+    {q:'f(x) = 6x² − 2x + 5',answers:['12x-2'],hint:'Derivative 6x² ialah 12x, derivative −2x ialah −2.'},
+    {q:'f(x) = 5x⁴ − 3x²',answers:['20x^3-6x'],hint:'Gunakan Power Rule pada setiap term.'},
+    {q:'f(x) = 7x³ + x² − 4',answers:['21x^2+2x'],hint:'Constant −4 menjadi sifar.'},
+    {q:'f(x) = 2x⁶',answers:['12x^5'],hint:'Multiply 2 dengan 6 dan kurangkan power satu.'},
+    {q:'f(x) = x⁵ + 4x² + x',answers:['5x^4+8x+1'],hint:'Bezakan ketiga-tiga term.'}
   ],
   trig:[
-    {q:'f(x) = sin x',answers:['cosx','cos x'],hint:'Terbitan sin x ialah cos x.'},
-    {q:'f(x) = cos x',answers:['-sinx','-sin x'],hint:'Terbitan cos x mempunyai tanda negatif.'},
-    {q:'f(x) = tan x',answers:['sec^2x','sec²x','sec^2 x'],hint:'Terbitan tan x ialah sec²x.'},
-    {q:'f(x) = 3 sin x',answers:['3cosx','3 cos x'],hint:'Kekalkan pekali 3 dan bezakan sin x.'},
-    {q:'f(x) = 5 cos x',answers:['-5sinx','-5 sin x'],hint:'Terbitan cos x ialah −sin x.'},
-    {q:'f(x) = 2 tan x',answers:['2sec^2x','2sec²x','2 sec^2 x'],hint:'Kekalkan pekali 2.'},
-    {q:'f(x) = sin x + cos x',answers:['cosx-sinx','cos x - sin x'],hint:'Bezakan kedua-dua fungsi.'},
+    {q:'f(x) = sin x',answers:['cosx','cos x'],hint:'Derivative sin x ialah cos x.'},
+    {q:'f(x) = cos x',answers:['-sinx','-sin x'],hint:'Derivative cos x mempunyai tanda negatif.'},
+    {q:'f(x) = tan x',answers:['sec^2x','sec²x','sec^2 x'],hint:'Derivative tan x ialah sec²x.'},
+    {q:'f(x) = 3 sin x',answers:['3cosx','3 cos x'],hint:'Kekalkan coefficient 3 dan bezakan sin x.'},
+    {q:'f(x) = 5 cos x',answers:['-5sinx','-5 sin x'],hint:'Derivative cos x ialah −sin x.'},
+    {q:'f(x) = 2 tan x',answers:['2sec^2x','2sec²x','2 sec^2 x'],hint:'Kekalkan coefficient 2.'},
+    {q:'f(x) = sin x + cos x',answers:['cosx-sinx','cos x - sin x'],hint:'Bezakan kedua-dua function.'},
     {q:'f(x) = 4 sin x − 2 cos x',answers:['4cosx+2sinx','4 cos x + 2 sin x'],hint:'Tanda negatif pada −2 cos x berubah apabila dibezakan.'}
   ],
   exp:[
-    {q:'f(x) = eˣ',answers:['e^x','ex','eˣ'],hint:'Terbitan eˣ sama dengan fungsi asal.'},
-    {q:'f(x) = 4eˣ',answers:['4e^x','4ex','4eˣ'],hint:'Kekalkan pekali 4.'},
+    {q:'f(x) = eˣ',answers:['e^x','ex','eˣ'],hint:'Derivative eˣ sama dengan function asal.'},
+    {q:'f(x) = 4eˣ',answers:['4e^x','4ex','4eˣ'],hint:'Kekalkan coefficient 4.'},
     {q:'f(x) = 2ˣ',answers:['2^xln2','2^x ln2','2ˣln2'],hint:'Gunakan d/dx(aˣ) = aˣ ln a.'},
     {q:'f(x) = 5ˣ',answers:['5^xln5','5^x ln5','5ˣln5'],hint:'Gunakan aˣ ln a dengan a = 5.'},
-    {q:'f(x) = 7eˣ',answers:['7e^x','7ex','7eˣ'],hint:'Kekalkan pekali 7.'},
+    {q:'f(x) = 7eˣ',answers:['7e^x','7ex','7eˣ'],hint:'Kekalkan coefficient 7.'},
     {q:'f(x) = 3ˣ',answers:['3^xln3','3^x ln3','3ˣln3'],hint:'Gunakan aˣ ln a.'},
-    {q:'f(x) = eˣ + x³',answers:['e^x+3x^2','ex+3x^2','eˣ+3x²'],hint:'Bezakan kedua-dua sebutan.'},
-    {q:'f(x) = 2eˣ + 5ˣ',answers:['2e^x+5^xln5','2ex+5^xln5'],hint:'Gunakan dua rumus eksponen yang sesuai.'}
+    {q:'f(x) = eˣ + x³',answers:['e^x+3x^2','ex+3x^2','eˣ+3x²'],hint:'Bezakan kedua-dua term.'},
+    {q:'f(x) = 2eˣ + 5ˣ',answers:['2e^x+5^xln5','2ex+5^xln5'],hint:'Gunakan dua rumus exponential yang sesuai.'}
   ],
   log:[
-    {q:'f(x) = ln x',answers:['1/x'],hint:'Terbitan ln x ialah 1/x.'},
-    {q:'f(x) = 3 ln x',answers:['3/x'],hint:'Kekalkan pekali 3.'},
-    {q:'f(x) = ln x + x²',answers:['1/x+2x','2x+1/x'],hint:'Bezakan kedua-dua sebutan.'},
+    {q:'f(x) = ln x',answers:['1/x'],hint:'Derivative ln x ialah 1/x.'},
+    {q:'f(x) = 3 ln x',answers:['3/x'],hint:'Kekalkan coefficient 3.'},
+    {q:'f(x) = ln x + x²',answers:['1/x+2x','2x+1/x'],hint:'Bezakan kedua-dua term.'},
     {q:'f(x) = log₂ x',answers:['1/(xln2)','1/xln2'],hint:'Gunakan 1/(x ln a) dengan a = 2.'},
-    {q:'f(x) = 5 ln x',answers:['5/x'],hint:'Kekalkan pekali 5.'},
-    {q:'f(x) = ln x + x',answers:['1/x+1','1+1/x'],hint:'Terbitan x ialah 1.'},
+    {q:'f(x) = 5 ln x',answers:['5/x'],hint:'Kekalkan coefficient 5.'},
+    {q:'f(x) = ln x + x',answers:['1/x+1','1+1/x'],hint:'Derivative x ialah 1.'},
     {q:'f(x) = log₁₀ x',answers:['1/(xln10)','1/xln10'],hint:'Gunakan 1/(x ln 10).'},
-    {q:'f(x) = 2 ln x + x²',answers:['2/x+2x','2x+2/x'],hint:'Bezakan kedua-dua sebutan.'}
+    {q:'f(x) = 2 ln x + x²',answers:['2/x+2x','2x+2/x'],hint:'Bezakan kedua-dua term.'}
   ]
 };
 function $(id){return document.getElementById(id)}
@@ -566,7 +566,7 @@ $('closeModal').addEventListener('click',()=>$('successModal').classList.remove(
 $('successModal').addEventListener('click',e=>{if(e.target.id==='successModal')e.currentTarget.classList.remove('show')});
 
 // Meaning graph
-function drawGraph(){const c=$('slopeCanvas'),ctx=c.getContext('2d'),W=c.width,H=c.height,xVal=parseFloat($('xSlider').value),scale=48,ox=W/2,oy=H*.72;ctx.clearRect(0,0,W,H);ctx.lineWidth=1;ctx.strokeStyle='#e2e8f0';for(let x=-6;x<=6;x++){ctx.beginPath();ctx.moveTo(ox+x*scale,0);ctx.lineTo(ox+x*scale,H);ctx.stroke()}for(let y=-2;y<=7;y++){ctx.beginPath();ctx.moveTo(0,oy-y*scale);ctx.lineTo(W,oy-y*scale);ctx.stroke()}ctx.strokeStyle='#64748b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,oy);ctx.lineTo(W,oy);ctx.moveTo(ox,0);ctx.lineTo(ox,H);ctx.stroke();ctx.fillStyle='#64748b';ctx.font='15px Arial';ctx.fillText('x',W-18,oy-8);ctx.fillText('y',ox+9,18);ctx.strokeStyle='#0284c7';ctx.lineWidth=4;ctx.beginPath();let started=false;for(let px=0;px<W;px++){const x=(px-ox)/scale,y=x*x,py=oy-y*scale;if(py>-100&&py<H+100){if(!started){ctx.moveTo(px,py);started=true}else ctx.lineTo(px,py)}}ctx.stroke();const y0=xVal*xVal,m=2*xVal;ctx.strokeStyle='#f97316';ctx.lineWidth=4;ctx.beginPath();for(let px=0;px<W;px++){const x=(px-ox)/scale,y=y0+m*(x-xVal),py=oy-y*scale;if(px===0)ctx.moveTo(px,py);else ctx.lineTo(px,py)}ctx.stroke();const pX=ox+xVal*scale,pY=oy-y0*scale;ctx.fillStyle='#059669';ctx.beginPath();ctx.arc(pX,pY,8,0,Math.PI*2);ctx.fill();ctx.fillStyle='#0f172a';ctx.font='bold 16px Arial';ctx.fillText('y = x²',18,28);ctx.fillStyle='#c2410c';ctx.fillText('garis tangen',18,52);$('xRead').textContent=xVal.toFixed(1);$('pointRead').textContent='('+xVal.toFixed(1)+', '+y0.toFixed(1)+')';$('slopeRead').textContent=m.toFixed(1);$('speedValue').textContent=Math.round(40+Math.abs(m)*10)}
+function drawGraph(){const c=$('slopeCanvas'),ctx=c.getContext('2d'),W=c.width,H=c.height,xVal=parseFloat($('xSlider').value),scale=48,ox=W/2,oy=H*.72;ctx.clearRect(0,0,W,H);ctx.lineWidth=1;ctx.strokeStyle='#e2e8f0';for(let x=-6;x<=6;x++){ctx.beginPath();ctx.moveTo(ox+x*scale,0);ctx.lineTo(ox+x*scale,H);ctx.stroke()}for(let y=-2;y<=7;y++){ctx.beginPath();ctx.moveTo(0,oy-y*scale);ctx.lineTo(W,oy-y*scale);ctx.stroke()}ctx.strokeStyle='#64748b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,oy);ctx.lineTo(W,oy);ctx.moveTo(ox,0);ctx.lineTo(ox,H);ctx.stroke();ctx.fillStyle='#64748b';ctx.font='15px Arial';ctx.fillText('x',W-18,oy-8);ctx.fillText('y',ox+9,18);ctx.strokeStyle='#0284c7';ctx.lineWidth=4;ctx.beginPath();let started=false;for(let px=0;px<W;px++){const x=(px-ox)/scale,y=x*x,py=oy-y*scale;if(py>-100&&py<H+100){if(!started){ctx.moveTo(px,py);started=true}else ctx.lineTo(px,py)}}ctx.stroke();const y0=xVal*xVal,m=2*xVal;ctx.strokeStyle='#f97316';ctx.lineWidth=4;ctx.beginPath();for(let px=0;px<W;px++){const x=(px-ox)/scale,y=y0+m*(x-xVal),py=oy-y*scale;if(px===0)ctx.moveTo(px,py);else ctx.lineTo(px,py)}ctx.stroke();const pX=ox+xVal*scale,pY=oy-y0*scale;ctx.fillStyle='#059669';ctx.beginPath();ctx.arc(pX,pY,8,0,Math.PI*2);ctx.fill();ctx.fillStyle='#0f172a';ctx.font='bold 16px Arial';ctx.fillText('y = x²',18,28);ctx.fillStyle='#c2410c';ctx.fillText('tangent line',18,52);$('xRead').textContent=xVal.toFixed(1);$('pointRead').textContent='('+xVal.toFixed(1)+', '+y0.toFixed(1)+')';$('slopeRead').textContent=m.toFixed(1);$('speedValue').textContent=Math.round(40+Math.abs(m)*10)}
 $('xSlider').addEventListener('input',drawGraph);
 
 // Generic quizzes
@@ -575,7 +575,7 @@ $('xSlider').addEventListener('input',drawGraph);
 // Notation tabs
 $('notationTabs').querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{$('notationTabs').querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const text={prime:'Maka, f′(x) = 3x²',dy:'Maka, dy/dx = 3x²',df:'Maka, df/dx = 3x²'};$('notationSentence').textContent=text[b.dataset.note]}));
 
-// Bahagian 3: contoh satu dan dua sebutan dengan kotak n sahaja
+// Bahagian 3: contoh satu dan dua term dengan kotak n sahaja
 $('checkPowerFormula1').addEventListener('click',()=>{
   const ids=['p3n1a','p3n1b','p3n1c'];
   let ok=true;
@@ -591,26 +591,26 @@ $('checkPowerFormula2').addEventListener('click',()=>{
   let ok=true;
   checks.forEach(([id,val])=>{if(equivalent($(id).value,val)) correctInput($(id)); else {wrongInput($(id)); ok=false;}});
   if(ok){
-    showFeedback($('powerFormulaFeedback2'),'✓ Bagus! Sebutan pertama menggunakan n = 3 dan sebutan kedua menggunakan n = 2. Maka jawapannya ialah 6x² + 10x.','ok');
+    showFeedback($('powerFormulaFeedback2'),'✓ Bagus! Term pertama menggunakan n = 3 dan term kedua menggunakan n = 2. Maka jawapannya ialah 6x² + 10x.','ok');
     markComplete('power');
-    celebrate('Hebat! Anda berjaya melengkapkan contoh satu sebutan dan dua sebutan.');
+    celebrate('Hebat! Anda berjaya melengkapkan contoh satu term dan dua term.');
   }else{
-    showFeedback($('powerFormulaFeedback2'),'Semak semula kuasa asal setiap sebutan: 2x³ menggunakan n = 3, manakala 5x² menggunakan n = 2.','no');
+    showFeedback($('powerFormulaFeedback2'),'Semak semula original power setiap term: 2x³ menggunakan n = 3, manakala 5x² menggunakan n = 2.','no');
   }
 });
 
-// Kalkulator matematik dan latihan Peraturan Kuasa
+// Kalkulator matematik dan latihan Power Rule
 function calculatorMarkup(){
   const eqKeys=['0','1','2','3','4','5','6','7','8','9','f′(x) = ','d/dx(','x','xⁿ','n − 1','sin x','cos x','−sin x','tan x','sec²x','e^x','a^x','a^x ln a','ln x','logₐx','1/x','1/(x ln a)','ln ','²','³','⁴','⁵','⁶','^','/','(',')',' + ',' − ',' = '];
   const calcKeys=['7','8','9','÷','4','5','6','×','1','2','3','−','0','(',')','+','C','⌫'];
-  return `<details class="math-calculator" open><summary>🧮 Kalkulator Jawapan — klik simbol untuk masukkan ke kotak jawapan</summary><div class="math-calculator-panel"><div class="equation-keypad">${eqKeys.map(k=>`<button type="button" class="math-key eq-key" data-insert="${k.replace(/"/g,'&quot;')}">${k}</button>`).join('')}<button type="button" class="math-key answer-backspace">⌫ Padam</button><button type="button" class="math-key answer-clear">C Kosongkan</button></div><div class="calc-strip"><input class="calc-display" readonly placeholder="Kiraan pekali, contoh: (4)(3)"><button type="button" class="calc-result-btn">=</button></div><div class="calc-keypad">${calcKeys.map(k=>`<button type="button" class="math-key calc-key" data-calc="${k}">${k}</button>`).join('')}</div><div class="calc-note">Fokus pada ruang jalan kerja atau kotak jawapan, kemudian klik simbol untuk memasukkannya. Kalkulator digunakan untuk kiraan nombor.</div></div></details>`;
+  return `<details class="math-calculator" open><summary>🧮 Kalkulator Jawapan — klik simbol untuk masukkan ke kotak jawapan</summary><div class="math-calculator-panel"><div class="equation-keypad">${eqKeys.map(k=>`<button type="button" class="math-key eq-key" data-insert="${k.replace(/"/g,'&quot;')}">${k}</button>`).join('')}<button type="button" class="math-key answer-backspace">⌫ Padam</button><button type="button" class="math-key answer-clear">C Kosongkan</button></div><div class="calc-strip"><input class="calc-display" readonly placeholder="Kiraan coefficient, contoh: (4)(3)"><button type="button" class="calc-result-btn">=</button></div><div class="calc-keypad">${calcKeys.map(k=>`<button type="button" class="math-key calc-key" data-calc="${k}">${k}</button>`).join('')}</div><div class="calc-note">Fokus pada ruang jalan kerja atau kotak jawapan, kemudian klik simbol untuk memasukkannya. Kalkulator digunakan untuk kiraan nombor.</div></div></details>`;
 }
 function insertAtTarget(target,text){if(!target)return;if(target.matches('input,textarea')){const start=target.selectionStart??target.value.length,end=target.selectionEnd??target.value.length;target.value=target.value.slice(0,start)+text+target.value.slice(end);target.focus();target.setSelectionRange(start+text.length,start+text.length)}else if(target.isContentEditable){target.focus();document.execCommand('insertText',false,text)}}
 function evaluateCalc(expr){let safe=String(expr||'').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/\)\(/g,')*(');if(!safe||!/^[0-9+\-*/().\s]+$/.test(safe))return null;try{const value=Function(`"use strict";return (${safe})`)();return Number.isFinite(value)?value:null}catch(e){return null}}
 function setupCalculator(root,workspace,answerInput){let activeTarget=answerInput||workspace;[workspace,answerInput].filter(Boolean).forEach(el=>el.addEventListener('focus',()=>activeTarget=el));root.querySelectorAll('.eq-key').forEach(btn=>btn.addEventListener('click',()=>insertAtTarget(activeTarget,btn.dataset.insert)));const backspace=root.querySelector('.answer-backspace'),clear=root.querySelector('.answer-clear');if(backspace)backspace.addEventListener('click',()=>{if(!activeTarget)return;if(activeTarget.matches('input,textarea')){activeTarget.value=activeTarget.value.slice(0,-1);activeTarget.focus()}else if(activeTarget.isContentEditable){activeTarget.innerText=activeTarget.innerText.slice(0,-1);activeTarget.focus()}});if(clear)clear.addEventListener('click',()=>{if(!activeTarget)return;if(activeTarget.matches('input,textarea'))activeTarget.value='';else if(activeTarget.isContentEditable)activeTarget.innerHTML='';activeTarget.focus()});const display=root.querySelector('.calc-display');root.querySelectorAll('.calc-key').forEach(btn=>btn.addEventListener('click',()=>{const key=btn.dataset.calc;if(key==='C')display.value='';else if(key==='⌫')display.value=display.value.slice(0,-1);else display.value+=key}));root.querySelector('.calc-result-btn').addEventListener('click',()=>{const value=evaluateCalc(display.value);if(value===null){display.value='Ralat';return}display.value=String(value);insertAtTarget(activeTarget,String(value))})}
-function section3Label(type){return {alg:'🔵 Algebra',trig:'🟠 Trigonometri',exp:'🟢 Eksponen',log:'🟣 Logaritma'}[type]||'🔀 Campuran'}
+function section3Label(type){return {alg:'🔵 Algebra',trig:'🟠 Trigonometry',exp:'🟢 Exponential',log:'🟣 Logarithm'}[type]||'🔀 Campuran'}
 function section3Pool(){
-  const alg=powerExercises.map(q=>({...q,type:'alg',answers:[q.answer],hint:'Gunakan d/dx(axⁿ) = (a)(n)xⁿ⁻¹ bagi setiap sebutan.'}));
+  const alg=powerExercises.map(q=>({...q,type:'alg',answers:[q.answer],hint:'Gunakan d/dx(axⁿ) = (a)(n)xⁿ⁻¹ bagi setiap term.'}));
   const groups={alg,trig:section3ExtraExercises.trig.map(q=>({...q,type:'trig'})),exp:section3ExtraExercises.exp.map(q=>({...q,type:'exp'})),log:section3ExtraExercises.log.map(q=>({...q,type:'log'}))};
   if(section3Filter!=='all')return groups[section3Filter];
   const order=['alg','trig','exp','log'],mixed=[],max=Math.max(...order.map(k=>groups[k].length));
@@ -623,7 +623,7 @@ function renderPowerQuestions(){
   section3Index=((section3Index%pool.length)+pool.length)%pool.length;
   const q=pool[section3Index];
   const numberButtons=pool.map((_,i)=>`<button type="button" class="question-nav-btn ${i===section3Index?'active':''}" data-s3-index="${i}">${i+1}</button>`).join('');
-  bank.innerHTML=`<div class="question-navigator"><button type="button" class="question-nav-arrow" id="prevSection3Question">← Sebelumnya</button>${numberButtons}<button type="button" class="question-nav-arrow" id="nextSection3Question">Seterusnya →</button></div><div class="power-exercise-card" data-index="${section3Index}"><span class="exercise-kind">${section3Label(q.type)}</span><div class="question-banner">Soalan ${section3Index+1} daripada ${pool.length}: Bezakan f(x) = ${q.display}.</div><div class="work-label"><span>✍️ Ruang jalan kerja</span><small>Tunjukkan rumus, penggantian dan pengiraan</small></div><div class="math-workspace" contenteditable="true" data-placeholder="Klik di sini dan tulis jalan kerja pembezaan."></div><div class="calculator-host">${calculatorMarkup()}</div><div class="exercise-answer-row"><b>f′(x) =</b><input class="math-input power-question-answer" placeholder="Klik kalkulator atau taip jawapan akhir"><button class="primary small power-question-check">Semak</button></div><div class="question-feedback"></div></div>`;
+  bank.innerHTML=`<div class="question-navigator"><button type="button" class="question-nav-arrow" id="prevSection3Question">← Sebelumnya</button>${numberButtons}<button type="button" class="question-nav-arrow" id="nextSection3Question">Seterusnya →</button></div><div class="power-exercise-card" data-index="${section3Index}"><span class="exercise-kind">${section3Label(q.type)}</span><div class="question-banner">Soalan ${section3Index+1} daripada ${pool.length}: Bezakan f(x) = ${q.display}.</div><div class="work-label"><span>✍️ Ruang jalan kerja</span><small>Tunjukkan rumus, penggantian dan pengiraan</small></div><div class="math-workspace" contenteditable="true" data-placeholder="Klik di sini dan tulis jalan kerja differentiation."></div><div class="calculator-host">${calculatorMarkup()}</div><div class="exercise-answer-row"><b>f′(x) =</b><input class="math-input power-question-answer" placeholder="Klik kalkulator atau taip jawapan akhir"><button class="primary small power-question-check">Semak</button></div><div class="question-feedback"></div></div>`;
   const card=bank.querySelector('.power-exercise-card'),input=card.querySelector('.power-question-answer'),feedback=card.querySelector('.question-feedback'),workspace=card.querySelector('.math-workspace');
   setupCalculator(card.querySelector('.math-calculator'),workspace,input);
   input.focus();
@@ -641,7 +641,7 @@ function renderGuidedSolver(){
   $('solverQuestionNo').textContent=solverIndex+1;
   $('solverQuestionTotal').textContent=powerExercises.length;
   $('solverProblem').textContent='f(x) = '+currentSolver.display;
-  $('guidedIdentifyFields').innerHTML=currentSolver.terms.map((t,i)=>`<div class="guided-term-card"><b>Sebutan ${i+1}</b><div class="answer-line" style="margin-top:8px"><span>Tanda:</span><b>${t.sign<0?'−':'+'}</b><span>a =</span><input class="math-input small-input g-a" inputmode="numeric" data-index="${i}"><span>n =</span><input class="math-input small-input n-box g-n" inputmode="numeric" data-index="${i}"></div></div>`).join('');
+  $('guidedIdentifyFields').innerHTML=currentSolver.terms.map((t,i)=>`<div class="guided-term-card"><b>Term ${i+1}</b><div class="answer-line" style="margin-top:8px"><span>Tanda:</span><b>${t.sign<0?'−':'+'}</b><span>a =</span><input class="math-input small-input g-a" inputmode="numeric" data-index="${i}"><span>n =</span><input class="math-input small-input n-box g-n" inputmode="numeric" data-index="${i}"></div></div>`).join('');
   $('guidedFormulaFields').innerHTML=currentSolver.terms.map((t,i)=>`${signText(t,i)}(${t.a})(<input class="math-input small-input n-box g-form-n1" data-index="${i}" inputmode="numeric">)x<sup><input class="math-input small-input n-box g-form-n2" data-index="${i}" inputmode="numeric"> − 1</sup>`).join('');
   $('sFinal').value='';$('sFinal').classList.remove('good','bad');$('guidedWorkspace').innerHTML='';
   [1,2,5].forEach(i=>{const step=$('solverStep'+i);step.classList.remove('complete');step.classList.toggle('locked',i!==1);$('s'+i+'Feedback').className='feedback'});
@@ -655,13 +655,13 @@ function passGuidedStep(i,msg){
   showFeedback($('s'+i+'Feedback'),msg,'ok');
 }
 function checkGuidedInputs(selector,getExpected){let ok=true;document.querySelectorAll(selector).forEach(el=>{const expected=String(getExpected(currentSolver.terms[Number(el.dataset.index)]));if(equivalent(el.value,expected))correctInput(el);else{wrongInput(el);ok=false}});return ok}
-$('checkS1').addEventListener('click',()=>{const okA=checkGuidedInputs('.g-a',t=>t.a),okN=checkGuidedInputs('.g-n',t=>t.n);if(okA&&okN)passGuidedStep(1,'✓ Tepat! Semua pekali dan kuasa telah dikenal pasti.');else showFeedback($('s1Feedback'),'Semak nombor di hadapan x dan kuasa bagi setiap sebutan.','no')});
-$('checkS2').addEventListener('click',()=>{const ok1=checkGuidedInputs('.g-form-n1',t=>t.n),ok2=checkGuidedInputs('.g-form-n2',t=>t.n);if(ok1&&ok2)passGuidedStep(2,'✓ Betul! Teruskan ke Langkah 5 untuk jalan kerja dan jawapan akhir.');else showFeedback($('s2Feedback'),'Masukkan nilai kuasa asal yang sama pada kedua-dua kotak n bagi setiap sebutan.','no')});
-$('checkS5').addEventListener('click',()=>{if(equivalent($('sFinal').value,currentSolver.answer)){correctInput($('sFinal'));$('solverStep5').classList.add('complete');showFeedback($('s5Feedback'),'✓ Jawapan akhir tepat: '+displayMath(currentSolver.answer),'ok');markComplete('solver');celebrate('Anda berjaya menyelesaikan soalan melalui Langkah 1, Langkah 2 dan Langkah 5!')}else{wrongInput($('sFinal'));showFeedback($('s5Feedback'),'Jawapan akhir belum tepat. Gunakan ruang jalan kerja dan gabungkan jawapan setiap sebutan.','no')}});
+$('checkS1').addEventListener('click',()=>{const okA=checkGuidedInputs('.g-a',t=>t.a),okN=checkGuidedInputs('.g-n',t=>t.n);if(okA&&okN)passGuidedStep(1,'✓ Tepat! Semua coefficient dan power telah dikenal pasti.');else showFeedback($('s1Feedback'),'Semak nombor di hadapan x dan power bagi setiap term.','no')});
+$('checkS2').addEventListener('click',()=>{const ok1=checkGuidedInputs('.g-form-n1',t=>t.n),ok2=checkGuidedInputs('.g-form-n2',t=>t.n);if(ok1&&ok2)passGuidedStep(2,'✓ Betul! Teruskan ke Langkah 5 untuk jalan kerja dan jawapan akhir.');else showFeedback($('s2Feedback'),'Masukkan nilai original power yang sama pada kedua-dua kotak n bagi setiap term.','no')});
+$('checkS5').addEventListener('click',()=>{if(equivalent($('sFinal').value,currentSolver.answer)){correctInput($('sFinal'));$('solverStep5').classList.add('complete');showFeedback($('s5Feedback'),'✓ Jawapan akhir tepat: '+displayMath(currentSolver.answer),'ok');markComplete('solver');celebrate('Anda berjaya menyelesaikan soalan melalui Langkah 1, Langkah 2 dan Langkah 5!')}else{wrongInput($('sFinal'));showFeedback($('s5Feedback'),'Jawapan akhir belum tepat. Gunakan ruang jalan kerja dan gabungkan jawapan setiap term.','no')}});
 $('newSolver').addEventListener('click',()=>{solverIndex=(solverIndex+1)%powerExercises.length;renderGuidedSolver()});
-document.querySelectorAll('.hint-btn').forEach(btn=>btn.addEventListener('click',()=>{const i=Number(btn.dataset.step);solverHints[i]=(solverHints[i]||0)+1;const q=currentSolver;const hints={1:['Cari pekali di hadapan x dan kuasa di atas x.',q.terms.map((t,j)=>`Sebutan ${j+1}: a=${t.a}, n=${t.n}`).join(' | ')],2:['Gunakan (a)(n)x^(n−1) untuk setiap sebutan.','Masukkan nilai n yang sama pada kedua-dua kotak ungu.'],5:['Kira a × n dan n − 1 dalam ruang jalan kerja.','Jawapan: '+displayMath(q.answer)]};showFeedback($('s'+i+'Feedback'),'💡 '+hints[i][Math.min(solverHints[i]-1,1)],'hint')}));
+document.querySelectorAll('.hint-btn').forEach(btn=>btn.addEventListener('click',()=>{const i=Number(btn.dataset.step);solverHints[i]=(solverHints[i]||0)+1;const q=currentSolver;const hints={1:['Cari coefficient di hadapan x dan power di atas x.',q.terms.map((t,j)=>`Term ${j+1}: a=${t.a}, n=${t.n}`).join(' | ')],2:['Gunakan (a)(n)x^(n−1) untuk setiap term.','Masukkan nilai n yang sama pada kedua-dua kotak ungu.'],5:['Kira a × n dan n − 1 dalam ruang jalan kerja.','Jawapan: '+displayMath(q.answer)]};showFeedback($('s'+i+'Feedback'),'💡 '+hints[i][Math.min(solverHints[i]-1,1)],'hint')}));
 
-// Latihan kotak fungsi khas dalam Bahagian 4
+// Latihan kotak function khas dalam Bahagian 4
 function guidedSpecialPool(){
   if(guidedSpecialFilter!=='all')return guidedSpecialBank[guidedSpecialFilter].map(q=>({...q,type:guidedSpecialFilter}));
   const order=['trig','exp','log'],mixed=[],max=Math.max(...order.map(k=>guidedSpecialBank[k].length));
@@ -672,7 +672,7 @@ function renderGuidedSpecial(){
   const bank=$('guidedSpecialQuestionBank');if(!bank)return;
   const pool=guidedSpecialPool();guidedSpecialIndex=((guidedSpecialIndex%pool.length)+pool.length)%pool.length;guidedSpecialCurrent=pool[guidedSpecialIndex];
   const nav=pool.map((_,i)=>`<button type="button" class="question-nav-btn ${i===guidedSpecialIndex?'active':''}" data-guided-special-index="${i}">${i+1}</button>`).join('');
-  bank.innerHTML=`<div class="question-navigator"><button type="button" class="question-nav-arrow" id="prevGuidedSpecial">← Sebelumnya</button>${nav}<button type="button" class="question-nav-arrow" id="nextGuidedSpecial">Seterusnya →</button></div><div class="power-exercise-card"><span class="exercise-kind">${section3Label(guidedSpecialCurrent.type)}</span><div class="question-banner">Soalan ${guidedSpecialIndex+1} daripada ${pool.length}: Lengkapkan kotak pembezaan.</div><div class="single-formula-scroll"><div class="single-formula complete-formula">d/dx(${guidedSpecialCurrent.display}) <span class="equals">=</span> <input id="guidedSpecialAnswer" class="math-input answer-wide" placeholder="Klik kalkulator atau taip jawapan"></div></div><div class="guided-workspace-wrap"><div class="work-label"><span>Ruang jalan kerja</span><small>Gunakan kalkulator matematik di bawah</small></div><div id="guidedSpecialWorkspace" class="math-workspace" contenteditable="true" data-placeholder="Tulis rumus dan jalan kerja di sini."></div><div id="guidedSpecialCalculator"></div></div><div class="answer-line"><button id="checkGuidedSpecial" class="primary small">Semak Kotak</button><button id="hintGuidedSpecial" class="secondary small">💡 Petunjuk</button></div><div id="guidedSpecialFeedback" class="feedback"></div></div>`;
+  bank.innerHTML=`<div class="question-navigator"><button type="button" class="question-nav-arrow" id="prevGuidedSpecial">← Sebelumnya</button>${nav}<button type="button" class="question-nav-arrow" id="nextGuidedSpecial">Seterusnya →</button></div><div class="power-exercise-card"><span class="exercise-kind">${section3Label(guidedSpecialCurrent.type)}</span><div class="question-banner">Soalan ${guidedSpecialIndex+1} daripada ${pool.length}: Lengkapkan kotak differentiation.</div><div class="single-formula-scroll"><div class="single-formula complete-formula">d/dx(${guidedSpecialCurrent.display}) <span class="equals">=</span> <input id="guidedSpecialAnswer" class="math-input answer-wide" placeholder="Klik kalkulator atau taip jawapan"></div></div><div class="guided-workspace-wrap"><div class="work-label"><span>Ruang jalan kerja</span><small>Gunakan kalkulator matematik di bawah</small></div><div id="guidedSpecialWorkspace" class="math-workspace" contenteditable="true" data-placeholder="Tulis rumus dan jalan kerja di sini."></div><div id="guidedSpecialCalculator"></div></div><div class="answer-line"><button id="checkGuidedSpecial" class="primary small">Semak Kotak</button><button id="hintGuidedSpecial" class="secondary small">💡 Petunjuk</button></div><div id="guidedSpecialFeedback" class="feedback"></div></div>`;
   $('guidedSpecialCalculator').innerHTML=calculatorMarkup();setupCalculator($('guidedSpecialCalculator').querySelector('.math-calculator'),$('guidedSpecialWorkspace'),$('guidedSpecialAnswer'));
   $('checkGuidedSpecial').addEventListener('click',()=>{state.specialAttempts=(state.specialAttempts||0)+1;if(typeAnswerCorrect($('guidedSpecialAnswer').value,guidedSpecialCurrent.answers)){state.specialCorrect=(state.specialCorrect||0)+1;state.specialSeen=state.specialSeen||[];if(!state.specialSeen.includes(guidedSpecialCurrent.type))state.specialSeen.push(guidedSpecialCurrent.type);correctInput($('guidedSpecialAnswer'));showFeedback($('guidedSpecialFeedback'),'✓ Betul: '+displayMath(guidedSpecialCurrent.answers[0]),'ok');if(state.specialCorrect>=6&&state.specialSeen.length===3)markComplete('solver')}else{wrongInput($('guidedSpecialAnswer'));showFeedback($('guidedSpecialFeedback'),'Belum tepat. Gunakan petunjuk dan cuba lagi.','no')}saveState();updateMastery()});
   $('hintGuidedSpecial').addEventListener('click',()=>showFeedback($('guidedSpecialFeedback'),'💡 '+guidedSpecialCurrent.hint,'hint'));
@@ -688,20 +688,20 @@ document.querySelectorAll('[data-section3-filter]').forEach(btn=>btn.addEventLis
 // Function tabs
 $('functionTabs').querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{$('functionTabs').querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.querySelectorAll('#screen-types .tab-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('tab-'+b.dataset.tab).classList.add('active')}));
 
-// Latihan pelbagai jenis fungsi
+// Latihan pelbagai jenis function
 function typePool(){if(typeFilter==='all'){const order=['alg','trig','exp','log'],mixed=[],max=Math.max(...order.map(type=>typeExerciseBank[type].length));for(let i=0;i<max;i++)order.forEach(type=>{if(typeExerciseBank[type][i])mixed.push({...typeExerciseBank[type][i],type})});return mixed}return typeExerciseBank[typeFilter].map(item=>({...item,type:typeFilter}))}
-function typeLabel(type){return {alg:'🔵 Algebra',trig:'🟠 Trigonometri',exp:'🟢 Eksponen',log:'🟣 Logaritma'}[type]||'🔀 Campuran'}
+function typeLabel(type){return {alg:'🔵 Algebra',trig:'🟠 Trigonometry',exp:'🟢 Exponential',log:'🟣 Logarithm'}[type]||'🔀 Campuran'}
 function renderTypeExercise(){const pool=typePool();typeIndex=((typeIndex%pool.length)+pool.length)%pool.length;typeCurrent=pool[typeIndex];typeAnswered=false;$('typeExerciseQuestion').textContent=typeCurrent.q;$('typeExerciseTag').textContent=typeLabel(typeCurrent.type);$('typeQuestionNumber').textContent=(typeIndex+1)+' / '+pool.length;$('typeExerciseAnswer').value='';$('typeExerciseAnswer').classList.remove('good','bad');$('typeExerciseFeedback').className='feedback';$('checkTypeExercise').style.display='inline-flex';$('nextTypeExercise').style.display='inline-flex';$('typeAnswerCalculator').innerHTML=calculatorMarkup();setupCalculator($('typeAnswerCalculator').querySelector('.math-calculator'),null,$('typeExerciseAnswer'));$('typeExerciseAnswer').focus();$('typeQuestionNav').innerHTML=pool.map((_,i)=>`<button type="button" class="question-nav-btn ${i===typeIndex?'active':''}" data-type-index="${i}">${i+1}</button>`).join('');$('typeQuestionNav').querySelectorAll('[data-type-index]').forEach(btn=>btn.addEventListener('click',()=>{typeIndex=Number(btn.dataset.typeIndex);renderTypeExercise()}));updateTypeStats()}
 function updateTypeStats(){$('typeCorrect').textContent=state.typesCorrect||0;$('typeAttempt').textContent=state.typesAttempts||0;$('typeCoverage').textContent=(state.typesSeen||[]).length+'/4'}
 function typeAnswerCorrect(value,answers){return answers.some(ans=>equivalent(value,ans))}
 document.querySelectorAll('[data-type-filter]').forEach(btn=>btn.addEventListener('click',()=>{typeFilter=btn.dataset.typeFilter;typeIndex=0;document.querySelectorAll('[data-type-filter]').forEach(x=>x.classList.toggle('active',x.dataset.typeFilter===typeFilter));renderTypeExercise();$('typeExerciseQuestion').scrollIntoView({behavior:'smooth',block:'center'})}));
-$('checkTypeExercise').addEventListener('click',()=>{if(typeAnswered)return;state.typesAttempts=(state.typesAttempts||0)+1;const ok=typeAnswerCorrect($('typeExerciseAnswer').value,typeCurrent.answers);if(ok){typeAnswered=true;state.typesCorrect=(state.typesCorrect||0)+1;state.typesSeen=state.typesSeen||[];if(!state.typesSeen.includes(typeCurrent.type))state.typesSeen.push(typeCurrent.type);correctInput($('typeExerciseAnswer'));showFeedback($('typeExerciseFeedback'),'✓ Betul! Jawapan: '+displayMath(typeCurrent.answers[0]),'ok');$('checkTypeExercise').style.display='inline-flex';$('nextTypeExercise').style.display='inline-flex';if(state.typesCorrect>=8&&state.typesSeen.length===4){markComplete('types');celebrate('Anda telah mencuba dan menguasai keempat-empat jenis fungsi!')}}else{wrongInput($('typeExerciseAnswer'));showFeedback($('typeExerciseFeedback'),'Belum tepat. Gunakan petunjuk dan cuba semula.','no')}saveState();updateTypeStats()});
+$('checkTypeExercise').addEventListener('click',()=>{if(typeAnswered)return;state.typesAttempts=(state.typesAttempts||0)+1;const ok=typeAnswerCorrect($('typeExerciseAnswer').value,typeCurrent.answers);if(ok){typeAnswered=true;state.typesCorrect=(state.typesCorrect||0)+1;state.typesSeen=state.typesSeen||[];if(!state.typesSeen.includes(typeCurrent.type))state.typesSeen.push(typeCurrent.type);correctInput($('typeExerciseAnswer'));showFeedback($('typeExerciseFeedback'),'✓ Betul! Jawapan: '+displayMath(typeCurrent.answers[0]),'ok');$('checkTypeExercise').style.display='inline-flex';$('nextTypeExercise').style.display='inline-flex';if(state.typesCorrect>=8&&state.typesSeen.length===4){markComplete('types');celebrate('Anda telah mencuba dan menguasai keempat-empat jenis function!')}}else{wrongInput($('typeExerciseAnswer'));showFeedback($('typeExerciseFeedback'),'Belum tepat. Gunakan petunjuk dan cuba semula.','no')}saveState();updateTypeStats()});
 $('hintTypeExercise').addEventListener('click',()=>showFeedback($('typeExerciseFeedback'),'💡 '+typeCurrent.hint,'hint'));
 $('prevTypeExercise').addEventListener('click',()=>{typeIndex--;renderTypeExercise()});
 $('nextTypeExercise').addEventListener('click',()=>{typeIndex++;renderTypeExercise()});
 $('typeExerciseAnswer').addEventListener('keydown',e=>{if(e.key==='Enter'){typeAnswered?$('nextTypeExercise').click():$('checkTypeExercise').click()}});
 
-function updateMastery(){if(!$('masteryGrid'))return;const skills=[['Makna Terbitan','meaning'],['Kenal Notasi','notation'],['Peraturan Kuasa','power'],['Penyelesai Berpandu','solver'],['Jenis Fungsi','types'],['Kesilapan Lazim','mistakes']];$('masteryGrid').innerHTML=skills.map(([label,key])=>{const done=state.completed.includes(key);return `<div class="mastery-item"><div class="mastery-item-top"><b>${label}</b><span class="${done?'badge-unlock':'badge-lock'}">${done?'Dikuasai':'Belum selesai'}</span></div><div class="mastery-bar"><span style="width:${done?100:20}%"></span></div></div>`}).join('');const unlock=(id,yes,emoji)=>{$(id).innerHTML=(yes?emoji:'🔒')+'<br>'+$(id).innerHTML.split('<br>').slice(1).join('<br>')};unlock('badgeExplorer',state.completed.includes('meaning'),'📈');unlock('badgeRule',state.completed.includes('power'),'⚡');unlock('badgeSolver',state.completed.includes('solver'),'🧩');unlock('badgeSpecial',(state.specialCorrect||0)>=6,'🌟')}
+function updateMastery(){if(!$('masteryGrid'))return;const skills=[['Makna Derivative','meaning'],['Kenal Notasi','notation'],['Power Rule','power'],['Penyelesai Berpandu','solver'],['Jenis Function','types'],['Kesilapan Lazim','mistakes']];$('masteryGrid').innerHTML=skills.map(([label,key])=>{const done=state.completed.includes(key);return `<div class="mastery-item"><div class="mastery-item-top"><b>${label}</b><span class="${done?'badge-unlock':'badge-lock'}">${done?'Dikuasai':'Belum selesai'}</span></div><div class="mastery-bar"><span style="width:${done?100:20}%"></span></div></div>`}).join('');const unlock=(id,yes,emoji)=>{$(id).innerHTML=(yes?emoji:'🔒')+'<br>'+$(id).innerHTML.split('<br>').slice(1).join('<br>')};unlock('badgeExplorer',state.completed.includes('meaning'),'📈');unlock('badgeRule',state.completed.includes('power'),'⚡');unlock('badgeSolver',state.completed.includes('solver'),'🧩');unlock('badgeSpecial',(state.specialCorrect||0)>=6,'🌟')}
 $('continueBtn').addEventListener('click',()=>{const next=moduleScreens.find(x=>!state.completed.includes(x))||'types';go(next)});
 
 // Auto mark lesson views after meaningful interaction / reaching end handled by quiz; mark types/mistakes upon correct quiz.

@@ -3,6 +3,6 @@ PANDUAN RINGKAS
 
 1. Buka Aplikasi_Interaktif_Pembezaan_Fungsi.html menggunakan Chrome, Edge, Firefox atau Safari.
 2. Bahagian 4 kini menggunakan Langkah 1, Langkah 2 dan terus ke Langkah 5.
-3. Gunakan kotak jawapan dan kalkulator matematik untuk latihan algebra, trigonometri, eksponen dan ln.
-4. Bahagian Latihan Bertahap lama telah dibuang. Bahagian Jenis Fungsi kini menjadi Bahagian 5.
+3. Gunakan kotak jawapan dan kalkulator matematik untuk latihan algebra, trigonometry, exponential dan ln.
+4. Bahagian Latihan Bertahap lama telah dibuang. Bahagian Jenis Function kini menjadi Bahagian 5.
 5. Aplikasi boleh digunakan tanpa sambungan internet.
