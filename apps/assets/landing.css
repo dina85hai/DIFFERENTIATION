@@ -29,8 +29,10 @@
   max-width: var(--lp-max);
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 10px 20px;
   padding: 28px 24px 0;
 }
 
@@ -182,7 +184,14 @@
 }
 
 @media (max-width: 520px) {
+  .lp-nav {
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px;
+  }
   .lp-nav-links {
+    width: 100%;
+    justify-content: center;
     gap: 16px;
     font-size: 13px;
   }
