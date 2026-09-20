@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#075985">
+<title>Makmal Pembezaan Fungsi — Topik 2.2</title>
+<style>
+  :root{
+    --navy:#082f49;--blue:#0369a1;--sky:#0ea5e9;--cyan:#22d3ee;
+    --ink:#0f172a;--muted:#64748b;--paper:#f8fafc;--white:#fff;
+    --green:#059669;--green-soft:#d1fae5;--orange:#ea580c;--orange-soft:#ffedd5;
+    --purple:#7c3aed;--purple-soft:#ede9fe;--red:#dc2626;--red-soft:#fee2e2;
+    --yellow:#ca8a04;--yellow-soft:#fef9c3;--line:#cbd5e1;
+    --shadow:0 18px 45px rgba(8,47,73,.13),0 3px 10px rgba(15,23,42,.07);
+    --shadow-sm:0 8px 22px rgba(15,23,42,.09);
+    --radius:22px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:
+    radial-gradient(circle at 15% 5%,rgba(34,211,238,.14),transparent 30%),
+    radial-gradient(circle at 88% 8%,rgba(124,58,237,.11),transparent 26%),
+    linear-gradient(180deg,#ecfeff 0,#f8fafc 35%,#eef6ff 100%);min-height:100vh}
+  button,input,select{font:inherit}
+  button{cursor:pointer}
+  .app{min-height:100vh;display:grid;grid-template-rows:auto 1fr}
+  header{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(148,163,184,.34)}
+  .topbar{max-width:1480px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
+  .brand{display:flex;align-items:center;gap:12px;min-width:280px}
+  .logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(145deg,var(--navy),var(--sky));display:grid;place-items:center;color:white;font-size:25px;box-shadow:0 9px 22px rgba(3,105,161,.28)}
+  .brand h1{font-size:18px;margin:0;color:var(--navy)}
+  .brand p{font-size:12px;margin:3px 0 0;color:var(--muted)}
+  .progress-wrap{flex:1;display:flex;align-items:center;gap:11px}
+  .progress-track{height:12px;background:#e2e8f0;border-radius:999px;overflow:hidden;flex:1;box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}
+  .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--sky),var(--green));transition:width .45s ease;border-radius:inherit}
+  .progress-text{font-weight:700;color:var(--navy);font-size:13px;white-space:nowrap}
+  .icon-btn,.nav-btn,.primary,.secondary,.success-btn,.danger-btn{border:0;border-radius:13px;font-weight:700;transition:.2s ease;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+  .icon-btn{width:42px;height:42px;background:white;color:var(--navy);box-shadow:var(--shadow-sm);font-size:18px}
+  .icon-btn:hover,.nav-btn:hover,.primary:hover,.secondary:hover{transform:translateY(-2px)}
+  main{max-width:1480px;width:100%;margin:auto;padding:20px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px}
+  aside{position:sticky;top:94px;height:calc(100vh - 115px);background:rgba(255,255,255,.84);backdrop-filter:blur(14px);border:1px solid rgba(148,163,184,.28);border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);overflow:auto}
+  .journey-title{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:800;margin:5px 9px 12px}
+  .nav-list{display:flex;flex-direction:column;gap:8px}
+  .nav-btn{width:100%;justify-content:flex-start;text-align:left;padding:12px 11px;background:transparent;color:#334155;border:1px solid transparent}
+  .nav-btn .num{width:30px;height:30px;border-radius:10px;background:#e2e8f0;display:grid;place-items:center;font-size:13px;flex:0 0 auto}
+  .nav-btn.active{background:linear-gradient(135deg,#e0f2fe,#ecfeff);color:var(--navy);border-color:#bae6fd;box-shadow:0 6px 16px rgba(14,165,233,.12)}
+  .nav-btn.active .num{background:var(--sky);color:white}
+  .nav-btn.done .num{background:var(--green);color:white}
+  .side-tip{margin-top:16px;background:linear-gradient(145deg,#fffbeb,#fff7ed);border:1px solid #fed7aa;border-radius:17px;padding:14px;font-size:13px;line-height:1.5;color:#7c2d12}
+  .content{min-width:0}
+  .screen{display:none;animation:enter .35s ease}
+  .screen.active{display:block}
+  @keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .hero{min-height:calc(100vh - 132px);display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;background:linear-gradient(135deg,rgba(8,47,73,.97),rgba(3,105,161,.93) 55%,rgba(14,165,233,.88));color:white;border-radius:30px;padding:46px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.09)}
+  .hero:before{width:360px;height:360px;right:-130px;top:-170px}.hero:after{width:220px;height:220px;left:-100px;bottom:-90px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.12);padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.05em}
+  .hero h2{font-size:clamp(38px,5vw,70px);line-height:1.02;margin:22px 0 16px;letter-spacing:-.04em}
+  .hero .lead{font-size:18px;line-height:1.65;color:#e0f2fe;max-width:700px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+  .primary{background:linear-gradient(135deg,var(--sky),var(--cyan));color:#082f49;padding:13px 19px;box-shadow:0 8px 20px rgba(34,211,238,.25)}
+  .secondary{background:white;color:var(--navy);padding:13px 19px;box-shadow:var(--shadow-sm)}
+  .hero-visual{position:relative;z-index:2;min-height:390px;display:grid;place-items:center}
+  .visual-orbit{width:min(420px,100%);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;position:relative;background:radial-gradient(circle,rgba(255,255,255,.14),rgba(255,255,255,.03) 60%,transparent 61%)}
+  .formula-core{width:205px;height:205px;border-radius:50%;background:rgba(255,255,255,.97);color:var(--navy);display:grid;place-items:center;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.25);padding:20px}
+  .formula-core strong{font-size:31px}.formula-core span{display:block;color:var(--muted);font-size:12px;margin-top:7px}
+  .orbit-item{position:absolute;background:rgba(255,255,255,.95);color:var(--navy);padding:12px 15px;border-radius:16px;font-weight:700;box-shadow:var(--shadow-sm);animation:float 3.6s ease-in-out infinite}
+  .orbit-item:nth-child(2){top:4%;left:40%;animation-delay:.2s}.orbit-item:nth-child(3){right:0;top:43%;animation-delay:.7s}.orbit-item:nth-child(4){bottom:3%;left:39%;animation-delay:1.2s}.orbit-item:nth-child(5){left:-3%;top:43%;animation-delay:1.7s}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin:4px 0 18px}
+  .section-head h2{font-size:clamp(28px,4vw,44px);color:var(--navy);margin:0 0 7px;letter-spacing:-.03em}
+  .section-head p{margin:0;color:var(--muted);line-height:1.6;max-width:800px}
+  .step-pill{background:#e0f2fe;color:#075985;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
+  .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .card{background:rgba(255,255,255,.92);border:1px solid rgba(148,163,184,.28);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  .card h3{margin:0 0 12px;color:var(--navy)}.card p{line-height:1.58;color:#475569}
+  .mini-card{border-radius:18px;padding:17px;border:1px solid #e2e8f0;background:#fff}
+  .concept-card{position:relative;overflow:hidden}.concept-card:before{content:"";position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--sky),var(--cyan))}
+  .real-scene{background:linear-gradient(180deg,#dff6ff 0,#e0f2fe 58%,#dcfce7 59%,#bbf7d0 100%);min-height:300px;border-radius:20px;position:relative;overflow:hidden;border:1px solid #bae6fd}
+  .sky-line{position:absolute;left:0;right:0;bottom:58px;height:2px;background:transparent}
+  .road{position:absolute;left:-5%;right:-5%;bottom:-1px;height:205px;background:#334155;clip-path:polygon(0 78%,15% 73%,31% 64%,48% 51%,64% 36%,82% 19%,100% 7%,100% 100%,0 100%);border-top:0}
+  .road:before{content:"";position:absolute;left:0;top:53%;width:112%;height:5px;background:repeating-linear-gradient(90deg,#f8fafc 0 42px,transparent 42px 78px);transform:rotate(-11deg);transform-origin:left center}
+  .road:after{content:"BUKIT";position:absolute;right:12%;top:12%;background:#fef3c7;color:#92400e;border:3px solid #92400e;padding:6px 10px;border-radius:8px;font-weight:900;transform:rotate(-7deg)}
+  .car{position:absolute;left:-16%;bottom:39px;width:78px;height:48px;z-index:4;filter:drop-shadow(0 8px 8px rgba(0,0,0,.22));animation:driveHill 7s linear infinite;transform-origin:center bottom}
+  .car-body{position:absolute;left:0;bottom:9px;width:74px;height:25px;background:linear-gradient(180deg,#ef4444,#b91c1c);border-radius:10px 19px 8px 8px;border:2px solid #7f1d1d}
+  .car-body:before{content:"";position:absolute;left:17px;top:-18px;width:42px;height:20px;background:linear-gradient(180deg,#f87171,#dc2626);clip-path:polygon(13% 100%,32% 0,76% 0,100% 100%);border-radius:5px 7px 0 0}
+  .car-body:after{content:"";position:absolute;right:-3px;top:7px;width:8px;height:8px;border-radius:50%;background:#fde68a;box-shadow:0 0 10px #fef3c7}
+  .car-window{position:absolute;left:28px;top:-13px;width:25px;height:12px;background:#bae6fd;clip-path:polygon(12% 100%,30% 0,78% 0,100% 100%);z-index:2}
+  .car-wheel{position:absolute;bottom:-9px;width:17px;height:17px;background:#111827;border:4px solid #334155;border-radius:50%;z-index:3}
+  .car-wheel.left{left:10px}.car-wheel.right{right:9px}
+  .car-arrow{position:absolute;right:-28px;top:3px;color:#0369a1;font-size:24px;font-weight:900;animation:arrowPulse .8s ease-in-out infinite alternate}
+  @keyframes arrowPulse{from{transform:translateX(0);opacity:.55}to{transform:translateX(5px);opacity:1}}
+  @keyframes driveHill{0%{left:-16%;bottom:39px;transform:rotate(-3deg)}20%{left:12%;bottom:50px;transform:rotate(-7deg)}40%{left:35%;bottom:72px;transform:rotate(-10deg)}60%{left:58%;bottom:108px;transform:rotate(-13deg)}80%{left:80%;bottom:150px;transform:rotate(-11deg)}100%{left:108%;bottom:184px;transform:rotate(-6deg)}}
+  .speed-badge{position:absolute;right:18px;top:18px;background:white;padding:12px 14px;border-radius:14px;box-shadow:var(--shadow-sm);font-weight:800;color:var(--blue)}
+  .equivalence{display:grid;gap:12px}.notation-box{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-radius:17px;border:2px solid;background:white}.notation-box strong{font-size:28px}.notation-box.blue{border-color:#7dd3fc}.notation-box.orange{border-color:#fdba74}.notation-box.green{border-color:#6ee7b7}
+  .callout{padding:15px 17px;border-radius:17px;line-height:1.5;border:1px solid}.callout.info{background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a}.callout.success{background:var(--green-soft);border-color:#6ee7b7;color:#065f46}.callout.warn{background:var(--yellow-soft);border-color:#fde047;color:#713f12}.callout.error{background:var(--red-soft);border-color:#fca5a5;color:#7f1d1d}
+  .graph-wrap{background:white;border-radius:20px;border:1px solid #cbd5e1;padding:14px;position:relative}
+  canvas{display:block;width:100%;height:330px;border-radius:14px;background:linear-gradient(#fff,#f8fafc)}
+  .slider-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;margin-top:14px}.slider-row input{width:100%;accent-color:var(--sky)}
+  .metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.metric{background:#f1f5f9;border-radius:14px;padding:12px;text-align:center}.metric span{display:block;font-size:12px;color:var(--muted)}.metric strong{font-size:19px;color:var(--navy)}
+  .formula-panel{background:linear-gradient(145deg,#082f49,#075985);color:white;border-radius:24px;padding:28px;text-align:center;position:relative;overflow:hidden}.formula-panel .formula{font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:.02em;margin:16px 0}.formula-panel p{color:#bae6fd}.legend{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:17px}.legend span{background:rgba(255,255,255,.1);padding:8px 11px;border-radius:999px;font-size:12px}.power{color:#38bdf8}.operation{color:#fb923c}.result{color:#34d399}.constant{color:#c4b5fd}
+  .arrow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:17px}.arrow-step{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:15px;text-align:center;position:relative}.arrow-step:not(:last-child):after{content:"→";position:absolute;right:-16px;top:35%;z-index:3;background:var(--paper);width:22px;color:var(--sky);font-weight:900}.arrow-step strong{display:block;color:var(--navy);margin-bottom:7px}.arrow-step .big{font-size:24px;font-weight:800}
+  .solver-problem{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#e0f2fe,#ecfeff);border:1px solid #7dd3fc;border-radius:20px;padding:18px}.problem-eq{font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--navy)}
+  .solver-step{margin-top:14px;padding:18px;border-radius:19px;border:1px solid #dbeafe;background:#fff;transition:.25s}.solver-step.locked{opacity:.55;filter:grayscale(.4);pointer-events:none}.solver-step.complete{border-color:#6ee7b7;background:#f0fdf4}.solver-step h4{margin:0 0 12px;color:var(--navy);display:flex;align-items:center;gap:9px}.step-circle{width:31px;height:31px;border-radius:10px;background:#dbeafe;color:#1d4ed8;display:grid;place-items:center}.complete .step-circle{background:var(--green);color:white}
+  .answer-line{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.math-input{min-width:90px;border:2px solid #cbd5e1;border-radius:12px;padding:10px 12px;background:#fff;outline:none;transition:.2s}.math-input:focus{border-color:var(--sky);box-shadow:0 0 0 4px rgba(14,165,233,.13)}.math-input.good{border-color:var(--green);background:#f0fdf4}.math-input.bad{border-color:var(--red);background:#fef2f2;animation:shake .25s}@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .formula-fill-card{background:linear-gradient(180deg,#f8fbff,#eef8ff);border:1px solid #bfdbfe;border-radius:22px;padding:18px}.formula-fill-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:12px 0;font-size:24px;font-weight:800;color:var(--navy);text-align:center}.formula-fill-row.small{font-size:18px;font-weight:700}.formula-box{width:74px;min-width:74px;text-align:center;padding:10px 8px;border:2px solid #93c5fd;border-radius:12px;background:#fff;font-weight:800;color:var(--navy)}.formula-box.wide{width:150px;min-width:150px}.formula-box.exp{width:66px;min-width:66px;padding:6px 8px;vertical-align:super;font-size:16px}.formula-label{display:inline-flex;align-items:center;gap:8px;background:#dbeafe;color:#1d4ed8;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:800}.formula-note{font-size:13px;color:#475569;line-height:1.6;text-align:center}.formula-builder{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:14px 16px;border:1px dashed #93c5fd;border-radius:18px;background:#f8fbff;margin:10px 0 14px}.formula-builder .math-input{min-width:76px;text-align:center;padding:8px 8px}.formula-builder .math-input.exp-input{min-width:62px;padding:6px 6px;font-size:15px}.formula-builder .math-input.answer-wide{min-width:160px}
+  .single-formula-scroll{overflow-x:auto;padding:8px 2px 14px;-webkit-overflow-scrolling:touch}.single-formula{display:flex;align-items:center;justify-content:center;gap:8px;min-width:max-content;font-size:clamp(20px,3vw,31px);font-weight:800;color:var(--navy);white-space:nowrap;padding:12px}.single-formula .formula-box,.single-formula .math-input{width:62px;min-width:62px;padding:8px 6px;text-align:center}.single-formula .n-box{width:62px;min-width:62px;border-color:#8b5cf6;background:#f5f3ff;color:#6d28d9;box-shadow:0 0 0 3px rgba(139,92,246,.08)}.single-formula .n-text{color:#7c3aed}.single-formula .static-x{color:#0f766e;background:#ecfeff;border:1px solid #67e8f9;border-radius:10px;padding:4px 10px}.single-formula .static-minus{color:#c2410c;background:#fff7ed;border:1px solid #fdba74;border-radius:10px;padding:2px 8px}.single-formula sup{display:inline-flex;align-items:center;gap:5px;font-size:.62em}.single-formula .equals{padding:0 3px;color:var(--sky)}.complete-formula{background:linear-gradient(135deg,#ecfeff,#eef2ff);border:2px solid #a5b4fc;border-radius:20px;padding:13px}.example-stack{display:grid;gap:16px}.worked-steps{display:grid;gap:12px;margin-top:14px}.worked-step-row{display:grid;grid-template-columns:135px minmax(0,1fr);gap:14px;align-items:center;padding:15px 17px;background:#fff;border:1px solid #dbeafe;border-radius:16px}.worked-step-label{font-weight:900;color:#1d4ed8}.worked-step-formula{font-size:clamp(20px,3vw,30px);font-weight:800;color:var(--navy);overflow-x:auto;white-space:nowrap;padding:4px}.question-banner{background:linear-gradient(135deg,#e0f2fe,#eff6ff);border:1px solid #7dd3fc;color:#075985;border-radius:16px;padding:14px 17px;font-weight:900;font-size:18px}.question-bank{display:grid;gap:12px}.question-row{display:grid;grid-template-columns:minmax(220px,1fr) minmax(180px,320px) auto;gap:10px;align-items:center;padding:14px;border:1px solid #e2e8f0;border-radius:15px;background:#fff}.question-eq{font-size:18px;font-weight:800;color:var(--navy)}.question-row .math-input{width:100%;min-width:0}.question-feedback{grid-column:1/-1;font-size:13px;font-weight:700;min-height:18px}.power-exercise-card{border:1px solid #dbeafe;background:linear-gradient(180deg,#fff,#f8fbff);border-radius:20px;padding:18px;box-shadow:var(--shadow-sm)}.power-exercise-card+.power-exercise-card{margin-top:14px}.work-label{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 7px;font-weight:900;color:var(--navy)}.math-workspace{min-height:125px;border:2px dashed #93c5fd;border-radius:16px;background:#fff;padding:14px;font-size:20px;line-height:1.75;outline:none;white-space:pre-wrap}.math-workspace:focus{border-color:var(--sky);box-shadow:0 0 0 4px rgba(14,165,233,.12)}.math-workspace:empty:before{content:attr(data-placeholder);color:#94a3b8}.math-calculator{margin-top:10px;border:1px solid #7dd3fc;border-radius:16px;background:#f0f9ff;overflow:hidden}.math-calculator summary{cursor:pointer;padding:12px 14px;font-weight:900;color:#075985;list-style:none}.math-calculator summary::-webkit-details-marker{display:none}.math-calculator-panel{padding:0 13px 14px}.equation-keypad,.calc-keypad{display:flex;flex-wrap:wrap;gap:7px}.math-key{border:1px solid #7dd3fc;background:white;color:#075985;border-radius:10px;padding:8px 11px;font-weight:900;min-width:42px}.math-key:hover{background:#e0f2fe}.calc-strip{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0}.calc-display{width:100%;border:2px solid #7dd3fc;border-radius:11px;padding:10px 12px;background:white;font-weight:800;color:var(--navy)}.calc-result-btn{border:0;background:var(--blue);color:white;border-radius:11px;padding:0 16px;font-weight:900}.calc-note{font-size:12px;color:#64748b;margin-top:8px}.exercise-answer-row{display:grid;grid-template-columns:auto minmax(180px,1fr) auto;gap:9px;align-items:center;margin-top:13px}.guided-example{border:2px solid #7dd3fc;background:linear-gradient(145deg,#f0f9ff,#eff6ff);border-radius:20px;padding:18px}.guided-term-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.guided-term-card{border:1px solid #dbeafe;border-radius:14px;padding:13px;background:#fff}.guided-formula-line{font-size:clamp(18px,3vw,27px);font-weight:800;line-height:1.8;overflow-x:auto;white-space:nowrap}.guided-workspace-wrap{margin-top:12px}@media(max-width:700px){.exercise-answer-row{grid-template-columns:1fr}.worked-step-row{grid-template-columns:1fr}.worked-step-label{margin-bottom:-5px}.math-workspace{min-height:150px}}.type-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.type-filter-btn{border:1px solid #cbd5e1;background:white;color:#334155;padding:9px 12px;border-radius:12px;font-weight:800}.type-filter-btn.active{background:var(--blue);border-color:var(--blue);color:white}.type-exercise-card{background:linear-gradient(180deg,#ffffff,#f8fbff);border:1px solid #7dd3fc;border-radius:20px;padding:20px}.type-tag{display:inline-flex;padding:6px 10px;border-radius:999px;background:#e0f2fe;color:#075985;font-size:12px;font-weight:800}.type-question{font-size:clamp(25px,4vw,40px);font-weight:900;text-align:center;color:var(--navy);padding:20px 8px}.type-answer-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.type-answer-row .math-input{min-width:min(360px,88vw);font-size:19px;text-align:center}.type-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.type-stat{background:#f1f5f9;border-radius:14px;text-align:center;padding:11px}.type-stat strong{display:block;font-size:22px;color:var(--navy)}.type-stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.section3-filter-note{margin:10px 0 14px;padding:11px 14px;border-radius:14px;background:#e0f2fe;border:1px solid #7dd3fc;color:#075985;font-size:13px;line-height:1.55}.exercise-kind{display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;background:#e0f2fe;color:#075985;font-size:12px;font-weight:900;margin-bottom:9px}
+  .small-input{width:76px;text-align:center}
+  .primary.small,.secondary.small,.success-btn.small,.danger-btn.small{padding:9px 12px;border-radius:11px;font-size:13px}.success-btn{background:var(--green);color:white;padding:11px 15px}.danger-btn{background:var(--red);color:white;padding:11px 15px}
+  .feedback{display:none;margin-top:10px;padding:11px 13px;border-radius:13px;font-size:14px;font-weight:700}.feedback.show{display:block}.feedback.ok{background:var(--green-soft);color:#065f46}.feedback.no{background:var(--red-soft);color:#991b1b}.feedback.hint{background:var(--yellow-soft);color:#713f12}
+  .chip-bank{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px}.chip{border:1px solid #bae6fd;background:#f0f9ff;color:#075985;padding:9px 12px;border-radius:999px;font-weight:800}.chip:hover{background:#dbeafe}.drop-zone{display:inline-flex;min-width:66px;min-height:42px;border:2px dashed #7dd3fc;border-radius:11px;vertical-align:middle;align-items:center;justify-content:center;background:#f0f9ff;color:#0369a1;font-weight:800;padding:6px}
+  .practice-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.level-btn{border:1px solid #cbd5e1;background:white;padding:11px 14px;border-radius:13px;font-weight:700;color:#475569}.level-btn.active{background:var(--navy);border-color:var(--navy);color:white}
+  .practice-question{font-size:clamp(27px,4vw,42px);font-weight:800;color:var(--navy);text-align:center;padding:25px 10px}.practice-meta{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted)}
+  .answer-area{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}.answer-area .math-input{min-width:min(420px,90%);font-size:20px;text-align:center}
+  .scoreboard{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.score{padding:13px;border-radius:15px;text-align:center;background:#f1f5f9}.score strong{display:block;font-size:23px;color:var(--navy)}.score span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}.tab-btn{border:1px solid #cbd5e1;background:#fff;color:#334155;padding:10px 13px;border-radius:12px;font-weight:700}.tab-btn.active{background:var(--purple);border-color:var(--purple);color:white}.tab-panel{display:none}.tab-panel.active{display:block}
+  .rule-table{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#cbd5e1;border:1px solid #cbd5e1;border-radius:17px;overflow:hidden}.rule-table>div{background:white;padding:15px}.rule-table .head{font-weight:800;background:#f1f5f9;color:var(--navy)}
+  .quiz-options{display:grid;gap:9px;margin-top:15px}.option{border:2px solid #e2e8f0;background:white;padding:13px 15px;border-radius:14px;text-align:left;font-weight:700;color:#334155}.option:hover{border-color:#7dd3fc;background:#f0f9ff}.option.correct{border-color:var(--green);background:var(--green-soft);color:#065f46}.option.wrong{border-color:var(--red);background:var(--red-soft);color:#991b1b}
+  .mistake{border-left:5px solid var(--red);background:white;border-radius:16px;padding:16px 17px;margin-bottom:12px;box-shadow:var(--shadow-sm)}.mistake h4{margin:0;color:#991b1b}.mistake .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.wrong-box,.right-box{padding:12px;border-radius:12px}.wrong-box{background:#fef2f2;color:#991b1b}.right-box{background:#f0fdf4;color:#065f46}
+  .mastery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.mastery-item{background:#fff;border:1px solid #e2e8f0;border-radius:17px;padding:16px}.mastery-item-top{display:flex;justify-content:space-between;gap:10px}.mastery-bar{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-top:10px}.mastery-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--sky),var(--green));border-radius:inherit}.badge-lock{font-size:12px;background:#f1f5f9;color:#64748b;padding:5px 8px;border-radius:999px}.badge-unlock{font-size:12px;background:var(--green-soft);color:#065f46;padding:5px 8px;border-radius:999px}
+  .bottom-nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.bottom-nav button{min-width:130px}
+  .modal{position:fixed;inset:0;background:rgba(2,6,23,.62);backdrop-filter:blur(8px);z-index:100;display:none;place-items:center;padding:20px}.modal.show{display:grid}.modal-card{max-width:520px;width:100%;background:white;border-radius:25px;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.28);text-align:center}.modal-card .emoji{font-size:60px}.modal-card h3{font-size:28px;color:var(--navy);margin:10px 0}.modal-card p{color:var(--muted);line-height:1.6}
+  .confetti{position:fixed;width:10px;height:16px;top:-30px;z-index:200;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(760deg);opacity:.25}}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media(max-width:1000px){main{grid-template-columns:1fr;padding:14px}aside{position:static;height:auto;overflow:visible}.nav-list{display:grid;grid-template-columns:repeat(4,1fr)}.nav-btn{justify-content:center}.nav-btn .label{display:none}.hero{grid-template-columns:1fr;padding:34px}.hero-visual{min-height:330px}.grid-3{grid-template-columns:1fr 1fr}.brand{min-width:auto}.brand p{display:none}}
+  .category-launcher{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:10px;margin:14px 0 18px}.category-launch-btn{border:2px solid #7dd3fc;background:linear-gradient(180deg,#fff,#eff6ff);color:#075985;border-radius:16px;padding:14px 12px;font-weight:900;font-size:15px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;gap:8px}.category-launch-btn:hover,.category-launch-btn.active{background:var(--blue);border-color:var(--blue);color:white;transform:translateY(-2px)}.question-navigator{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0}.question-nav-btn{border:1px solid #93c5fd;background:white;color:#075985;border-radius:11px;padding:9px 12px;font-weight:900}.question-nav-btn.active{background:var(--blue);color:white;border-color:var(--blue)}.question-nav-arrow{border:0;background:#e0f2fe;color:#075985;border-radius:11px;padding:10px 14px;font-weight:900}.answer-keypad-title{font-size:13px;font-weight:900;color:#075985;margin:10px 0 7px}.answer-keypad{display:flex;flex-wrap:wrap;gap:7px;padding:11px;border:1px solid #7dd3fc;background:#f0f9ff;border-radius:14px}.answer-key{border:1px solid #7dd3fc;background:white;color:#075985;border-radius:10px;padding:9px 11px;font-weight:900;min-width:44px}.answer-key:hover{background:#dbeafe}.calculator-host .math-calculator[open] summary{background:#dbeafe}.type-calculator-host{margin-top:14px}.type-navigation-row{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:13px}@media(max-width:800px){.category-launcher{grid-template-columns:1fr 1fr}}
+  @media(max-width:680px){.topbar{padding:10px 12px}.brand h1{font-size:14px}.logo{width:42px;height:42px}.progress-text{display:none}.icon-btn{display:none}.nav-list{grid-template-columns:repeat(5,1fr)}.nav-btn{padding:8px}.hero{padding:25px 20px;min-height:auto}.hero h2{font-size:42px}.hero-visual{min-height:295px}.visual-orbit{width:290px}.formula-core{width:150px;height:150px}.formula-core strong{font-size:23px}.orbit-item{padding:8px 10px;font-size:12px}.grid-2,.grid-3,.mastery-grid{grid-template-columns:1fr}.arrow-steps{grid-template-columns:1fr 1fr}.arrow-step:nth-child(2):after{display:none}.metric-row,.scoreboard{grid-template-columns:1fr 1fr}.mistake .compare{grid-template-columns:1fr}.section-head{display:block}.step-pill{display:inline-block;margin-top:9px}.card{padding:17px}.bottom-nav button{min-width:0;flex:1}.rule-table{grid-template-columns:1fr}.rule-table .head:nth-of-type(2){display:none}.worked-step-row{grid-template-columns:1fr}.worked-step-label{margin-bottom:-5px}.question-row{grid-template-columns:1fr}.question-feedback{grid-column:1}.question-row .primary{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">∂</div>
+      <div><h1>Makmal Pembezaan Fungsi</h1><p>Topik 2.2 • Pembelajaran Interaktif</p></div>
+    </div>
+    <div class="progress-wrap" aria-label="Kemajuan keseluruhan">
+      <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+      <div id="progressText" class="progress-text">0% selesai</div>
+    </div>
+    <button class="icon-btn" id="soundBtn" title="Bunyi" aria-label="Hidup atau matikan bunyi">🔊</button>
+    <button class="icon-btn" id="resetBtn" title="Tetapkan semula" aria-label="Tetapkan semula kemajuan">↻</button>
+  </div>
+</header>
+
+<main>
+  <aside>
+    <div class="journey-title">Perjalanan Pembelajaran</div>
+    <nav class="nav-list" id="navList">
+      <button class="nav-btn active" data-screen="home"><span class="num">⌂</span><span class="label">Laman Utama</span></button>
+      <button class="nav-btn" data-screen="meaning"><span class="num">1</span><span class="label">Apa Itu Terbitan?</span></button>
+      <button class="nav-btn" data-screen="notation"><span class="num">2</span><span class="label">Kenali Notasi</span></button>
+      <button class="nav-btn" data-screen="power"><span class="num">3</span><span class="label">Peraturan Kuasa</span></button>
+      <button class="nav-btn" data-screen="solver"><span class="num">4</span><span class="label">Penyelesai Berpandu</span></button>
+      <button class="nav-btn" data-screen="types"><span class="num">5</span><span class="label">Jenis Fungsi</span></button>
+      <button class="nav-btn" data-screen="mistakes"><span class="num">6</span><span class="label">Kesilapan Lazim</span></button>
+      <button class="nav-btn" data-screen="mastery"><span class="num">★</span><span class="label">Pencapaian Saya</span></button>
+    </nav>
+    <div class="side-tip"><strong>💡 Ingat:</strong><br>Terbitan menerangkan <b>seberapa cepat sesuatu berubah</b>. Belajar satu langkah pada satu masa.</div>
+  </aside>
+
+  <section class="content">
+    <article class="screen active" id="screen-home">
+      <div class="hero">
+        <div style="position:relative;z-index:2">
+          <span class="eyebrow">📈 TOPIK 2.2 • KALKULUS ASAS</span>
+          <h2>Pembezaan<br>Jadi Mudah.</h2>
+          <p class="lead">Lihat perubahan secara visual, isi formula langkah demi langkah, kemudian bina keyakinan melalui latihan yang meningkat secara perlahan.</p>
+          <div class="hero-actions">
+            <button class="primary" data-go="meaning">Mula Belajar <span>→</span></button>
+            <button class="secondary" data-go="solver">Terus ke Penyelesai</button>
+          </div>
+          <div class="grid-3" style="margin-top:28px">
+            <div><strong style="font-size:26px">8</strong><br><span style="color:#bae6fd;font-size:12px">MODUL RINGKAS</span></div>
+            <div><strong style="font-size:26px">3</strong><br><span style="color:#bae6fd;font-size:12px">TAHAP LATIHAN</span></div>
+            <div><strong style="font-size:26px">100%</strong><br><span style="color:#bae6fd;font-size:12px">LUAR TALIAN</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-orbit">
+            <div class="formula-core"><div><strong>f′(x)</strong><span>Kadar perubahan<br>atau kecerunan</span></div></div>
+            <div class="orbit-item">xⁿ</div><div class="orbit-item">sin x</div><div class="orbit-item">eˣ</div><div class="orbit-item">ln x</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="screen" id="screen-meaning">
+      <div class="section-head"><div><h2>1. Apa Itu Terbitan?</h2><p>Mulakan dengan idea yang boleh dilihat: kelajuan dan kecerunan garis tangen.</p></div><span class="step-pill">KONKRIT → VISUAL</span></div>
+      <div class="grid-2">
+        <div class="card concept-card">
+          <h3>🚗 Kadar perubahan dalam kehidupan</h3>
+          <p>Meter kelajuan menunjukkan bagaimana jarak berubah terhadap masa. Dalam matematik, terbitan melakukan perkara yang sama: ia mengukur kadar perubahan pada suatu ketika.</p>
+          <div class="real-scene">
+            <div class="speed-badge"><span id="speedValue">60</span> km/j</div><div class="car" aria-label="Kereta bergerak ke hadapan menaiki bukit"><div class="car-body"><span class="car-window"></span><span class="car-wheel left"></span><span class="car-wheel right"></span></div><span class="car-arrow">→</span></div><div class="sky-line"></div><div class="road"></div>
+          </div>
+          <div class="callout info" style="margin-top:13px"><b>Idea utama:</b> Semakin cepat kedudukan berubah, semakin besar kadar perubahannya.</div>
+        </div>
+        <div class="card concept-card">
+          <h3>📐 Terbitan sebagai kecerunan</h3>
+          <p>Gerakkan titik pada graf <b>y = x²</b>. Garis jingga ialah garis tangen. Kecerunannya ialah nilai terbitan pada titik itu.</p>
+          <div class="graph-wrap"><canvas id="slopeCanvas" width="700" height="390" aria-label="Graf y sama dengan x kuasa dua dan garis tangen"></canvas>
+            <div class="slider-row"><b>x =</b><input id="xSlider" type="range" min="-3" max="3" value="1" step="0.1"><strong id="xRead">1.0</strong></div>
+            <div class="metric-row"><div class="metric"><span>Titik</span><strong id="pointRead">(1, 1)</strong></div><div class="metric"><span>Terbitan</span><strong>f′(x)=2x</strong></div><div class="metric"><span>Kecerunan</span><strong id="slopeRead">2.0</strong></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Uji pemahaman ringkas</h3><p>Apakah yang diterangkan oleh terbitan?</p>
+        <div class="quiz-options" data-quiz="meaning">
+          <button class="option" data-correct="false">Nilai tetap yang tidak pernah berubah</button>
+          <button class="option" data-correct="true">Kadar perubahan atau kecerunan pada sesuatu titik</button>
+          <button class="option" data-correct="false">Luas di bawah graf sahaja</button>
+        </div><div id="meaningFeedback" class="feedback"></div>
+      </div>
+      <div class="bottom-nav"><button class="secondary" data-go="home">← Utama</button><button class="primary" data-go="notation">Seterusnya: Notasi →</button></div>
+    </article>
+
+    <article class="screen" id="screen-notation">
+      <div class="section-head"><div><h2>2. Kenali Notasi</h2><p>Tiga tulisan yang berbeza, tetapi semuanya membawa maksud yang sama.</p></div><span class="step-pill">VISUAL → SIMBOL</span></div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Tiga cara menulis “terbitan”</h3>
+          <div class="equivalence">
+            <div class="notation-box blue"><div><strong>f′(x)</strong><br><small>“f prima x”</small></div><span>Notasi fungsi</span></div>
+            <div class="notation-box orange"><div><strong>dy/dx</strong><br><small>“dee-y dee-x”</small></div><span>Notasi Leibniz</span></div>
+            <div class="notation-box green"><div><strong>df/dx</strong><br><small>“dee-f dee-x”</small></div><span>Notasi alternatif</span></div>
+          </div>
+          <div class="callout success" style="margin-top:15px"><b>Ketiga-tiganya setara:</b> semuanya merujuk kepada kadar perubahan fungsi terhadap x.</div>
+        </div>
+        <div class="card">
+          <h3>Penukar notasi interaktif</h3>
+          <p>Pilih notasi. Perhatikan bahawa jawapan matematik tidak berubah.</p>
+          <div class="tabs" id="notationTabs">
+            <button class="tab-btn active" data-note="prime">f′(x)</button><button class="tab-btn" data-note="dy">dy/dx</button><button class="tab-btn" data-note="df">df/dx</button>
+          </div>
+          <div class="formula-panel"><p>Diberi fungsi</p><div class="formula">f(x) = x³</div><p id="notationSentence">Maka, f′(x) = 3x²</p></div>
+          <div class="callout info" style="margin-top:14px"><b>Tip:</b> Soalan boleh menggunakan notasi yang berlainan. Fokus pada operasi pembezaan, bukan rupa simbol.</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Padankan maksud</h3><p>Klik jawapan yang setara dengan <b>dy/dx</b>.</p>
+        <div class="quiz-options" data-quiz="notation"><button class="option" data-correct="true">f′(x)</button><button class="option" data-correct="false">f(x) sahaja</button><button class="option" data-correct="false">∫f(x) dx</button></div>
+        <div id="notationFeedback" class="feedback"></div>
+      </div>
+      <div class="bottom-nav"><button class="secondary" data-go="meaning">← Sebelum</button><button class="primary" data-go="power">Seterusnya: Peraturan Kuasa →</button></div>
+    </article>
+
+    <article class="screen" id="screen-power">
+      <div class="section-head"><div><h2>3. Latihan Pembezaan</h2><p>Mulakan dengan Peraturan Kuasa, kemudian cuba fungsi algebra, trigonometri, eksponen dan logaritma.</p></div><span class="step-pill">RUMUS → JALAN KERJA</span></div>
+      <div class="formula-panel">
+        <p>Gunakan satu formula lengkap tanpa memisahkan langkah:</p>
+        <div class="formula">d/dx(axⁿ) = (a)(n)xⁿ⁻¹</div>
+        <div class="legend"><span><b class="constant">a</b> = pekali</span><span><b class="power">n</b> = kuasa asal</span><span><b class="operation">n − 1</b> = kuasa baharu</span></div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Contoh lengkap</h3>
+        <div class="worked-steps">
+          <div class="worked-step-row"><div class="worked-step-label">Formula umum</div><div class="worked-step-formula">d/dx(ax<sup><span class="n-text">n</span></sup>) = (a)(<span class="n-text">n</span>)x<sup><span class="n-text">n</span> − 1</sup></div></div>
+          <div class="worked-step-row"><div class="worked-step-label">Contoh</div><div class="worked-step-formula">d/dx(5x<sup>4</sup>) = (5)(4)x<sup>4 − 1</sup></div></div>
+          <div class="worked-step-row"><div class="worked-step-label">Jawapan</div><div class="worked-step-formula result">20x<sup>3</sup></div></div>
+        </div>
+        <div class="callout info" style="margin-top:14px"><b>Perhatikan:</b> pendaraban ditulis menggunakan kurungan, dan kuasa ditulis sebagai <b>n − 1</b>.</div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Contoh 1: satu sebutan</h3>
+        <div class="question-banner">Soalan 1: Bezakan f(x) = 3x⁵.</div>
+        <div class="formula-fill-card example-stack" style="margin-top:14px">
+          <div class="worked-steps">
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 1</div><div class="worked-step-formula">Kenal pasti kuasa: <span class="n-text">n</span> = <input id="p3n1a" class="formula-box n-box" inputmode="numeric" aria-label="n langkah satu contoh satu"></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 2</div><div class="worked-step-formula">f′(x) = (3)(<input id="p3n1b" class="formula-box n-box" inputmode="numeric" aria-label="n pekali contoh satu">)x<sup><input id="p3n1c" class="formula-box n-box" inputmode="numeric" aria-label="n kuasa contoh satu"> − 1</sup></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 3</div><div class="worked-step-formula result">f′(x) = 15x⁴</div></div>
+          </div>
+          <div style="text-align:center"><button id="checkPowerFormula1" class="primary small">Semak Contoh 1</button></div>
+          <div id="powerFormulaFeedback1" class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Contoh 2: dua sebutan</h3>
+        <div class="question-banner">Soalan 2: Bezakan f(x) = 2x³ + 5x².</div>
+        <div class="formula-fill-card example-stack" style="margin-top:14px">
+          <div class="worked-steps">
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 1</div><div class="worked-step-formula">Sebutan pertama: <span class="n-text">n</span> = <input id="p3n2a1" class="formula-box n-box" inputmode="numeric" aria-label="n sebutan pertama"> &nbsp; | &nbsp; Sebutan kedua: <span class="n-text">n</span> = <input id="p3n2b1" class="formula-box n-box" inputmode="numeric" aria-label="n sebutan kedua"></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 2</div><div class="worked-step-formula">f′(x) = (2)(<input id="p3n2a2" class="formula-box n-box" inputmode="numeric" aria-label="n darab sebutan pertama">)x<sup><input id="p3n2a3" class="formula-box n-box" inputmode="numeric" aria-label="n kuasa sebutan pertama"> − 1</sup> + (5)(<input id="p3n2b2" class="formula-box n-box" inputmode="numeric" aria-label="n darab sebutan kedua">)x<sup><input id="p3n2b3" class="formula-box n-box" inputmode="numeric" aria-label="n kuasa sebutan kedua"> − 1</sup></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 3</div><div class="worked-step-formula result">f′(x) = 6x² + 10x</div></div>
+          </div>
+          <div class="formula-note">Semua kotak <span class="n-text"><b>n</b></span> berwarna ungu. Simbol <b>x</b> dan nilai <b>−1</b> tidak dimasukkan ke dalam kotak.</div>
+          <div style="text-align:center"><button id="checkPowerFormula2" class="primary small">Semak Contoh 2</button></div>
+          <div id="powerFormulaFeedback2" class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Soalan latihan pelbagai fungsi</h3>
+        <p>Bezakan setiap fungsi berikut. Setiap soalan menyediakan ruang jalan kerja, kalkulator dan papan kekunci persamaan matematik.</p>
+        <div class="category-launcher" aria-label="Pilih kategori soalan bahagian 3">
+          <button class="category-launch-btn" data-section3-filter="trig">📐 Soalan Trigonometri</button>
+          <button class="category-launch-btn" data-section3-filter="exp">eˣ Soalan Eksponen</button>
+          <button class="category-launch-btn" data-section3-filter="log">ln Soalan ln / Logaritma</button>
+          <button class="category-launch-btn" data-section3-filter="alg">xⁿ Soalan Algebra</button>
+        </div>
+        <div class="type-filter" id="section3ExerciseFilters">
+          <button class="type-filter-btn active" data-section3-filter="all">🔀 Semua / Campuran</button>
+          <button class="type-filter-btn" data-section3-filter="alg">Algebra</button>
+          <button class="type-filter-btn" data-section3-filter="trig">Trigonometri</button>
+          <button class="type-filter-btn" data-section3-filter="exp">Eksponen</button>
+          <button class="type-filter-btn" data-section3-filter="log">ln / Logaritma</button>
+        </div>
+        <div class="section3-filter-note"><b>Warna diseragamkan:</b> bahagian 3 dan bahagian 6 kini menggunakan tema biru yang sama. Warna ikon hanya membantu membezakan jenis fungsi.</div>
+        <div class="question-bank" id="powerQuestionBank"></div>
+      </div>
+      <div class="bottom-nav"><button class="secondary" data-go="notation">← Sebelum</button><button class="primary" data-go="solver">Seterusnya: Penyelesai →</button></div>
+    </article>
+
+    <article class="screen" id="screen-solver">
+      <div class="section-head"><div><h2>4. Penyelesai Berpandu</h2><p>Gunakan soalan daripada latihan nombor 3. Lengkapkan Langkah 1 dan Langkah 2, kemudian terus ke Langkah 5 untuk jalan kerja serta jawapan akhir.</p></div><span class="step-pill">CONTOH → KOTAK → JAWAPAN</span></div>
+      <div class="card guided-example">
+        <h3>📘 Contoh algebra menggunakan kotak</h3>
+        <div class="question-banner">Contoh: Bezakan f(x) = 4x³.</div>
+        <div class="worked-steps">
+          <div class="worked-step-row"><div class="worked-step-label">Langkah 1</div><div class="worked-step-formula">Kenal pasti: a = 4 dan n = 3</div></div>
+          <div class="worked-step-row"><div class="worked-step-label">Langkah 2</div><div class="worked-step-formula">Ganti: f′(x) = (4)(3)x<sup>3 − 1</sup></div></div>
+          <div class="worked-step-row"><div class="worked-step-label">Langkah 5</div><div class="worked-step-formula result">Jalan kerja: (4)(3) = 12, 3 − 1 = 2<br>Jawapan: f′(x) = 12x²</div></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <div class="solver-problem"><div><small>SOALAN <span id="solverQuestionNo">1</span> DARIPADA <span id="solverQuestionTotal">14</span> — ALGEBRA DARIPADA LATIHAN NOMBOR 3</small><div id="solverProblem" class="problem-eq">f(x) = 4x³</div></div><button id="newSolver" class="secondary small">Soalan Seterusnya →</button></div>
+        <div class="solver-step" id="solverStep1"><h4><span class="step-circle">1</span> Kenal pasti pekali dan kuasa</h4><div id="guidedIdentifyFields" class="guided-term-grid"></div><div class="answer-line" style="margin-top:12px"><button id="checkS1" class="primary small">Semak Langkah 1</button><button class="secondary small hint-btn" data-step="1">💡 Petunjuk</button></div><div id="s1Feedback" class="feedback"></div></div>
+        <div class="solver-step locked" id="solverStep2"><h4><span class="step-circle">2</span> Ganti nilai ke dalam formula</h4><div id="guidedFormulaFields" class="guided-formula-line"></div><div class="answer-line" style="margin-top:12px"><button id="checkS2" class="primary small">Semak Langkah 2</button><button class="secondary small hint-btn" data-step="2">💡 Petunjuk</button></div><div id="s2Feedback" class="feedback"></div></div>
+        <div class="solver-step locked" id="solverStep5"><h4><span class="step-circle">5</span> Tulis jalan kerja dan jawapan akhir</h4><div class="guided-workspace-wrap"><div class="work-label"><span>Ruang jalan kerja</span><small>Klik simbol dalam kalkulator untuk memasukkannya</small></div><div id="guidedWorkspace" class="math-workspace" contenteditable="true" data-placeholder="Contoh: f′(x) = (4)(3)x^(3 − 1) = 12x²"></div><div id="guidedCalculator"></div></div><div class="exercise-answer-row"><b>Jawapan akhir, f′(x) =</b><input id="sFinal" class="math-input answer-wide" placeholder="contoh: 12x^2"><button id="checkS5" class="success-btn small">Semak Jawapan</button></div><button class="secondary small hint-btn" data-step="5" style="margin-top:10px">💡 Petunjuk</button><div id="s5Feedback" class="feedback"></div></div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Contoh fungsi khas</h3>
+        <p>Lihat pola asas sebelum menjawab latihan kotak.</p>
+        <div class="grid-3">
+          <div class="mini-card"><h3>📐 Trigonometri</h3><div class="formula-panel"><div class="formula">d/dx(sin x)</div><p>↓</p><div class="formula result">cos x</div></div><p>Contoh lain: cos x → −sin x, tan x → sec²x.</p></div>
+          <div class="mini-card"><h3>eˣ Eksponen</h3><div class="formula-panel"><div class="formula">d/dx(eˣ)</div><p>↓</p><div class="formula result">eˣ</div></div><p>Untuk aˣ, gunakan aˣ ln a.</p></div>
+          <div class="mini-card"><h3>ln Logaritma</h3><div class="formula-panel"><div class="formula">d/dx(ln x)</div><p>↓</p><div class="formula result">1/x</div></div><p>Untuk logₐx, gunakan 1/(x ln a).</p></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Latihan kotak: trigonometri, eksponen dan ln</h3>
+        <p>Pilih kategori, lengkapkan kotak jawapan dan gunakan kalkulator matematik untuk menekan simbol.</p>
+        <div class="category-launcher" id="guidedSpecialFilters">
+          <button class="category-launch-btn active" data-guided-special-filter="trig">📐 Trigonometri</button>
+          <button class="category-launch-btn" data-guided-special-filter="exp">eˣ Eksponen</button>
+          <button class="category-launch-btn" data-guided-special-filter="log">ln Logaritma</button>
+          <button class="category-launch-btn" data-guided-special-filter="all">🔀 Campuran</button>
+        </div>
+        <div id="guidedSpecialQuestionBank"></div>
+      </div>
+      <div class="bottom-nav"><button class="secondary" data-go="power">← Sebelum</button><button class="primary" data-go="types">Seterusnya: Jenis Fungsi →</button></div>
+    </article>
+
+    <article class="screen" id="screen-types">
+      <div class="section-head"><div><h2>5. Jenis Fungsi Lain</h2><p>Kenal pasti bentuk fungsi dahulu, kemudian pilih rumus yang sesuai.</p></div><span class="step-pill">PENGECAMAN POLA</span></div>
+      <div class="card">
+        <div class="tabs" id="functionTabs"><button class="tab-btn active" data-tab="alg">Algebra</button><button class="tab-btn" data-tab="trig">Trigonometri</button><button class="tab-btn" data-tab="exp">Eksponen</button><button class="tab-btn" data-tab="log">Logaritma</button></div>
+        <div id="tab-alg" class="tab-panel active"><div class="grid-2"><div><h3>🔵 Fungsi Algebra</h3><p>Gunakan Peraturan Kuasa pada setiap sebutan.</p><div class="formula-panel"><div class="formula">3x⁴ + 2x² + 5</div><p>↓</p><div class="formula result">12x³ + 4x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Fungsi</div><div class="head">Terbitan</div><div>xⁿ</div><div>nxⁿ⁻¹</div><div>c</div><div>0</div><div>af(x)</div><div>af′(x)</div></div></div></div></div>
+        <div id="tab-trig" class="tab-panel"><div class="grid-2"><div><h3>🟠 Fungsi Trigonometri</h3><p>Rumus asas ini biasanya digunakan apabila sudut dalam radian.</p><div class="formula-panel"><div class="formula">sin x → cos x</div><div class="formula">cos x → −sin x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Fungsi</div><div class="head">Terbitan</div><div>sin x</div><div>cos x</div><div>cos x</div><div>−sin x</div><div>tan x</div><div>sec²x</div></div></div></div></div>
+        <div id="tab-exp" class="tab-panel"><div class="grid-2"><div><h3>🟢 Fungsi Eksponen</h3><p>Fungsi eˣ istimewa kerana terbitannya sama dengan fungsi asal.</p><div class="formula-panel"><div class="formula">eˣ → eˣ</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Fungsi</div><div class="head">Terbitan</div><div>eˣ</div><div>eˣ</div><div>aˣ</div><div>aˣ ln a</div></div></div></div></div>
+        <div id="tab-log" class="tab-panel"><div class="grid-2"><div><h3>🟣 Fungsi Logaritma</h3><p>Terbitan logaritma asli menghasilkan pecahan.</p><div class="formula-panel"><div class="formula">ln x → 1/x</div></div></div><div><h3>Rumus penting</h3><div class="rule-table"><div class="head">Fungsi</div><div class="head">Terbitan</div><div>ln x</div><div>1/x</div><div>logₐx</div><div>1/(x ln a)</div></div></div></div></div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Latihan pelbagai jenis fungsi</h3><p>Pilih kategori atau gunakan pilihan <b>Campuran</b>. Latihan merangkumi algebra, trigonometri, eksponen dan logaritma dengan lebih banyak soalan bagi setiap kategori.</p>
+        <div class="category-launcher" aria-label="Pilih kategori soalan bahagian 6">
+          <button class="category-launch-btn" data-type-filter="trig">📐 Soalan Trigonometri</button>
+          <button class="category-launch-btn" data-type-filter="exp">eˣ Soalan Eksponen</button>
+          <button class="category-launch-btn" data-type-filter="log">ln Soalan ln / Logaritma</button>
+          <button class="category-launch-btn" data-type-filter="alg">xⁿ Soalan Algebra</button>
+        </div>
+        <div class="type-filter" id="typeExerciseFilters">
+          <button class="type-filter-btn active" data-type-filter="all">🔀 Semua / Campuran</button>
+          <button class="type-filter-btn" data-type-filter="alg">Algebra</button>
+          <button class="type-filter-btn" data-type-filter="trig">Trigonometri</button>
+          <button class="type-filter-btn" data-type-filter="exp">Eksponen</button>
+          <button class="type-filter-btn" data-type-filter="log">ln / Logaritma</button>
+        </div>
+        <div class="type-exercise-card">
+          <div class="practice-meta"><span id="typeExerciseTag" class="type-tag">Campuran</span><span>Soalan <b id="typeQuestionNumber">1</b></span></div>
+          <div id="typeExerciseQuestion" class="type-question">f(x) = sin x</div>
+          <div class="type-answer-row"><span style="font-size:22px;font-weight:800">f′(x) =</span><input id="typeExerciseAnswer" class="math-input" placeholder="Klik kalkulator atau taip jawapan"></div>
+          <div id="typeAnswerCalculator" class="type-calculator-host"></div>
+          <div id="typeQuestionNav" class="question-navigator"></div>
+          <div class="type-navigation-row"><button id="prevTypeExercise" class="secondary">← Soalan Sebelumnya</button><button id="checkTypeExercise" class="primary">Semak Jawapan</button><button id="hintTypeExercise" class="secondary">💡 Petunjuk</button><button id="nextTypeExercise" class="success-btn">Soalan Seterusnya →</button></div>
+          <div id="typeExerciseFeedback" class="feedback" style="text-align:center"></div>
+          <div class="type-stats"><div class="type-stat"><strong id="typeCorrect">0</strong><span>Betul</span></div><div class="type-stat"><strong id="typeAttempt">0</strong><span>Cubaan</span></div><div class="type-stat"><strong id="typeCoverage">0/4</strong><span>Jenis dikuasai</span></div></div>
+        </div>
+        <div class="callout info" style="margin-top:14px"><b>Sasaran penguasaan:</b> jawab sekurang-kurangnya 8 soalan dengan betul dan cuba semua 4 jenis fungsi. Tema warna latihan diseragamkan dengan bahagian 3.</div>
+      </div>
+      <div class="bottom-nav"><button class="secondary" data-go="solver">← Sebelum</button><button class="primary" data-go="mistakes">Seterusnya: Kesilapan →</button></div>
+    </article>
+
+    <article class="screen" id="screen-mistakes">
+      <div class="section-head"><div><h2>6. Kesilapan Lazim</h2><p>Kenali pola kesilapan supaya anda dapat mengelakkannya semasa menjawab.</p></div><span class="step-pill">SEMAK DIRI</span></div>
+      <div class="mistake"><h4>❌ Terlupa mengurangkan kuasa</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(x⁵) = 5x⁵</div><div class="right-box"><b>Betul:</b> d/dx(x⁵) = 5x⁴</div></div><p><b>Sebab:</b> kuasa baharu ialah n − 1.</p></div>
+      <div class="mistake"><h4>❌ Terlupa mendarab pekali</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(3x²) = 2x</div><div class="right-box"><b>Betul:</b> d/dx(3x²) = 6x</div></div><p><b>Sebab:</b> darabkan 3 × 2 dahulu.</p></div>
+      <div class="mistake"><h4>❌ Pemalar tidak ditukar kepada sifar</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(7) = 7</div><div class="right-box"><b>Betul:</b> d/dx(7) = 0</div></div><p><b>Sebab:</b> nombor tetap tidak berubah.</p></div>
+      <div class="mistake"><h4>❌ Keliru antara fungsi dan terbitan</h4><div class="compare"><div class="wrong-box"><b>Fungsi asal:</b> f(x) = x³</div><div class="right-box"><b>Terbitan:</b> f′(x) = 3x²</div></div><p><b>Tip:</b> simbol prima (′) menunjukkan fungsi telah dibezakan.</p></div>
+      <div class="card"><h3>Detektif Kesilapan</h3><p>Ali menulis d/dx(4x³) = 4x². Apakah kesilapannya?</p><div class="quiz-options" data-quiz="mistakes"><button class="option" data-correct="true">Dia tidak mendarab pekali 4 dengan kuasa 3.</button><button class="option" data-correct="false">Dia sepatutnya menambah kuasa.</button><button class="option" data-correct="false">Pemalar perlu dikekalkan.</button></div><div id="mistakesFeedback" class="feedback"></div></div>
+      <div class="bottom-nav"><button class="secondary" data-go="types">← Sebelum</button><button class="primary" data-go="mastery">Lihat Pencapaian →</button></div>
+    </article>
+
+    <article class="screen" id="screen-mastery">
+      <div class="section-head"><div><h2>★ Pencapaian Saya</h2><p>Jejaki bahagian yang telah diselesaikan dan kemahiran yang telah dikuasai.</p></div><span class="step-pill">KEMAJUAN</span></div>
+      <div class="grid-2">
+        <div class="card"><h3>Ringkasan Kemajuan</h3><div style="text-align:center;padding:18px"><div id="bigProgress" style="font-size:64px;font-weight:900;color:var(--navy)">0%</div><p>kemajuan keseluruhan</p></div><button id="continueBtn" class="primary" style="width:100%">Teruskan Pembelajaran</button></div>
+        <div class="card"><h3>Lencana</h3><div class="grid-2"><div class="mini-card" id="badgeExplorer">🔒<br><b>Penjelajah Graf</b><p>Selesaikan modul konsep.</p></div><div class="mini-card" id="badgeRule">🔒<br><b>Juara Kuasa</b><p>Kuasai Peraturan Kuasa.</p></div><div class="mini-card" id="badgeSolver">🔒<br><b>Penyelesai Teliti</b><p>Lengkapkan penyelesai.</p></div><div class="mini-card" id="badgeSpecial">🔒<br><b>Fungsi Khas</b><p>Jawab 6 latihan trig, eksponen atau ln.</p></div></div></div>
+      </div>
+      <div class="card" style="margin-top:18px"><h3>Kemahiran</h3><div class="mastery-grid" id="masteryGrid"></div></div>
+      <div class="bottom-nav"><button class="secondary" data-go="mistakes">← Sebelum</button><button class="primary" data-go="home">Kembali ke Utama ⌂</button></div>
+    </article>
+  </section>
+</main>
+</div>
+
+<div class="modal" id="successModal" role="dialog" aria-modal="true"><div class="modal-card"><div class="emoji">🎉</div><h3>Syabas!</h3><p id="modalMessage">Anda berjaya melengkapkan langkah ini.</p><button id="closeModal" class="primary">Teruskan</button></div></div>
+
+<script>
+(function(){
+'use strict';
+const screens=['home','meaning','notation','power','solver','types','mistakes','mastery'];
+const moduleScreens=screens.filter(x=>!['home','mastery'].includes(x));
+const defaultState={completed:[],specialCorrect:0,specialAttempts:0,specialSeen:[],typesCorrect:0,typesAttempts:0,typesSeen:[],lastScreen:'home',sound:true};
+let state=loadState();
+state.typesSeen=Array.isArray(state.typesSeen)?state.typesSeen:[];
+let solverIndex=0;
+let currentSolver=null;
+let solverHints={1:0,2:0,5:0};
+let guidedSpecialFilter='trig',guidedSpecialIndex=0,guidedSpecialCurrent=null;
+state.specialSeen=Array.isArray(state.specialSeen)?state.specialSeen:[];
+let typeFilter='all',typeIndex=0,typeCurrent=null,typeAnswered=false;
+let section3Filter='all',section3Index=0;
+const powerExercises=[
+  {display:'4x³',answer:'12x^2',terms:[{sign:1,a:4,n:3}]},
+  {display:'6x⁵',answer:'30x^4',terms:[{sign:1,a:6,n:5}]},
+  {display:'2x⁴ + 3x²',answer:'8x^3+6x',terms:[{sign:1,a:2,n:4},{sign:1,a:3,n:2}]},
+  {display:'5x³ + x²',answer:'15x^2+2x',terms:[{sign:1,a:5,n:3},{sign:1,a:1,n:2}]},
+  {display:'7x² − 4x',answer:'14x-4',terms:[{sign:1,a:7,n:2},{sign:-1,a:4,n:1}]},
+  {display:'3x⁵ + 2x³',answer:'15x^4+6x^2',terms:[{sign:1,a:3,n:5},{sign:1,a:2,n:3}]},
+  {display:'5x⁴ − 3x²',answer:'20x^3-6x',terms:[{sign:1,a:5,n:4},{sign:-1,a:3,n:2}]},
+  {display:'3x⁶ + 2x⁴',answer:'18x^5+8x^3',terms:[{sign:1,a:3,n:6},{sign:1,a:2,n:4}]},
+  {display:'8x⁴',answer:'32x^3',terms:[{sign:1,a:8,n:4}]},
+  {display:'9x² + 2x',answer:'18x+2',terms:[{sign:1,a:9,n:2},{sign:1,a:2,n:1}]},
+  {display:'4x⁵ − x³',answer:'20x^4-3x^2',terms:[{sign:1,a:4,n:5},{sign:-1,a:1,n:3}]},
+  {display:'2x⁷ + 6x²',answer:'14x^6+12x',terms:[{sign:1,a:2,n:7},{sign:1,a:6,n:2}]},
+  {display:'x⁶ − 5x²',answer:'6x^5-10x',terms:[{sign:1,a:1,n:6},{sign:-1,a:5,n:2}]},
+  {display:'7x⁴ + 3x³ − 2x',answer:'28x^3+9x^2-2',terms:[{sign:1,a:7,n:4},{sign:1,a:3,n:3},{sign:-1,a:2,n:1}]}
+ ];
+const section3ExtraExercises={
+  trig:[
+    {display:'sin x',answers:['cosx','cos x'],hint:'Gunakan d/dx(sin x) = cos x.'},
+    {display:'4 cos x',answers:['-4sinx','-4 sin x'],hint:'Kekalkan pekali 4 dan gunakan d/dx(cos x) = −sin x.'},
+    {display:'tan x',answers:['sec^2x','sec²x','sec^2 x'],hint:'Gunakan d/dx(tan x) = sec²x.'},
+    {display:'2 sin x + 3 cos x',answers:['2cosx-3sinx','2 cos x - 3 sin x'],hint:'Bezakan setiap sebutan: sin x → cos x dan cos x → −sin x.'}
+  ],
+  exp:[
+    {display:'eˣ',answers:['e^x','ex','eˣ'],hint:'Terbitan eˣ ialah eˣ.'},
+    {display:'3eˣ',answers:['3e^x','3ex','3eˣ'],hint:'Kekalkan pekali 3.'},
+    {display:'2ˣ',answers:['2^xln2','2^x ln2','2ˣln2'],hint:'Gunakan d/dx(aˣ) = aˣ ln a.'},
+    {display:'5eˣ + x²',answers:['5e^x+2x','5ex+2x','5eˣ+2x'],hint:'Bezakan eˣ dan x² secara berasingan.'}
+  ],
+  log:[
+    {display:'ln x',answers:['1/x'],hint:'Gunakan d/dx(ln x) = 1/x.'},
+    {display:'4 ln x',answers:['4/x'],hint:'Kekalkan pekali 4.'},
+    {display:'log₂ x',answers:['1/(xln2)','1/xln2'],hint:'Gunakan d/dx(logₐx) = 1/(x ln a).'},
+    {display:'ln x + x³',answers:['1/x+3x^2','3x^2+1/x'],hint:'Bezakan kedua-dua sebutan secara berasingan.'}
+  ]
+};
+const guidedSpecialBank={
+  trig:[
+    {display:'sin x',answers:['cosx','cos x'],hint:'sin x berubah kepada cos x.'},
+    {display:'cos x',answers:['-sinx','-sin x'],hint:'cos x berubah kepada −sin x.'},
+    {display:'tan x',answers:['sec^2x','sec²x','sec^2 x'],hint:'tan x berubah kepada sec²x.'},
+    {display:'3 sin x',answers:['3cosx','3 cos x'],hint:'Kekalkan pekali 3.'},
+    {display:'4 cos x',answers:['-4sinx','-4 sin x'],hint:'Kekalkan 4 dan gunakan cos x → −sin x.'},
+    {display:'2 sin x + cos x',answers:['2cosx-sinx','2 cos x - sin x'],hint:'Bezakan kedua-dua sebutan.'}
+  ],
+  exp:[
+    {display:'eˣ',answers:['e^x','ex','eˣ'],hint:'Terbitan eˣ ialah eˣ.'},
+    {display:'5eˣ',answers:['5e^x','5ex','5eˣ'],hint:'Kekalkan pekali 5.'},
+    {display:'2ˣ',answers:['2^xln2','2^x ln2','2ˣln2'],hint:'Gunakan aˣ ln a.'},
+    {display:'3ˣ',answers:['3^xln3','3^x ln3','3ˣln3'],hint:'Gunakan 3ˣ ln 3.'},
+    {display:'2eˣ + x²',answers:['2e^x+2x','2ex+2x','2eˣ+2x'],hint:'Bezakan kedua-dua sebutan.'},
+    {display:'4ˣ + eˣ',answers:['4^xln4+e^x','4^x ln4+e^x','4ˣln4+eˣ'],hint:'Gunakan dua rumus eksponen.'}
+  ],
+  log:[
+    {display:'ln x',answers:['1/x'],hint:'Terbitan ln x ialah 1/x.'},
+    {display:'4 ln x',answers:['4/x'],hint:'Kekalkan pekali 4.'},
+    {display:'log₂ x',answers:['1/(xln2)','1/xln2'],hint:'Gunakan 1/(x ln 2).'},
+    {display:'ln x + x²',answers:['1/x+2x','2x+1/x'],hint:'Bezakan kedua-dua sebutan.'},
+    {display:'3 ln x + x',answers:['3/x+1','1+3/x'],hint:'Terbitan x ialah 1.'},
+    {display:'log₁₀ x',answers:['1/(xln10)','1/xln10'],hint:'Gunakan 1/(x ln 10).'}
+  ]
+};
+const typeExerciseBank={
+  alg:[
+    {q:'f(x) = 4x³',answers:['12x^2'],hint:'Gunakan peraturan kuasa: 4 × 3 dan 3 − 1.'},
+    {q:'f(x) = 2x⁵ + 3x',answers:['10x^4+3'],hint:'Bezakan setiap sebutan secara berasingan.'},
+    {q:'f(x) = x⁴ − 7',answers:['4x^3'],hint:'Terbitan pemalar −7 ialah 0.'},
+    {q:'f(x) = 6x² − 2x + 5',answers:['12x-2'],hint:'Terbitan 6x² ialah 12x, terbitan −2x ialah −2.'},
+    {q:'f(x) = 5x⁴ − 3x²',answers:['20x^3-6x'],hint:'Gunakan Peraturan Kuasa pada setiap sebutan.'},
+    {q:'f(x) = 7x³ + x² − 4',answers:['21x^2+2x'],hint:'Pemalar −4 menjadi sifar.'},
+    {q:'f(x) = 2x⁶',answers:['12x^5'],hint:'Darab 2 dengan 6 dan kurangkan kuasa satu.'},
+    {q:'f(x) = x⁵ + 4x² + x',answers:['5x^4+8x+1'],hint:'Bezakan ketiga-tiga sebutan.'}
+  ],
+  trig:[
+    {q:'f(x) = sin x',answers:['cosx','cos x'],hint:'Terbitan sin x ialah cos x.'},
+    {q:'f(x) = cos x',answers:['-sinx','-sin x'],hint:'Terbitan cos x mempunyai tanda negatif.'},
+    {q:'f(x) = tan x',answers:['sec^2x','sec²x','sec^2 x'],hint:'Terbitan tan x ialah sec²x.'},
+    {q:'f(x) = 3 sin x',answers:['3cosx','3 cos x'],hint:'Kekalkan pekali 3 dan bezakan sin x.'},
+    {q:'f(x) = 5 cos x',answers:['-5sinx','-5 sin x'],hint:'Terbitan cos x ialah −sin x.'},
+    {q:'f(x) = 2 tan x',answers:['2sec^2x','2sec²x','2 sec^2 x'],hint:'Kekalkan pekali 2.'},
+    {q:'f(x) = sin x + cos x',answers:['cosx-sinx','cos x - sin x'],hint:'Bezakan kedua-dua fungsi.'},
+    {q:'f(x) = 4 sin x − 2 cos x',answers:['4cosx+2sinx','4 cos x + 2 sin x'],hint:'Tanda negatif pada −2 cos x berubah apabila dibezakan.'}
+  ],
+  exp:[
+    {q:'f(x) = eˣ',answers:['e^x','ex','eˣ'],hint:'Terbitan eˣ sama dengan fungsi asal.'},
+    {q:'f(x) = 4eˣ',answers:['4e^x','4ex','4eˣ'],hint:'Kekalkan pekali 4.'},
+    {q:'f(x) = 2ˣ',answers:['2^xln2','2^x ln2','2ˣln2'],hint:'Gunakan d/dx(aˣ) = aˣ ln a.'},
+    {q:'f(x) = 5ˣ',answers:['5^xln5','5^x ln5','5ˣln5'],hint:'Gunakan aˣ ln a dengan a = 5.'},
+    {q:'f(x) = 7eˣ',answers:['7e^x','7ex','7eˣ'],hint:'Kekalkan pekali 7.'},
+    {q:'f(x) = 3ˣ',answers:['3^xln3','3^x ln3','3ˣln3'],hint:'Gunakan aˣ ln a.'},
+    {q:'f(x) = eˣ + x³',answers:['e^x+3x^2','ex+3x^2','eˣ+3x²'],hint:'Bezakan kedua-dua sebutan.'},
+    {q:'f(x) = 2eˣ + 5ˣ',answers:['2e^x+5^xln5','2ex+5^xln5'],hint:'Gunakan dua rumus eksponen yang sesuai.'}
+  ],
+  log:[
+    {q:'f(x) = ln x',answers:['1/x'],hint:'Terbitan ln x ialah 1/x.'},
+    {q:'f(x) = 3 ln x',answers:['3/x'],hint:'Kekalkan pekali 3.'},
+    {q:'f(x) = ln x + x²',answers:['1/x+2x','2x+1/x'],hint:'Bezakan kedua-dua sebutan.'},
+    {q:'f(x) = log₂ x',answers:['1/(xln2)','1/xln2'],hint:'Gunakan 1/(x ln a) dengan a = 2.'},
+    {q:'f(x) = 5 ln x',answers:['5/x'],hint:'Kekalkan pekali 5.'},
+    {q:'f(x) = ln x + x',answers:['1/x+1','1+1/x'],hint:'Terbitan x ialah 1.'},
+    {q:'f(x) = log₁₀ x',answers:['1/(xln10)','1/xln10'],hint:'Gunakan 1/(x ln 10).'},
+    {q:'f(x) = 2 ln x + x²',answers:['2/x+2x','2x+2/x'],hint:'Bezakan kedua-dua sebutan.'}
+  ]
+};
+function $(id){return document.getElementById(id)}
+function loadState(){try{return {...defaultState,...JSON.parse(localStorage.getItem('derivativeAppState')||'{}')}}catch(e){return {...defaultState}}}
+function saveState(){localStorage.setItem('derivativeAppState',JSON.stringify(state));updateProgressUI()}
+function markComplete(name){if(!state.completed.includes(name)){state.completed.push(name);saveState()}updateNav()}
+function completionPercent(){const base=state.completed.filter(x=>moduleScreens.includes(x)).length/moduleScreens.length*85;const specialBonus=Math.min(state.specialCorrect||0,6)/6*15;return Math.round(Math.min(100,base+specialBonus))}
+function updateProgressUI(){const p=completionPercent();$('progressFill').style.width=p+'%';$('progressText').textContent=p+'% selesai';$('bigProgress').textContent=p+'%';updateMastery()}
+function updateNav(){document.querySelectorAll('.nav-btn').forEach(b=>{b.classList.toggle('active',b.dataset.screen===state.lastScreen);b.classList.toggle('done',state.completed.includes(b.dataset.screen))})}
+function go(screen){if(!screens.includes(screen))return;document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$('screen-'+screen).classList.add('active');state.lastScreen=screen;saveState();updateNav();window.scrollTo({top:0,behavior:'smooth'});if(screen==='meaning')drawGraph();if(screen==='power')renderPowerQuestions();if(screen==='solver'){renderGuidedSolver();renderGuidedSpecial();}if(screen==='mastery')updateMastery()}
+function tone(freq=660,dur=.08){if(!state.sound)return;try{const A=window.AudioContext||window.webkitAudioContext;const ctx=new A();const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=freq;g.gain.value=.04;o.start();g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur);o.stop(ctx.currentTime+dur)}catch(e){}}
+function showFeedback(el,msg,type){el.textContent=msg;el.className='feedback show '+type}
+function normalize(s){return String(s||'').toLowerCase().replace(/\s+/g,'').replace(/·|×/g,'*').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g,m=>({'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9'}[m])).replace(/₂/g,'2').replace(/[()]/g,'').replace(/\*/g,'').replace(/\^1(?!\d)/g,'').replace(/\+0(?!\d)/g,'').replace(/^0\+/,'').replace(/−/g,'-')}
+function equivalent(a,b){return normalize(a)===normalize(b)}
+function correctInput(input){input.classList.remove('bad');input.classList.add('good');tone(760,.09)}
+function wrongInput(input){input.classList.remove('good');input.classList.add('bad');tone(190,.12)}
+function celebrate(msg){$('modalMessage').textContent=msg;$('successModal').classList.add('show');for(let i=0;i<45;i++){const c=document.createElement('i');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=['#0ea5e9','#22d3ee','#10b981','#f59e0b','#8b5cf6'][i%5];c.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),2400)}tone(880,.18)}
+
+// Navigation
+[...document.querySelectorAll('[data-screen]')].forEach(b=>b.addEventListener('click',()=>go(b.dataset.screen)));
+[...document.querySelectorAll('[data-go]')].forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+$('soundBtn').addEventListener('click',()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'🔊':'🔇';saveState()});
+$('resetBtn').addEventListener('click',()=>{if(confirm('Tetapkan semula semua kemajuan dan markah latihan?')){state={...defaultState,completed:[],typesSeen:[],specialSeen:[]};localStorage.removeItem('derivativeAppState');typeIndex=0;typeFilter='all';section3Filter='all';guidedSpecialFilter='trig';guidedSpecialIndex=0;updateTypeStats();renderTypeExercise();renderGuidedSpecial();updateProgressUI();updateNav();go('home')}});
+$('closeModal').addEventListener('click',()=>$('successModal').classList.remove('show'));
+$('successModal').addEventListener('click',e=>{if(e.target.id==='successModal')e.currentTarget.classList.remove('show')});
+
+// Meaning graph
+function drawGraph(){const c=$('slopeCanvas'),ctx=c.getContext('2d'),W=c.width,H=c.height,xVal=parseFloat($('xSlider').value),scale=48,ox=W/2,oy=H*.72;ctx.clearRect(0,0,W,H);ctx.lineWidth=1;ctx.strokeStyle='#e2e8f0';for(let x=-6;x<=6;x++){ctx.beginPath();ctx.moveTo(ox+x*scale,0);ctx.lineTo(ox+x*scale,H);ctx.stroke()}for(let y=-2;y<=7;y++){ctx.beginPath();ctx.moveTo(0,oy-y*scale);ctx.lineTo(W,oy-y*scale);ctx.stroke()}ctx.strokeStyle='#64748b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,oy);ctx.lineTo(W,oy);ctx.moveTo(ox,0);ctx.lineTo(ox,H);ctx.stroke();ctx.fillStyle='#64748b';ctx.font='15px Arial';ctx.fillText('x',W-18,oy-8);ctx.fillText('y',ox+9,18);ctx.strokeStyle='#0284c7';ctx.lineWidth=4;ctx.beginPath();let started=false;for(let px=0;px<W;px++){const x=(px-ox)/scale,y=x*x,py=oy-y*scale;if(py>-100&&py<H+100){if(!started){ctx.moveTo(px,py);started=true}else ctx.lineTo(px,py)}}ctx.stroke();const y0=xVal*xVal,m=2*xVal;ctx.strokeStyle='#f97316';ctx.lineWidth=4;ctx.beginPath();for(let px=0;px<W;px++){const x=(px-ox)/scale,y=y0+m*(x-xVal),py=oy-y*scale;if(px===0)ctx.moveTo(px,py);else ctx.lineTo(px,py)}ctx.stroke();const pX=ox+xVal*scale,pY=oy-y0*scale;ctx.fillStyle='#059669';ctx.beginPath();ctx.arc(pX,pY,8,0,Math.PI*2);ctx.fill();ctx.fillStyle='#0f172a';ctx.font='bold 16px Arial';ctx.fillText('y = x²',18,28);ctx.fillStyle='#c2410c';ctx.fillText('garis tangen',18,52);$('xRead').textContent=xVal.toFixed(1);$('pointRead').textContent='('+xVal.toFixed(1)+', '+y0.toFixed(1)+')';$('slopeRead').textContent=m.toFixed(1);$('speedValue').textContent=Math.round(40+Math.abs(m)*10)}
+$('xSlider').addEventListener('input',drawGraph);
+
+// Generic quizzes
+[...document.querySelectorAll('[data-quiz]')].forEach(group=>{group.querySelectorAll('.option').forEach(opt=>opt.addEventListener('click',()=>{if(group.dataset.locked)return;const ok=opt.dataset.correct==='true';group.querySelectorAll('.option').forEach(x=>x.classList.remove('wrong'));opt.classList.add(ok?'correct':'wrong');const id=group.dataset.quiz+'Feedback';if(ok){group.dataset.locked='1';showFeedback($(id),'✓ Betul! Anda mengenal pasti konsep dengan tepat.','ok');tone();markComplete(group.dataset.quiz)}else{showFeedback($(id),'✗ Belum tepat. Baca semula penerangan dan cuba pilihan lain.','no')}}))});
+
+// Notation tabs
+$('notationTabs').querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{$('notationTabs').querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const text={prime:'Maka, f′(x) = 3x²',dy:'Maka, dy/dx = 3x²',df:'Maka, df/dx = 3x²'};$('notationSentence').textContent=text[b.dataset.note]}));
+
+// Bahagian 3: contoh satu dan dua sebutan dengan kotak n sahaja
+$('checkPowerFormula1').addEventListener('click',()=>{
+  const ids=['p3n1a','p3n1b','p3n1c'];
+  let ok=true;
+  ids.forEach(id=>{if(equivalent($(id).value,'5')) correctInput($(id)); else {wrongInput($(id)); ok=false;}});
+  if(ok){
+    showFeedback($('powerFormulaFeedback1'),'✓ Betul! Semua kotak n untuk contoh 1 ialah 5. Jadi d/dx(3x⁵) = (3)(5)x^(5 − 1) = 15x⁴.','ok');
+  }else{
+    showFeedback($('powerFormulaFeedback1'),'Belum tepat. Untuk 3x⁵, setiap kotak n perlu diisi dengan 5.','no');
+  }
+});
+$('checkPowerFormula2').addEventListener('click',()=>{
+  const checks=[['p3n2a1','3'],['p3n2a2','3'],['p3n2a3','3'],['p3n2b1','2'],['p3n2b2','2'],['p3n2b3','2']];
+  let ok=true;
+  checks.forEach(([id,val])=>{if(equivalent($(id).value,val)) correctInput($(id)); else {wrongInput($(id)); ok=false;}});
+  if(ok){
+    showFeedback($('powerFormulaFeedback2'),'✓ Bagus! Sebutan pertama menggunakan n = 3 dan sebutan kedua menggunakan n = 2. Maka jawapannya ialah 6x² + 10x.','ok');
+    markComplete('power');
+    celebrate('Hebat! Anda berjaya melengkapkan contoh satu sebutan dan dua sebutan.');
+  }else{
+    showFeedback($('powerFormulaFeedback2'),'Semak semula kuasa asal setiap sebutan: 2x³ menggunakan n = 3, manakala 5x² menggunakan n = 2.','no');
+  }
+});
+
+// Kalkulator matematik dan latihan Peraturan Kuasa
+function calculatorMarkup(){
+  const eqKeys=['0','1','2','3','4','5','6','7','8','9','f′(x) = ','d/dx(','x','xⁿ','n − 1','sin x','cos x','−sin x','tan x','sec²x','e^x','a^x','a^x ln a','ln x','logₐx','1/x','1/(x ln a)','ln ','²','³','⁴','⁵','⁶','^','/','(',')',' + ',' − ',' = '];
+  const calcKeys=['7','8','9','÷','4','5','6','×','1','2','3','−','0','(',')','+','C','⌫'];
+  return `<details class="math-calculator" open><summary>🧮 Kalkulator Jawapan — klik simbol untuk masukkan ke kotak jawapan</summary><div class="math-calculator-panel"><div class="equation-keypad">${eqKeys.map(k=>`<button type="button" class="math-key eq-key" data-insert="${k.replace(/"/g,'&quot;')}">${k}</button>`).join('')}<button type="button" class="math-key answer-backspace">⌫ Padam</button><button type="button" class="math-key answer-clear">C Kosongkan</button></div><div class="calc-strip"><input class="calc-display" readonly placeholder="Kiraan pekali, contoh: (4)(3)"><button type="button" class="calc-result-btn">=</button></div><div class="calc-keypad">${calcKeys.map(k=>`<button type="button" class="math-key calc-key" data-calc="${k}">${k}</button>`).join('')}</div><div class="calc-note">Fokus pada ruang jalan kerja atau kotak jawapan, kemudian klik simbol untuk memasukkannya. Kalkulator digunakan untuk kiraan nombor.</div></div></details>`;
+}
+function insertAtTarget(target,text){if(!target)return;if(target.matches('input,textarea')){const start=target.selectionStart??target.value.length,end=target.selectionEnd??target.value.length;target.value=target.value.slice(0,start)+text+target.value.slice(end);target.focus();target.setSelectionRange(start+text.length,start+text.length)}else if(target.isContentEditable){target.focus();document.execCommand('insertText',false,text)}}
+function evaluateCalc(expr){let safe=String(expr||'').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/\)\(/g,')*(');if(!safe||!/^[0-9+\-*/().\s]+$/.test(safe))return null;try{const value=Function(`"use strict";return (${safe})`)();return Number.isFinite(value)?value:null}catch(e){return null}}
+function setupCalculator(root,workspace,answerInput){let activeTarget=answerInput||workspace;[workspace,answerInput].filter(Boolean).forEach(el=>el.addEventListener('focus',()=>activeTarget=el));root.querySelectorAll('.eq-key').forEach(btn=>btn.addEventListener('click',()=>insertAtTarget(activeTarget,btn.dataset.insert)));const backspace=root.querySelector('.answer-backspace'),clear=root.querySelector('.answer-clear');if(backspace)backspace.addEventListener('click',()=>{if(!activeTarget)return;if(activeTarget.matches('input,textarea')){activeTarget.value=activeTarget.value.slice(0,-1);activeTarget.focus()}else if(activeTarget.isContentEditable){activeTarget.innerText=activeTarget.innerText.slice(0,-1);activeTarget.focus()}});if(clear)clear.addEventListener('click',()=>{if(!activeTarget)return;if(activeTarget.matches('input,textarea'))activeTarget.value='';else if(activeTarget.isContentEditable)activeTarget.innerHTML='';activeTarget.focus()});const display=root.querySelector('.calc-display');root.querySelectorAll('.calc-key').forEach(btn=>btn.addEventListener('click',()=>{const key=btn.dataset.calc;if(key==='C')display.value='';else if(key==='⌫')display.value=display.value.slice(0,-1);else display.value+=key}));root.querySelector('.calc-result-btn').addEventListener('click',()=>{const value=evaluateCalc(display.value);if(value===null){display.value='Ralat';return}display.value=String(value);insertAtTarget(activeTarget,String(value))})}
+function section3Label(type){return {alg:'🔵 Algebra',trig:'🟠 Trigonometri',exp:'🟢 Eksponen',log:'🟣 Logaritma'}[type]||'🔀 Campuran'}
+function section3Pool(){
+  const alg=powerExercises.map(q=>({...q,type:'alg',answers:[q.answer],hint:'Gunakan d/dx(axⁿ) = (a)(n)xⁿ⁻¹ bagi setiap sebutan.'}));
+  const groups={alg,trig:section3ExtraExercises.trig.map(q=>({...q,type:'trig'})),exp:section3ExtraExercises.exp.map(q=>({...q,type:'exp'})),log:section3ExtraExercises.log.map(q=>({...q,type:'log'}))};
+  if(section3Filter!=='all')return groups[section3Filter];
+  const order=['alg','trig','exp','log'],mixed=[],max=Math.max(...order.map(k=>groups[k].length));
+  for(let i=0;i<max;i++)order.forEach(k=>{if(groups[k][i])mixed.push(groups[k][i])});
+  return mixed;
+}
+function renderPowerQuestions(){
+  const pool=section3Pool(),bank=$('powerQuestionBank');
+  if(!pool.length){bank.innerHTML='<div class="callout warn">Tiada soalan dalam kategori ini.</div>';return;}
+  section3Index=((section3Index%pool.length)+pool.length)%pool.length;
+  const q=pool[section3Index];
+  const numberButtons=pool.map((_,i)=>`<button type="button" class="question-nav-btn ${i===section3Index?'active':''}" data-s3-index="${i}">${i+1}</button>`).join('');
+  bank.innerHTML=`<div class="question-navigator"><button type="button" class="question-nav-arrow" id="prevSection3Question">← Sebelumnya</button>${numberButtons}<button type="button" class="question-nav-arrow" id="nextSection3Question">Seterusnya →</button></div><div class="power-exercise-card" data-index="${section3Index}"><span class="exercise-kind">${section3Label(q.type)}</span><div class="question-banner">Soalan ${section3Index+1} daripada ${pool.length}: Bezakan f(x) = ${q.display}.</div><div class="work-label"><span>✍️ Ruang jalan kerja</span><small>Tunjukkan rumus, penggantian dan pengiraan</small></div><div class="math-workspace" contenteditable="true" data-placeholder="Klik di sini dan tulis jalan kerja pembezaan."></div><div class="calculator-host">${calculatorMarkup()}</div><div class="exercise-answer-row"><b>f′(x) =</b><input class="math-input power-question-answer" placeholder="Klik kalkulator atau taip jawapan akhir"><button class="primary small power-question-check">Semak</button></div><div class="question-feedback"></div></div>`;
+  const card=bank.querySelector('.power-exercise-card'),input=card.querySelector('.power-question-answer'),feedback=card.querySelector('.question-feedback'),workspace=card.querySelector('.math-workspace');
+  setupCalculator(card.querySelector('.math-calculator'),workspace,input);
+  input.focus();
+  const check=()=>{if(typeAnswerCorrect(input.value,q.answers)){correctInput(input);feedback.textContent='✓ Betul: '+displayMath(q.answers[0]);feedback.style.color='var(--green)';}else{wrongInput(input);feedback.textContent='Belum tepat. Petunjuk: '+q.hint;feedback.style.color='var(--red)'}};
+  card.querySelector('.power-question-check').addEventListener('click',check);input.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
+  bank.querySelector('#prevSection3Question').addEventListener('click',()=>{section3Index=(section3Index-1+pool.length)%pool.length;renderPowerQuestions()});
+  bank.querySelector('#nextSection3Question').addEventListener('click',()=>{section3Index=(section3Index+1)%pool.length;renderPowerQuestions()});
+  bank.querySelectorAll('[data-s3-index]').forEach(btn=>btn.addEventListener('click',()=>{section3Index=Number(btn.dataset.s3Index);renderPowerQuestions()}));
+}
+
+// Penyelesai berpandu menggunakan soalan latihan nombor 3
+function signText(term,index){return index===0?(term.sign<0?'− ':''):(term.sign<0?' − ':' + ')}
+function renderGuidedSolver(){
+  currentSolver=powerExercises[solverIndex];
+  $('solverQuestionNo').textContent=solverIndex+1;
+  $('solverQuestionTotal').textContent=powerExercises.length;
+  $('solverProblem').textContent='f(x) = '+currentSolver.display;
+  $('guidedIdentifyFields').innerHTML=currentSolver.terms.map((t,i)=>`<div class="guided-term-card"><b>Sebutan ${i+1}</b><div class="answer-line" style="margin-top:8px"><span>Tanda:</span><b>${t.sign<0?'−':'+'}</b><span>a =</span><input class="math-input small-input g-a" inputmode="numeric" data-index="${i}"><span>n =</span><input class="math-input small-input n-box g-n" inputmode="numeric" data-index="${i}"></div></div>`).join('');
+  $('guidedFormulaFields').innerHTML=currentSolver.terms.map((t,i)=>`${signText(t,i)}(${t.a})(<input class="math-input small-input n-box g-form-n1" data-index="${i}" inputmode="numeric">)x<sup><input class="math-input small-input n-box g-form-n2" data-index="${i}" inputmode="numeric"> − 1</sup>`).join('');
+  $('sFinal').value='';$('sFinal').classList.remove('good','bad');$('guidedWorkspace').innerHTML='';
+  [1,2,5].forEach(i=>{const step=$('solverStep'+i);step.classList.remove('complete');step.classList.toggle('locked',i!==1);$('s'+i+'Feedback').className='feedback'});
+  solverHints={1:0,2:0,5:0};
+  $('guidedCalculator').innerHTML=calculatorMarkup();setupCalculator($('guidedCalculator').querySelector('.math-calculator'),$('guidedWorkspace'),$('sFinal'));
+}
+function passGuidedStep(i,msg){
+  $('solverStep'+i).classList.add('complete');
+  if(i===1)$('solverStep2').classList.remove('locked');
+  if(i===2)$('solverStep5').classList.remove('locked');
+  showFeedback($('s'+i+'Feedback'),msg,'ok');
+}
+function checkGuidedInputs(selector,getExpected){let ok=true;document.querySelectorAll(selector).forEach(el=>{const expected=String(getExpected(currentSolver.terms[Number(el.dataset.index)]));if(equivalent(el.value,expected))correctInput(el);else{wrongInput(el);ok=false}});return ok}
+$('checkS1').addEventListener('click',()=>{const okA=checkGuidedInputs('.g-a',t=>t.a),okN=checkGuidedInputs('.g-n',t=>t.n);if(okA&&okN)passGuidedStep(1,'✓ Tepat! Semua pekali dan kuasa telah dikenal pasti.');else showFeedback($('s1Feedback'),'Semak nombor di hadapan x dan kuasa bagi setiap sebutan.','no')});
+$('checkS2').addEventListener('click',()=>{const ok1=checkGuidedInputs('.g-form-n1',t=>t.n),ok2=checkGuidedInputs('.g-form-n2',t=>t.n);if(ok1&&ok2)passGuidedStep(2,'✓ Betul! Teruskan ke Langkah 5 untuk jalan kerja dan jawapan akhir.');else showFeedback($('s2Feedback'),'Masukkan nilai kuasa asal yang sama pada kedua-dua kotak n bagi setiap sebutan.','no')});
+$('checkS5').addEventListener('click',()=>{if(equivalent($('sFinal').value,currentSolver.answer)){correctInput($('sFinal'));$('solverStep5').classList.add('complete');showFeedback($('s5Feedback'),'✓ Jawapan akhir tepat: '+displayMath(currentSolver.answer),'ok');markComplete('solver');celebrate('Anda berjaya menyelesaikan soalan melalui Langkah 1, Langkah 2 dan Langkah 5!')}else{wrongInput($('sFinal'));showFeedback($('s5Feedback'),'Jawapan akhir belum tepat. Gunakan ruang jalan kerja dan gabungkan jawapan setiap sebutan.','no')}});
+$('newSolver').addEventListener('click',()=>{solverIndex=(solverIndex+1)%powerExercises.length;renderGuidedSolver()});
+document.querySelectorAll('.hint-btn').forEach(btn=>btn.addEventListener('click',()=>{const i=Number(btn.dataset.step);solverHints[i]=(solverHints[i]||0)+1;const q=currentSolver;const hints={1:['Cari pekali di hadapan x dan kuasa di atas x.',q.terms.map((t,j)=>`Sebutan ${j+1}: a=${t.a}, n=${t.n}`).join(' | ')],2:['Gunakan (a)(n)x^(n−1) untuk setiap sebutan.','Masukkan nilai n yang sama pada kedua-dua kotak ungu.'],5:['Kira a × n dan n − 1 dalam ruang jalan kerja.','Jawapan: '+displayMath(q.answer)]};showFeedback($('s'+i+'Feedback'),'💡 '+hints[i][Math.min(solverHints[i]-1,1)],'hint')}));
+
+// Latihan kotak fungsi khas dalam Bahagian 4
+function guidedSpecialPool(){
+  if(guidedSpecialFilter!=='all')return guidedSpecialBank[guidedSpecialFilter].map(q=>({...q,type:guidedSpecialFilter}));
+  const order=['trig','exp','log'],mixed=[],max=Math.max(...order.map(k=>guidedSpecialBank[k].length));
+  for(let i=0;i<max;i++)order.forEach(k=>{if(guidedSpecialBank[k][i])mixed.push({...guidedSpecialBank[k][i],type:k})});
+  return mixed;
+}
+function renderGuidedSpecial(){
+  const bank=$('guidedSpecialQuestionBank');if(!bank)return;
+  const pool=guidedSpecialPool();guidedSpecialIndex=((guidedSpecialIndex%pool.length)+pool.length)%pool.length;guidedSpecialCurrent=pool[guidedSpecialIndex];
+  const nav=pool.map((_,i)=>`<button type="button" class="question-nav-btn ${i===guidedSpecialIndex?'active':''}" data-guided-special-index="${i}">${i+1}</button>`).join('');
+  bank.innerHTML=`<div class="question-navigator"><button type="button" class="question-nav-arrow" id="prevGuidedSpecial">← Sebelumnya</button>${nav}<button type="button" class="question-nav-arrow" id="nextGuidedSpecial">Seterusnya →</button></div><div class="power-exercise-card"><span class="exercise-kind">${section3Label(guidedSpecialCurrent.type)}</span><div class="question-banner">Soalan ${guidedSpecialIndex+1} daripada ${pool.length}: Lengkapkan kotak pembezaan.</div><div class="single-formula-scroll"><div class="single-formula complete-formula">d/dx(${guidedSpecialCurrent.display}) <span class="equals">=</span> <input id="guidedSpecialAnswer" class="math-input answer-wide" placeholder="Klik kalkulator atau taip jawapan"></div></div><div class="guided-workspace-wrap"><div class="work-label"><span>Ruang jalan kerja</span><small>Gunakan kalkulator matematik di bawah</small></div><div id="guidedSpecialWorkspace" class="math-workspace" contenteditable="true" data-placeholder="Tulis rumus dan jalan kerja di sini."></div><div id="guidedSpecialCalculator"></div></div><div class="answer-line"><button id="checkGuidedSpecial" class="primary small">Semak Kotak</button><button id="hintGuidedSpecial" class="secondary small">💡 Petunjuk</button></div><div id="guidedSpecialFeedback" class="feedback"></div></div>`;
+  $('guidedSpecialCalculator').innerHTML=calculatorMarkup();setupCalculator($('guidedSpecialCalculator').querySelector('.math-calculator'),$('guidedSpecialWorkspace'),$('guidedSpecialAnswer'));
+  $('checkGuidedSpecial').addEventListener('click',()=>{state.specialAttempts=(state.specialAttempts||0)+1;if(typeAnswerCorrect($('guidedSpecialAnswer').value,guidedSpecialCurrent.answers)){state.specialCorrect=(state.specialCorrect||0)+1;state.specialSeen=state.specialSeen||[];if(!state.specialSeen.includes(guidedSpecialCurrent.type))state.specialSeen.push(guidedSpecialCurrent.type);correctInput($('guidedSpecialAnswer'));showFeedback($('guidedSpecialFeedback'),'✓ Betul: '+displayMath(guidedSpecialCurrent.answers[0]),'ok');if(state.specialCorrect>=6&&state.specialSeen.length===3)markComplete('solver')}else{wrongInput($('guidedSpecialAnswer'));showFeedback($('guidedSpecialFeedback'),'Belum tepat. Gunakan petunjuk dan cuba lagi.','no')}saveState();updateMastery()});
+  $('hintGuidedSpecial').addEventListener('click',()=>showFeedback($('guidedSpecialFeedback'),'💡 '+guidedSpecialCurrent.hint,'hint'));
+  $('prevGuidedSpecial').addEventListener('click',()=>{guidedSpecialIndex--;renderGuidedSpecial()});$('nextGuidedSpecial').addEventListener('click',()=>{guidedSpecialIndex++;renderGuidedSpecial()});
+  bank.querySelectorAll('[data-guided-special-index]').forEach(btn=>btn.addEventListener('click',()=>{guidedSpecialIndex=Number(btn.dataset.guidedSpecialIndex);renderGuidedSpecial()}));
+}
+document.querySelectorAll('[data-guided-special-filter]').forEach(btn=>btn.addEventListener('click',()=>{guidedSpecialFilter=btn.dataset.guidedSpecialFilter;guidedSpecialIndex=0;document.querySelectorAll('[data-guided-special-filter]').forEach(x=>x.classList.toggle('active',x.dataset.guidedSpecialFilter===guidedSpecialFilter));renderGuidedSpecial()}));
+
+function displayMath(s){return String(s).replace(/\^0/g,'⁰').replace(/\^1(?!\d)/g,'').replace(/\^2/g,'²').replace(/\^3/g,'³').replace(/\^4/g,'⁴').replace(/\^5/g,'⁵').replace(/\^6/g,'⁶').replace(/\^7/g,'⁷').replace(/\^8/g,'⁸').replace(/\^9/g,'⁹').replace(/-/g,'−')}
+
+document.querySelectorAll('[data-section3-filter]').forEach(btn=>btn.addEventListener('click',()=>{section3Filter=btn.dataset.section3Filter;section3Index=0;document.querySelectorAll('[data-section3-filter]').forEach(x=>x.classList.toggle('active',x.dataset.section3Filter===section3Filter));renderPowerQuestions();$('powerQuestionBank').scrollIntoView({behavior:'smooth',block:'start'})}));
+
+// Function tabs
+$('functionTabs').querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{$('functionTabs').querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.querySelectorAll('#screen-types .tab-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('tab-'+b.dataset.tab).classList.add('active')}));
+
+// Latihan pelbagai jenis fungsi
+function typePool(){if(typeFilter==='all'){const order=['alg','trig','exp','log'],mixed=[],max=Math.max(...order.map(type=>typeExerciseBank[type].length));for(let i=0;i<max;i++)order.forEach(type=>{if(typeExerciseBank[type][i])mixed.push({...typeExerciseBank[type][i],type})});return mixed}return typeExerciseBank[typeFilter].map(item=>({...item,type:typeFilter}))}
+function typeLabel(type){return {alg:'🔵 Algebra',trig:'🟠 Trigonometri',exp:'🟢 Eksponen',log:'🟣 Logaritma'}[type]||'🔀 Campuran'}
+function renderTypeExercise(){const pool=typePool();typeIndex=((typeIndex%pool.length)+pool.length)%pool.length;typeCurrent=pool[typeIndex];typeAnswered=false;$('typeExerciseQuestion').textContent=typeCurrent.q;$('typeExerciseTag').textContent=typeLabel(typeCurrent.type);$('typeQuestionNumber').textContent=(typeIndex+1)+' / '+pool.length;$('typeExerciseAnswer').value='';$('typeExerciseAnswer').classList.remove('good','bad');$('typeExerciseFeedback').className='feedback';$('checkTypeExercise').style.display='inline-flex';$('nextTypeExercise').style.display='inline-flex';$('typeAnswerCalculator').innerHTML=calculatorMarkup();setupCalculator($('typeAnswerCalculator').querySelector('.math-calculator'),null,$('typeExerciseAnswer'));$('typeExerciseAnswer').focus();$('typeQuestionNav').innerHTML=pool.map((_,i)=>`<button type="button" class="question-nav-btn ${i===typeIndex?'active':''}" data-type-index="${i}">${i+1}</button>`).join('');$('typeQuestionNav').querySelectorAll('[data-type-index]').forEach(btn=>btn.addEventListener('click',()=>{typeIndex=Number(btn.dataset.typeIndex);renderTypeExercise()}));updateTypeStats()}
+function updateTypeStats(){$('typeCorrect').textContent=state.typesCorrect||0;$('typeAttempt').textContent=state.typesAttempts||0;$('typeCoverage').textContent=(state.typesSeen||[]).length+'/4'}
+function typeAnswerCorrect(value,answers){return answers.some(ans=>equivalent(value,ans))}
+document.querySelectorAll('[data-type-filter]').forEach(btn=>btn.addEventListener('click',()=>{typeFilter=btn.dataset.typeFilter;typeIndex=0;document.querySelectorAll('[data-type-filter]').forEach(x=>x.classList.toggle('active',x.dataset.typeFilter===typeFilter));renderTypeExercise();$('typeExerciseQuestion').scrollIntoView({behavior:'smooth',block:'center'})}));
+$('checkTypeExercise').addEventListener('click',()=>{if(typeAnswered)return;state.typesAttempts=(state.typesAttempts||0)+1;const ok=typeAnswerCorrect($('typeExerciseAnswer').value,typeCurrent.answers);if(ok){typeAnswered=true;state.typesCorrect=(state.typesCorrect||0)+1;state.typesSeen=state.typesSeen||[];if(!state.typesSeen.includes(typeCurrent.type))state.typesSeen.push(typeCurrent.type);correctInput($('typeExerciseAnswer'));showFeedback($('typeExerciseFeedback'),'✓ Betul! Jawapan: '+displayMath(typeCurrent.answers[0]),'ok');$('checkTypeExercise').style.display='inline-flex';$('nextTypeExercise').style.display='inline-flex';if(state.typesCorrect>=8&&state.typesSeen.length===4){markComplete('types');celebrate('Anda telah mencuba dan menguasai keempat-empat jenis fungsi!')}}else{wrongInput($('typeExerciseAnswer'));showFeedback($('typeExerciseFeedback'),'Belum tepat. Gunakan petunjuk dan cuba semula.','no')}saveState();updateTypeStats()});
+$('hintTypeExercise').addEventListener('click',()=>showFeedback($('typeExerciseFeedback'),'💡 '+typeCurrent.hint,'hint'));
+$('prevTypeExercise').addEventListener('click',()=>{typeIndex--;renderTypeExercise()});
+$('nextTypeExercise').addEventListener('click',()=>{typeIndex++;renderTypeExercise()});
+$('typeExerciseAnswer').addEventListener('keydown',e=>{if(e.key==='Enter'){typeAnswered?$('nextTypeExercise').click():$('checkTypeExercise').click()}});
+
+function updateMastery(){if(!$('masteryGrid'))return;const skills=[['Makna Terbitan','meaning'],['Kenal Notasi','notation'],['Peraturan Kuasa','power'],['Penyelesai Berpandu','solver'],['Jenis Fungsi','types'],['Kesilapan Lazim','mistakes']];$('masteryGrid').innerHTML=skills.map(([label,key])=>{const done=state.completed.includes(key);return `<div class="mastery-item"><div class="mastery-item-top"><b>${label}</b><span class="${done?'badge-unlock':'badge-lock'}">${done?'Dikuasai':'Belum selesai'}</span></div><div class="mastery-bar"><span style="width:${done?100:20}%"></span></div></div>`}).join('');const unlock=(id,yes,emoji)=>{$(id).innerHTML=(yes?emoji:'🔒')+'<br>'+$(id).innerHTML.split('<br>').slice(1).join('<br>')};unlock('badgeExplorer',state.completed.includes('meaning'),'📈');unlock('badgeRule',state.completed.includes('power'),'⚡');unlock('badgeSolver',state.completed.includes('solver'),'🧩');unlock('badgeSpecial',(state.specialCorrect||0)>=6,'🌟')}
+$('continueBtn').addEventListener('click',()=>{const next=moduleScreens.find(x=>!state.completed.includes(x))||'types';go(next)});
+
+// Auto mark lesson views after meaningful interaction / reaching end handled by quiz; mark types/mistakes upon correct quiz.
+$('soundBtn').textContent=state.sound?'🔊':'🔇';updateTypeStats();updateProgressUI();updateNav();renderPowerQuestions();renderGuidedSolver();renderGuidedSpecial();renderTypeExercise();setTimeout(drawGraph,200);
+})();
+</script>
+</body>
+</html>

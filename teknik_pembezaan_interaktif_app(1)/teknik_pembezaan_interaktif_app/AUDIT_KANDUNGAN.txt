@@ -1,0 +1,36 @@
+AUDIT KANDUNGAN MATEMATIK
+=========================
+
+Tarikh semakan: 15 Julai 2026
+Topik: 2.3 Techniques of Differentiation
+
+Skop semakan:
+- 24 soalan Practice Area: LULUS 24/24
+- 3 contoh Step-by-Step Solver: LULUS 3/3
+- 9 item Mastery Quiz: LULUS 9/9
+- 18 medan jawapan dalam semua solver: LULUS 18/18
+- Formula Product Rule, Quotient Rule dan Chain Rule: BETUL
+- Graf dan fungsi terbitan untuk tiga contoh utama: BETUL
+
+Formula yang disahkan:
+1. Product Rule: (uv)' = uv' + u'v
+2. Quotient Rule: (u/v)' = (vu' - uv')/v^2
+3. Chain Rule: d/dx[F(g(x))] = F'(g(x))g'(x)
+
+Pembetulan penting:
+- Visual Chain Rule sebelum ini menggunakan pengiraan kuasa dua walaupun label menunjukkan kuasa empat. Pengiraan kini menggunakan (2x^2-3)^4 dengan betul.
+- Papan kekunci solver sebelum ini cenderung menulis ke kotak pertama. Kini simbol dimasukkan ke kotak yang sedang aktif.
+- Semakan jawapan sebelum ini terlalu bergantung pada susunan teks. Kini bentuk matematik setara diterima melalui semakan numerik pada beberapa nilai x.
+- Arahan bagi u, v, u', v', fungsi luar, fungsi dalam, gantian formula dan jawapan akhir telah ditambah.
+
+Contoh jawapan setara yang kini diterima:
+- 3x^2 + 2x dan 2x + 3x^2
+- 2x(3x+1)(6x+1) dan 2x(3x+1)^2 + 6x^2(3x+1)
+- (x^2-1)/x^2 dan 1-1/x^2
+
+Ujian teknikal:
+- Sintaks JavaScript: LULUS
+- Ujian interaksi Chromium: LULUS
+- Ujian paparan mudah alih 390 px: LULUS, tiada limpahan mendatar
+- Ujian kalkulator pada kotak kedua solver: LULUS
+- Ujian penerangan selepas kuiz: LULUS
