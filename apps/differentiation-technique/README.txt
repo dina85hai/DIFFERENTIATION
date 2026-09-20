@@ -1,4 +1,4 @@
-APLIKASI TEKNIK PEMBEZAAN INTERAKTIF
+APLIKASI TEKNIK DIFFERENTIATION INTERAKTIF
 ====================================
 
 Cara menggunakan:
@@ -9,11 +9,11 @@ Cara menggunakan:
 Penambahbaikan versi semakan:
 - Arahan jelas tentang perkara yang perlu ditaip dalam setiap kotak.
 - Kotak aktif ditandakan dengan bingkai ungu.
-- Kalkulator matematik boleh klik untuk nombor, x, t, operasi, kuasa, sin, cos, ln dan eksponen.
+- Kalkulator matematik boleh klik untuk nombor, x, t, operasi, power, sin, cos, ln dan exponential.
 - Papan simbol khas untuk Formula Trainer.
 - Semakan menerima bentuk jawapan setara seperti bentuk kembang atau berfaktor.
 - Penerangan jawapan dipaparkan selepas Mastery Quiz disemak.
-- Paparan visual Chain Rule telah dibetulkan kepada kuasa empat.
+- Paparan visual Chain Rule telah dibetulkan kepada power four.
 - Penyimpanan kemajuan tidak menyebabkan aplikasi gagal jika localStorage disekat.
 
 Fail audit: AUDIT_KANDUNGAN.txt

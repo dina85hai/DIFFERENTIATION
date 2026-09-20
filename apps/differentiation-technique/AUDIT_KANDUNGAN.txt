@@ -10,7 +10,7 @@ Skop semakan:
 - 9 item Mastery Quiz: LULUS 9/9
 - 18 medan jawapan dalam semua solver: LULUS 18/18
 - Formula Product Rule, Quotient Rule dan Chain Rule: BETUL
-- Graf dan fungsi terbitan untuk tiga contoh utama: BETUL
+- Graph dan function derivative untuk tiga contoh utama: BETUL
 
 Formula yang disahkan:
 1. Product Rule: (uv)' = uv' + u'v
@@ -18,10 +18,10 @@ Formula yang disahkan:
 3. Chain Rule: d/dx[F(g(x))] = F'(g(x))g'(x)
 
 Pembetulan penting:
-- Visual Chain Rule sebelum ini menggunakan pengiraan kuasa dua walaupun label menunjukkan kuasa empat. Pengiraan kini menggunakan (2x^2-3)^4 dengan betul.
+- Visual Chain Rule sebelum ini menggunakan pengiraan power two walaupun label menunjukkan power four. Pengiraan kini menggunakan (2x^2-3)^4 dengan betul.
 - Papan kekunci solver sebelum ini cenderung menulis ke kotak pertama. Kini simbol dimasukkan ke kotak yang sedang aktif.
 - Semakan jawapan sebelum ini terlalu bergantung pada susunan teks. Kini bentuk matematik setara diterima melalui semakan numerik pada beberapa nilai x.
-- Arahan bagi u, v, u', v', fungsi luar, fungsi dalam, gantian formula dan jawapan akhir telah ditambah.
+- Arahan bagi u, v, u', v', function luar, function dalam, gantian formula dan jawapan akhir telah ditambah.
 
 Contoh jawapan setara yang kini diterima:
 - 3x^2 + 2x dan 2x + 3x^2
