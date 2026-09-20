@@ -123,7 +123,7 @@
         <div style="position:relative;z-index:2">
           <span class="eyebrow">📘 Unit 2.1 · Matematik</span>
           <h1>Pengenalan kepada <span style="color:#72e3bb">Differentiation</span></h1>
-          <p>Fahami bagaimana rate of change purata bertukar menjadi rate of change seketika melalui situasi sebenar, graph bergerak, secant line dan tangent line.</p>
+          <p>Rate of change purata boleh bertukar menjadi rate of change seketika. Kita akan lihat cara ini berlaku melalui situasi sebenar, graph bergerak, secant line dan tangent line.</p>
           <div class="outcomes">
             <div class="outcome"><span class="check">✓</span><span>Menerangkan derivative menggunakan prinsip pertama.</span></div>
             <div class="outcome"><span class="check">✓</span><span>Mengenal notasi <b>f′(x)</b>, <b>dy/dx</b> dan <b>df/dx</b>.</span></div>
@@ -151,7 +151,7 @@
     </section>
 
     <section class="page" data-title="Situasi Sebenar">
-      <div class="section-head"><div><span class="tag">TAHAP KONKRIT</span><h2>Rate of change di sekeliling kita</h2><p>Pilih situasi dan gerakkan peluncur. Perhatikan bagaimana nilai input mengubah rate of change pada waktu tertentu.</p></div></div>
+      <div class="section-head"><div><span class="tag">TAHAP KONKRIT</span><h2>Rate of change di sekeliling kita</h2><p>Pilih situasi dan gerakkan peluncur. Lihat bagaimana rate of change berubah bila nilai input berubah.</p></div></div>
       <div class="scenario-tabs" id="scenarioTabs">
         <button class="active" data-s="car">🚗 Kereta</button><button data-s="coffee">☕ Kopi</button><button data-s="population">📈 Populasi</button>
       </div>
@@ -167,7 +167,7 @@
     </section>
 
     <section class="page" data-title="Secant ke Tangent">
-      <div class="section-head"><div><span class="tag">TAHAP VISUAL</span><h2>Daripada secant line kepada tangent line</h2><p>Garis biru menghubungkan dua titik. Apabila <b>h</b> semakin kecil, titik B menghampiri titik A dan secant line menghampiri tangent line hijau.</p></div></div>
+      <div class="section-head"><div><span class="tag">TAHAP VISUAL</span><h2>Daripada secant line kepada tangent line</h2><p>Garis biru menghubungkan dua titik. Apabila <b>h</b> semakin kecil, titik B bergerak semakin dekat dengan titik A. Secant line pun semakin dekat dengan tangent line hijau.</p></div></div>
       <div class="grid-2">
         <div class="graph-wrap"><svg id="secantGraph" viewBox="0 0 620 350" role="img" aria-label="Animasi secant line menghampiri tangent line"></svg></div>
         <div class="card">
@@ -182,19 +182,19 @@
     </section>
 
     <section class="page" data-title="Prinsip Pertama">
-      <div class="section-head"><div><span class="tag">TAHAP SIMBOL</span><h2>Prinsip pertama differentiation</h2><p>Formula ini ialah bahasa matematik bagi idea “dua titik semakin rapat sehingga secant line menjadi tangent line”.</p></div></div>
+      <div class="section-head"><div><span class="tag">TAHAP SIMBOL</span><h2>Prinsip pertama differentiation</h2><p>Formula ini menulis satu idea mudah dalam bentuk matematik. Idea itu ialah: dua titik semakin rapat, sehingga secant line menjadi tangent line.</p></div></div>
       <div class="formula"><div style="font-size:.8rem;letter-spacing:.18em;color:#9ec8ef;font-family:system-ui;font-weight:900">FIRST PRINCIPLE OF DIFFERENTIATION</div><div class="big">f′(x) = lim<sub style="font-size:.48em">h→0</sub> <span class="frac"><span>f(x+h) − f(x)</span><span>h</span></span></div></div>
       <div class="meaning-grid">
         <div class="meaning"><b>f′(x)</b><span>Rate of change seketika atau derivative</span></div><div class="meaning"><b>f(x+h)</b><span>Nilai function pada titik baharu</span></div><div class="meaning"><b>f(x)</b><span>Nilai function pada titik asal</span></div><div class="meaning"><b>h → 0</b><span>Perubahan sangat kecil, bukan h = 0</span></div>
       </div>
       <div class="grid-3" style="margin-top:20px">
-        <div class="card"><div style="font-size:2rem">①</div><h3>Dua titik</h3><p>A pada x dan B pada x+h membentuk secant line.</p></div><div class="card"><div style="font-size:2rem">②</div><h3>Divide perubahan</h3><p>Perubahan menegak dibahagi perubahan mendatar memberi gradient.</p></div><div class="card"><div style="font-size:2rem">③</div><h3>Ambil limit</h3><p>Apabila h menghampiri sifar, gradient secant menjadi gradient tangent.</p></div>
+        <div class="card"><div style="font-size:2rem">①</div><h3>Dua titik</h3><p>A pada x dan B pada x+h membentuk secant line.</p></div><div class="card"><div style="font-size:2rem">②</div><h3>Divide perubahan</h3><p>Perubahan menegak dibahagi perubahan mendatar. Ini memberi kita gradient.</p></div><div class="card"><div style="font-size:2rem">③</div><h3>Ambil limit</h3><p>Apabila h menghampiri sifar, gradient secant menjadi gradient tangent.</p></div>
       </div>
       <details style="margin-top:20px"><summary>Notasi lain yang membawa maksud sama</summary><div class="grid-3" style="margin-top:12px"><div class="formula" style="padding:15px">f′(x)</div><div class="formula" style="padding:15px"><span class="frac"><span>dy</span><span>dx</span></span></div><div class="formula" style="padding:15px"><span class="frac"><span>df</span><span>dx</span></span></div></div></details>
     </section>
 
     <section class="page" data-title="Penyelesai Langkah demi Langkah">
-      <div class="section-head"><div><span class="tag">LATIHAN BERPANDU</span><h2>Terbitkan f(x) = x² menggunakan prinsip pertama</h2><p>Mulakan dengan melengkapkan formula asal prinsip pertama. Kemudian selesaikan satu langkah pada satu masa menggunakan kotak jawapan yang disediakan.</p></div></div>
+      <div class="section-head"><div><span class="tag">LATIHAN BERPANDU</span><h2>Terbitkan f(x) = x² menggunakan prinsip pertama</h2><p>Mulakan dengan melengkapkan formula asal prinsip pertama. Kemudian, selesaikan satu langkah pada satu masa. Isi kotak jawapan yang disediakan untuk setiap langkah.</p></div></div>
       <div class="grid-2">
         <div class="card">
           <div class="stepper" id="stepper"></div>
@@ -213,7 +213,7 @@
     </section>
 
     <section class="page" data-title="Latihan Interaktif">
-      <div class="section-head"><div><span class="tag">TAHAP ABSTRAK</span><h2>Cabaran derivative</h2><p>Pilih aras. Soalan berubah secara rawak dan jawapan setara seperti <b>2x</b>, <b>2*x</b> atau <b>x+x</b> akan dinilai secara berangka.</p></div><div class="score-pill">🔥 Rentetan: <span id="streak">0</span></div></div>
+      <div class="section-head"><div><span class="tag">TAHAP ABSTRAK</span><h2>Cabaran derivative</h2><p>Pilih aras. Soalan akan berubah secara rawak setiap kali. Jawapan setara seperti <b>2x</b>, <b>2*x</b> atau <b>x+x</b> semuanya dikira betul.</p></div><div class="score-pill">🔥 Rentetan: <span id="streak">0</span></div></div>
       <div class="card">
         <div class="level-select"><button class="active" data-level="easy">🟢 Asas</button><button data-level="medium">🔵 Sederhana</button><button data-level="hard">🟠 Mencabar</button></div>
         <div class="question-box">
@@ -237,19 +237,19 @@
       <div class="grid-2">
         <div>
           <details open><summary>Prinsip pertama</summary><div class="formula" style="margin-top:12px;padding:18px">f′(x) = lim<sub>h→0</sub> <span class="frac"><span>f(x+h)−f(x)</span><span>h</span></span></div></details>
-          <details><summary>Power Rule</summary><div class="formula" style="margin-top:12px;padding:18px"><span class="frac"><span>d</span><span>dx</span></span>(xⁿ) = nxⁿ⁻¹</div><p>Multiply dengan power, kemudian kurangkan power sebanyak satu.</p></details>
+          <details><summary>Power Rule</summary><div class="formula" style="margin-top:12px;padding:18px"><span class="frac"><span>d</span><span>dx</span></span>(xⁿ) = nxⁿ⁻¹</div><p>Multiply dengan power dahulu. Kemudian, kurangkan power sebanyak satu.</p></details>
           <details><summary>Notasi differentiation</summary><p><b>f′(x)</b>, <b>dy/dx</b>, <b>df/dx</b> dan <b>Df(x)</b> semuanya boleh mewakili derivative.</p></details>
         </div>
         <div>
           <div class="mistake"><div class="mistake-icon">❌</div><div><b>Pengembangan power two</b><div class="wrong">(x+h)² ≠ x²+h²</div><div class="right">(x+h)² = x²+2xh+h²</div></div></div>
           <div class="mistake"><div class="mistake-icon">⚠️</div><div><b>Jangan ganti h = 0 terlalu awal</b><p style="margin:.3rem 0;color:var(--muted)">Faktorkan dan batalkan h terlebih dahulu. Kemudian barulah ambil limit apabila h menghampiri sifar.</p></div></div>
-          <div class="mistake"><div class="mistake-icon">🧠</div><div><b>Ingat maksud derivative</b><p style="margin:.3rem 0;color:var(--muted)">Derivative ialah gradient tangent line dan rate of change seketika.</p></div></div>
+          <div class="mistake"><div class="mistake-icon">🧠</div><div><b>Ingat maksud derivative</b><p style="margin:.3rem 0;color:var(--muted)">Derivative ialah gradient tangent line. Ia juga rate of change seketika pada satu titik.</p></div></div>
         </div>
       </div>
     </section>
 
     <section class="page" data-title="Kalkulator Visual">
-      <div class="section-head"><div><span class="tag">CUBA SENDIRI</span><h2>Kalkulator derivative polynomial</h2><p>Pilih function, masukkan coefficient dan titik x. Aplikasi akan menunjukkan function, derivative, nilai pada titik dan tangent line.</p></div></div>
+      <div class="section-head"><div><span class="tag">CUBA SENDIRI</span><h2>Kalkulator derivative polynomial</h2><p>Pilih function, masukkan coefficient dan titik x. Aplikasi akan tunjukkan function, derivative dan tangent line untuk anda.</p></div></div>
       <div class="calc-grid">
         <div class="card calc-form">
           <label>Jenis function</label><select id="calcDegree"><option value="1">Linear: ax+b</option><option value="2" selected>Kuadratik: ax²+bx+c</option><option value="3">Kubik: ax³+bx²+cx+d</option></select>
@@ -263,7 +263,7 @@
     <section class="page" data-title="Rumusan">
       <div class="section-head"><div><span class="tag">SELESAI</span><h2>Rumusan pembelajaran</h2><p>Semak pencapaian anda dan ulang bahagian yang masih belum kukuh.</p></div></div>
       <div class="summary-board"><div class="summary-card"><div class="num" id="sumScore">0</div><span>Mata</span></div><div class="summary-card"><div class="num" id="sumCorrect">0</div><span>Jawapan betul</span></div><div class="summary-card"><div class="num" id="sumStreak">0</div><span>Rentetan terbaik</span></div><div class="summary-card"><div class="num" id="sumProgress">100%</div><span>Bahagian dilawati</span></div></div>
-      <div class="grid-3" style="margin-top:20px"><div class="card"><h3>1. Rate of change</h3><p>Menunjukkan seberapa cepat sesuatu kuantiti berubah berbanding kuantiti lain.</p></div><div class="card"><h3>2. Tangent line</h3><p>Gradient tangent line ialah rate of change seketika pada satu titik.</p></div><div class="card"><h3>3. Derivative</h3><p>Prinsip pertama mentakrifkan derivative sebagai limit gradient secant line.</p></div></div>
+      <div class="grid-3" style="margin-top:20px"><div class="card"><h3>1. Rate of change</h3><p>Menunjukkan berapa cepat satu kuantiti berubah, berbanding kuantiti lain.</p></div><div class="card"><h3>2. Tangent line</h3><p>Gradient tangent line ialah rate of change seketika pada satu titik.</p></div><div class="card"><h3>3. Derivative</h3><p>Prinsip pertama menerangkan derivative guna limit gradient secant line.</p></div></div>
       <div class="actions"><button class="btn btn-primary" onclick="goTo(6)">Ulang latihan</button><button class="btn btn-ghost" id="resetAll">Tetapkan semula aplikasi</button></div>
     </section>
 
@@ -308,7 +308,7 @@ document.getElementById('xSlider').oninput=drawSecant;document.getElementById('h
 
 // Guided solver
 const solver=[
- {type:'formula',q:'Langkah 1: Lengkapkan formula asal prinsip pertama',hint:'Gunakan lima pilihan ini mengikut kedudukan yang betul: lim, h→0, f(x+h), f(x), h.',display:'f′(x) = lim₍h→0₎ [f(x+h)−f(x)]/h',fields:[
+ {type:'formula',q:'Langkah 1: Lengkapkan formula asal prinsip pertama',hint:'Susun lima simbol ini mengikut tempat yang betul: lim, h→0, f(x+h), f(x), h.',display:'f′(x) = lim₍h→0₎ [f(x+h)−f(x)]/h',fields:[
    {id:'limit',label:'simbol limit',answers:['lim']},
    {id:'approach',label:'nilai h',answers:['h→0','h->0','hto0']},
    {id:'fxh',label:'function pada x+h',answers:['f(x+h)','f(x + h)']},
@@ -316,12 +316,12 @@ const solver=[
    {id:'denom',label:'denominator',answers:['h']}
  ]},
  {q:'Langkah 2: Tulis f(x+h)',prefix:'f(x+h) =',answers:['(x+h)^2','(x+h)²'],hint:'Gantikan setiap x dalam f(x)=x² dengan (x+h).',display:'f(x+h) = (x+h)²'},
- {q:'Langkah 3: Hitung f(x+h) − f(x)',prefix:'=',answers:['2*x*h+h^2','2xh+h^2','2xh+h²'],hint:'Kembangkan (x+h)² = x²+2xh+h², kemudian tolak x².',display:'f(x+h)−f(x) = 2xh+h²'},
+ {q:'Langkah 3: Hitung f(x+h) − f(x)',prefix:'=',answers:['2*x*h+h^2','2xh+h^2','2xh+h²'],hint:'Kembangkan (x+h)² dahulu. Jawapannya x²+2xh+h². Kemudian, tolak x².',display:'f(x+h)−f(x) = 2xh+h²'},
  {q:'Langkah 4: Divide dengan h dan ringkaskan',prefix:'=',answers:['2*x+h','2x+h'],hint:'Faktorkan h: (2xh+h²)/h = h(2x+h)/h.',display:'[f(x+h)−f(x)]/h = 2x+h'},
  {q:'Langkah 5: Ambil limit apabila h → 0',prefix:'f′(x) =',answers:['2*x','2x','x+x'],hint:'Apabila h menghampiri 0, 2x+h menghampiri 2x.',display:'f′(x) = 2x'}
 ];
 let solverStep=0;
-function formulaBuilder(i){return `<div class="formula-builder" aria-label="Lengkapkan formula prinsip pertama"><span>f′(x) =</span><span class="limit-builder"><input id="solverField${i}_limit" aria-label="Isi simbol limit" autocomplete="off" placeholder="?" maxlength="6"><input id="solverField${i}_approach" aria-label="Isi h menghampiri sifar" autocomplete="off" placeholder="?" maxlength="8"></span><span class="fraction-builder"><span class="numerator"><input class="wide" id="solverField${i}_fxh" aria-label="Isi f pada x tambah h" autocomplete="off" placeholder="?"><b>−</b><input id="solverField${i}_fx" aria-label="Isi f pada x" autocomplete="off" placeholder="?"></span><span class="denominator"><input class="small" id="solverField${i}_denom" aria-label="Isi denominator" autocomplete="off" placeholder="?" maxlength="3"></span></span></div><p class="solver-note">Isi semua lima kotak. Formula ini mesti ditulis dahulu sebelum menggantikan function f(x)=x².</p><div class="word-bank" aria-label="Bank jawapan"><span class="word-chip">lim</span><span class="word-chip">h → 0</span><span class="word-chip">f(x+h)</span><span class="word-chip">f(x)</span><span class="word-chip">h</span></div>`}
+function formulaBuilder(i){return `<div class="formula-builder" aria-label="Lengkapkan formula prinsip pertama"><span>f′(x) =</span><span class="limit-builder"><input id="solverField${i}_limit" aria-label="Isi simbol limit" autocomplete="off" placeholder="?" maxlength="6"><input id="solverField${i}_approach" aria-label="Isi h menghampiri sifar" autocomplete="off" placeholder="?" maxlength="8"></span><span class="fraction-builder"><span class="numerator"><input class="wide" id="solverField${i}_fxh" aria-label="Isi f pada x tambah h" autocomplete="off" placeholder="?"><b>−</b><input id="solverField${i}_fx" aria-label="Isi f pada x" autocomplete="off" placeholder="?"></span><span class="denominator"><input class="small" id="solverField${i}_denom" aria-label="Isi denominator" autocomplete="off" placeholder="?" maxlength="3"></span></span></div><p class="solver-note">Isi semua lima kotak dahulu. Kita mesti tulis formula ini dulu, sebelum gantikan function f(x)=x² ke dalamnya.</p><div class="word-bank" aria-label="Bank jawapan"><span class="word-chip">lim</span><span class="word-chip">h → 0</span><span class="word-chip">f(x+h)</span><span class="word-chip">f(x)</span><span class="word-chip">h</span></div>`}
 function renderSolver(){const st=document.getElementById('stepper');st.innerHTML=solver.map((_,i)=>`<span class="step-dot ${i<=solverStep?'done':''}"></span>`).join('');const h=document.getElementById('solverSteps');h.innerHTML=solver.map((s,i)=>`<div class="solver-step ${i===solverStep?'active':''}"><h3>${s.q}</h3>${s.type==='formula'?formulaBuilder(i):`<div class="input-row"><b>${s.prefix}</b><input class="math-input" id="solverInput${i}" autocomplete="off" placeholder="Taip jawapan di sini"></div>`}</div>`).join('');document.getElementById('solverHint').classList.remove('show');document.getElementById('solverFeedback').classList.remove('show')}
 function norm(s){return String(s).toLowerCase().replace(/[\s·₍₎]/g,'').replace(/²/g,'^2').replace(/³/g,'^3').replace(/−/g,'-').replace(/→/g,'->').replace(/\*/g,'')}
 function checkSolverAnswer(){const s=solver[solverStep];if(s.type!=='formula'){const val=document.getElementById('solverInput'+solverStep).value;return {ok:s.answers.some(a=>norm(a)===norm(val)),message:'Belum tepat. Gunakan petunjuk dan semak semula langkah ini.'}}let all=true,missing=false,wrong=[];s.fields.forEach(field=>{const el=document.getElementById(`solverField${solverStep}_${field.id}`),value=el.value.trim(),ok=field.answers.some(a=>norm(a)===norm(value));el.classList.remove('correct-box','wrong-box');el.classList.add(ok?'correct-box':'wrong-box');if(!value)missing=true;if(!ok){all=false;wrong.push(field.label)}});return {ok:all,message:missing?'Lengkapkan semua lima kotak terlebih dahulu.':'Masih ada kotak yang belum tepat: '+wrong.join(', ')+'. Lihat bank jawapan dan kedudukan setiap simbol.'}}
@@ -335,30 +335,30 @@ const examples={
     {tone:'blue',title:'Tulis formula prinsip pertama',math:'f′(x) = lim<sub>h→0</sub> <span class="frac"><span>f(x+h) − f(x)</span><span>h</span></span>',explain:'Mulakan setiap soalan dengan formula yang sama. Jangan terus meneka jawapan.',tip:'Biru = formula asal yang perlu diingat.'},
     {tone:'orange',title:'Cari f(x+h)',math:'f(x+h) = 3(x+h) + 5',explain:'Gantikan setiap x dalam f(x)=3x+5 dengan (x+h). Nombor 5 tidak berubah kerana 5 ialah constant.',tip:'Ganti x sahaja dengan (x+h).'},
     {tone:'orange',title:'Kembangkan kurungan',math:'f(x+h) = 3x + 3h + 5',explain:'Multiply 3 dengan kedua-dua term dalam kurungan: 3(x+h)=3x+3h.',tip:'3 × x = 3x dan 3 × h = 3h.'},
-    {tone:'purple',title:'Tolak f(x)',math:'f(x+h) − f(x) = (3x+3h+5) − (3x+5) = 3h',explain:'Buka kurungan kedua dengan berhati-hati. +3x ditolak 3x menjadi 0, dan +5 ditolak 5 juga menjadi 0.',tip:'Yang tinggal hanya 3h.'},
-    {tone:'cyan',title:'Divide dengan h',math:'<span class="frac"><span>3h</span><span>h</span></span> = 3',explain:'h di atas dan h di bawah boleh dibatalkan kerana h sedang menghampiri sifar dan belum digantikan dengan sifar.',tip:'h ÷ h = 1, maka 3h ÷ h = 3.'},
+    {tone:'purple',title:'Tolak f(x)',math:'f(x+h) − f(x) = (3x+3h+5) − (3x+5) = 3h',explain:'Buka kurungan kedua dengan berhati-hati. +3x ditolak 3x menjadi 0. +5 ditolak 5 pun menjadi 0.',tip:'Yang tinggal hanya 3h.'},
+    {tone:'cyan',title:'Divide dengan h',math:'<span class="frac"><span>3h</span><span>h</span></span> = 3',explain:'h di atas dan h di bawah boleh dibatalkan. Ini kerana h masih belum sifar, ia cuma menghampiri sifar.',tip:'h ÷ h = 1, maka 3h ÷ h = 3.'},
     {tone:'green',title:'Ambil limit apabila h → 0',math:'f′(x) = lim<sub>h→0</sub> 3 = 3',explain:'Tiada lagi h dalam ungkapan. Jadi gradient straight line ini sentiasa 3 pada semua titik.',tip:'Jawapan akhir: f′(x)=3.'}
    ]
  },
  quad:{
    title:'f(x) = x²',deriv:'f′(x) = 2x',answer:'2x',fn:x=>x*x,range:[-3,3,-2,10],
    steps:[
-    {tone:'blue',title:'Tulis formula prinsip pertama',math:'f′(x) = lim<sub>h→0</sub> <span class="frac"><span>f(x+h) − f(x)</span><span>h</span></span>',explain:'Formula ini menjadi rangka kerja untuk semua langkah selepas ini.',tip:'Biru = formula asal.'},
-    {tone:'orange',title:'Cari f(x+h)',math:'f(x+h) = (x+h)²',explain:'Function asal ialah x². Oleh itu, gantikan x dengan (x+h), termasuk power two di luar kurungan.',tip:'Jangan tulis x²+h². Seluruh (x+h) mesti dikuasakan dua.'},
-    {tone:'orange',title:'Kembangkan power two',math:'(x+h)² = x² + 2xh + h²',explain:'Gunakan rumus (a+b)²=a²+2ab+b² dengan a=x dan b=h.',tip:'Term tengah 2xh mesti ada.'},
+    {tone:'blue',title:'Tulis formula prinsip pertama',math:'f′(x) = lim<sub>h→0</sub> <span class="frac"><span>f(x+h) − f(x)</span><span>h</span></span>',explain:'Formula ini sama untuk setiap soalan. Ikut formula ini langkah demi langkah.',tip:'Biru = formula asal.'},
+    {tone:'orange',title:'Cari f(x+h)',math:'f(x+h) = (x+h)²',explain:'Function asal ialah x². Gantikan x dengan (x+h). Power two di luar kurungan mesti dikekalkan.',tip:'Jangan tulis x²+h². Seluruh (x+h) mesti dikuasakan dua.'},
+    {tone:'orange',title:'Kembangkan power two',math:'(x+h)² = x² + 2xh + h²',explain:'Gunakan rumus (a+b)²=a²+2ab+b². Di sini, a=x dan b=h.',tip:'Term tengah 2xh mesti ada.'},
     {tone:'purple',title:'Tolak f(x)',math:'f(x+h) − f(x) = (x²+2xh+h²) − x² = 2xh+h²',explain:'x² di hadapan dibatalkan dengan −x². Tinggal dua term yang mengandungi h.',tip:'x² − x² = 0.'},
     {tone:'cyan',title:'Faktorkan dan divide dengan h',math:'<span class="frac"><span>2xh+h²</span><span>h</span></span> = <span class="frac"><span>h(2x+h)</span><span>h</span></span> = 2x+h',explain:'Keluarkan faktor sepunya h daripada numerator dahulu. Selepas itu, batalkan h di atas dan di bawah.',tip:'Jangan ganti h=0 sebelum h dibatalkan.'},
-    {tone:'green',title:'Ambil limit apabila h → 0',math:'f′(x) = lim<sub>h→0</sub>(2x+h) = 2x',explain:'Apabila h menghampiri sifar, term h hilang dan 2x kekal.',tip:'Jawapan akhir: f′(x)=2x.'}
+    {tone:'green',title:'Ambil limit apabila h → 0',math:'f′(x) = lim<sub>h→0</sub>(2x+h) = 2x',explain:'Apabila h menghampiri sifar, term h hilang. Hanya 2x yang kekal.',tip:'Jawapan akhir: f′(x)=2x.'}
    ]
  },
  cubic:{
    title:'f(x) = x³',deriv:'f′(x) = 3x²',answer:'3x²',fn:x=>x*x*x,range:[-2.3,2.3,-12,12],
    steps:[
     {tone:'blue',title:'Tulis formula prinsip pertama',math:'f′(x) = lim<sub>h→0</sub> <span class="frac"><span>f(x+h) − f(x)</span><span>h</span></span>',explain:'Gunakan formula yang sama sebelum menggantikan function kubik.',tip:'Biru = formula asal.'},
-    {tone:'orange',title:'Cari f(x+h)',math:'f(x+h) = (x+h)³',explain:'Gantikan x dengan (x+h) dan kekalkan power three di luar kurungan.',tip:'Seluruh kurungan dikuasakan tiga.'},
+    {tone:'orange',title:'Cari f(x+h)',math:'f(x+h) = (x+h)³',explain:'Gantikan x dengan (x+h). Kekalkan power three di luar kurungan.',tip:'Seluruh kurungan dikuasakan tiga.'},
     {tone:'orange',title:'Kembangkan power three',math:'(x+h)³ = x³ + 3x²h + 3xh² + h³',explain:'Gunakan rumus (a+b)³=a³+3a²b+3ab²+b³.',tip:'Coefficient di tengah ialah 3 dan 3.'},
     {tone:'purple',title:'Tolak f(x)',math:'f(x+h) − f(x) = (x³+3x²h+3xh²+h³) − x³ = 3x²h+3xh²+h³',explain:'x³ dibatalkan dengan −x³. Semua term yang tinggal mempunyai faktor h.',tip:'Cari faktor h pada setiap term.'},
-    {tone:'cyan',title:'Faktorkan dan divide dengan h',math:'<span class="frac"><span>h(3x²+3xh+h²)</span><span>h</span></span> = 3x²+3xh+h²',explain:'Keluarkan h sebagai faktor sepunya, kemudian batalkan h di numerator dan denominator.',tip:'Selepas batal h, masih ada 3xh dan h².'},
+    {tone:'cyan',title:'Faktorkan dan divide dengan h',math:'<span class="frac"><span>h(3x²+3xh+h²)</span><span>h</span></span> = 3x²+3xh+h²',explain:'Keluarkan h sebagai faktor sepunya. Kemudian, batalkan h di numerator dan denominator.',tip:'Selepas batal h, masih ada 3xh dan h².'},
     {tone:'green',title:'Ambil limit apabila h → 0',math:'f′(x) = lim<sub>h→0</sub>(3x²+3xh+h²) = 3x²',explain:'Apabila h menghampiri sifar, 3xh dan h² menghampiri sifar. Hanya 3x² kekal.',tip:'Jawapan akhir: f′(x)=3x².'}
    ]
  }
@@ -417,7 +417,7 @@ function generateCoeffs(){if(level==='easy'){return [randInt(-7,7),randInt(-6,6)
 function equivalentToCoeff(input,coeff){let s=input.toLowerCase().replace(/\s/g,'').replace(/²/g,'^2').replace(/³/g,'^3').replace(/⁴/g,'^4').replace(/−/g,'-').replace(/·/g,'*');s=s.replace(/(\d)(x)/g,'$1*$2').replace(/(x)(\d)/g,'$1*$2').replace(/x\^(\d)/g,'x**$1');if(!/^[0-9x+\-*/().^*]+$/.test(s))return false;try{for(const x of [-2.3,-1,.4,1.7,3.1]){const val=Function('x','"use strict";return ('+s+')')(x);if(!Number.isFinite(val)||Math.abs(val-evalPoly(coeff,x))>1e-6)return false}return true}catch(e){return false}}
 function makePractice(){answered=false;questionNo++;const coeff=generateCoeffs(),d=derivCoeff(coeff),types=['input','mcq','value'],type=types[questionNo%3];currentQ={coeff,d,type};document.getElementById('qCounter').textContent='Soalan '+questionNo;document.getElementById('practiceFunction').textContent='f(x) = '+polyToText(coeff);const area=document.getElementById('practiceInteraction'),qType=document.getElementById('qType');if(type==='input'){qType.textContent='Taip derivative f′(x)';area.innerHTML=`<div class="input-row"><b>f′(x) =</b><input id="practiceInput" class="math-input" placeholder="Contoh: 4x + 3"></div>`}else if(type==='mcq'){qType.textContent='Pilih derivative yang betul';const opts=[d,d.map((v,i)=>i?Math.round(v/(i+1)):v),d.map(v=>-v),[...d].reverse()].map(polyToText);const unique=[...new Set(opts)];while(unique.length<4)unique.push(polyToText(derivCoeff(generateCoeffs())));unique.sort(()=>Math.random()-.5);area.innerHTML=`<div class="mcq">${unique.slice(0,4).map(o=>`<button data-val="${o}">${o}</button>`).join('')}</div>`;area.querySelectorAll('button').forEach(b=>b.onclick=()=>{area.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')})}else{const x=randInt(-2,3);currentQ.x=x;currentQ.value=evalPoly(d,x);qType.textContent='Cari nilai gradient pada titik';document.getElementById('practiceFunction').textContent=`f(x) = ${polyToText(coeff)}, cari f′(${x})`;area.innerHTML=`<div class="input-row"><b>f′(${x}) =</b><input id="practiceInput" type="number" class="math-input" placeholder="Nilai berangka"></div>`}document.getElementById('practiceFeedback').className='feedback';document.getElementById('practiceHintBox').className='hint-box'}
 function practiceAnswer(){if(currentQ.type==='mcq')return document.querySelector('.mcq .selected')?.dataset.val||'';return document.getElementById('practiceInput')?.value||''}
-document.querySelectorAll('.level-select button').forEach(b=>b.onclick=()=>{level=b.dataset.level;document.querySelectorAll('.level-select button').forEach(x=>x.classList.toggle('active',x===b));makePractice()});document.getElementById('practiceHint').onclick=()=>{const h=document.getElementById('practiceHintBox');h.textContent=currentQ.type==='value'?`Cari f′(x) dahulu menggunakan Power Rule, kemudian gantikan x=${currentQ.x}.`:'Multiply setiap term dengan its power, kemudian kurangkan power sebanyak satu. Derivative constant ialah 0.';h.classList.add('show')};document.getElementById('practiceCheck').onclick=()=>{if(answered)return toast('Soalan ini telah disemak. Pilih soalan baharu.');const a=practiceAnswer();let ok=currentQ.type==='value'?Math.abs(Number(a)-currentQ.value)<1e-8:equivalentToCoeff(a,currentQ.d);const f=document.getElementById('practiceFeedback');f.className='feedback show '+(ok?'good':'bad');f.innerHTML=ok?`✓ Betul! f′(x) = <b>${polyToText(currentQ.d)}</b>${currentQ.type==='value'?`, maka f′(${currentQ.x})=${currentQ.value}`:''}`:`Belum tepat. Jawapan yang betul ialah <b>${polyToText(currentQ.d)}</b>${currentQ.type==='value'?`, dan f′(${currentQ.x})=${currentQ.value}`:''}.`;answered=true;if(ok){award(level==='hard'?18:level==='medium'?14:10)}else fail()};document.getElementById('newQuestion').onclick=makePractice;
+document.querySelectorAll('.level-select button').forEach(b=>b.onclick=()=>{level=b.dataset.level;document.querySelectorAll('.level-select button').forEach(x=>x.classList.toggle('active',x===b));makePractice()});document.getElementById('practiceHint').onclick=()=>{const h=document.getElementById('practiceHintBox');h.textContent=currentQ.type==='value'?`Cari f′(x) dahulu menggunakan Power Rule. Kemudian, gantikan x=${currentQ.x}.`:'Multiply setiap term dengan its power. Kemudian, kurangkan power sebanyak satu. Derivative bagi constant ialah 0.';h.classList.add('show')};document.getElementById('practiceCheck').onclick=()=>{if(answered)return toast('Soalan ini telah disemak. Pilih soalan baharu.');const a=practiceAnswer();let ok=currentQ.type==='value'?Math.abs(Number(a)-currentQ.value)<1e-8:equivalentToCoeff(a,currentQ.d);const f=document.getElementById('practiceFeedback');f.className='feedback show '+(ok?'good':'bad');f.innerHTML=ok?`✓ Betul! f′(x) = <b>${polyToText(currentQ.d)}</b>${currentQ.type==='value'?`, maka f′(${currentQ.x})=${currentQ.value}`:''}`:`Belum tepat. Jawapan yang betul ialah <b>${polyToText(currentQ.d)}</b>${currentQ.type==='value'?`, dan f′(${currentQ.x})=${currentQ.value}`:''}.`;answered=true;if(ok){award(level==='hard'?18:level==='medium'?14:10)}else fail()};document.getElementById('newQuestion').onclick=makePractice;
 
 // Matching
 const matchPairs=[['f′(x)','Derivative atau rate of change seketika'],['h → 0','Perubahan mendatar menghampiri sifar'],['Secant line','Garis yang melalui dua titik pada curve'],['Tangent line','Garis yang menyentuh curve pada satu titik']];let matchSel={l:null,r:null},matched=0;
