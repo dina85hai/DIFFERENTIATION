@@ -21,12 +21,12 @@ const PhysicalCalculusVisualizer = () => {
       position: (t) => {
         if (t <= 2) return 5 * t * t; // Accelerating
         if (t <= 6) return 20 + 20 * (t - 2); // Constant speed
-        return 100 + 15 * (t - 6) - 2.5 * (t - 6) * (t - 6); // Decelerating
+        return 100 + 20 * (t - 6) - 2.5 * (t - 6) * (t - 6); // Decelerating
       },
       velocity: (t) => {
         if (t <= 2) return 10 * t;
         if (t <= 6) return 20;
-        return 15 - 5 * (t - 6);
+        return 20 - 5 * (t - 6);
       },
       acceleration: (t) => {
         if (t <= 2) return 10;
