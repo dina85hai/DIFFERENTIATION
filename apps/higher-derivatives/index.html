@@ -117,6 +117,7 @@
 
   <nav class="toc">
     <a href="#notes">📘 Nota Visual</a>
+    <a href="#diagnostic">🩺 Diagnostik Pantas</a>
     <a href="#examples">✏️ Contoh Interaktif</a>
     <a href="#explorer">🔍 Peneroka Concavity</a>
     <a href="#exercises">📝 Latihan</a>
@@ -183,6 +184,19 @@
     </div>
   </section>
 
+  <section id="diagnostic" class="section">
+    <h2>🩺 Diagnostik Pantas</h2>
+    <div class="card">
+      <p style="margin-top:0;color:var(--sub);font-size:14px;">Sebelum teruskan ke contoh, cuba jawab dahulu soalan ini (30 saat sahaja).</p>
+      <div class="step formula visible" style="margin-bottom:14px"><span class="tag">Adakah pernyataan ini betul?</span><div class="math">f''(x) = [f'(x)]²</div></div>
+      <div class="ex-controls">
+        <button class="btn primary" id="diagYes">✅ Betul</button>
+        <button class="btn" id="diagNo">❌ Silap</button>
+      </div>
+      <div class="feedback" id="diagFeedback" style="margin-top:10px"></div>
+    </div>
+  </section>
+
   <section id="examples" class="section">
     <h2>✏️ Contoh Interaktif</h2>
 
@@ -219,6 +233,19 @@
       <div class="step diff" data-i="1"><span class="tag">Derivative pertama</span><div class="math">f'(x) = −x⁻²</div><div class="note">Guna Power Rule: n·xⁿ⁻¹. Di sini n=−1, jadi jawapannya −1·x⁻².</div></div>
       <div class="step diff" data-i="2"><span class="tag">Derivative kedua</span><div class="math">f''(x) = 2x⁻³</div><div class="note">Bezakan −x⁻² sekali lagi. −1 kali −2 sama dengan 2, jadi f''(x) = 2x⁻³.</div></div>
       <div class="step answer" data-i="3"><span class="tag">Jawapan</span><div class="math">f''(x) = 2/x³</div></div>
+      <div class="ex-controls">
+        <button class="btn" data-act="prev">← Sebelumnya</button>
+        <button class="btn" data-act="next">Seterusnya →</button>
+        <button class="btn primary" data-act="all">Tunjukkan Semua</button>
+      </div>
+    </div>
+
+    <div class="example" data-example>
+      <div class="ex-title">Contoh 4 — 🔧 Konteks Industri: Troli Automatik (AGV) di Gudang</div>
+      <div class="step formula visible" data-i="0"><span class="tag">Diberi</span><div class="math">Kedudukan troli automatik (AGV) di gudang ialah s(t) = t³ − 6t² + 9t meter, t dalam saat. Cari acceleration a(t) = s''(t) dan tafsirkan pada t = 1 s.</div></div>
+      <div class="step diff" data-i="1"><span class="tag">Velocity, v(t) = s'(t)</span><div class="math">v(t) = 3t² − 12t + 9</div><div class="note">Bezakan s(t) sekali. Ini ialah kelajuan troli pada masa t.</div></div>
+      <div class="step diff" data-i="2"><span class="tag">Acceleration, a(t) = s''(t)</span><div class="math">a(t) = 6t − 12</div><div class="note">Bezakan v(t) sekali lagi (atau s(t) dua kali). Ini ialah acceleration troli.</div></div>
+      <div class="step answer" data-i="3"><span class="tag">Jawapan &amp; Tafsiran</span><div class="math">a(1) = 6(1) − 12 = −6 m/s²</div><div class="note">Acceleration negatif bermaksud troli sedang perlahan (deselerasi) pada saat itu — maklumat penting untuk juruteknik automasi menetapkan had keselamatan pergerakan troli.</div></div>
       <div class="ex-controls">
         <button class="btn" data-act="prev">← Sebelumnya</button>
         <button class="btn" data-act="next">Seterusnya →</button>
@@ -284,6 +311,15 @@
     });
     render();
   });
+
+  // ---------- Diagnostik Pantas ----------
+  function diagAnswer(guessedTrue){
+    var fb = document.getElementById('diagFeedback');
+    fb.className = 'feedback ' + (guessedTrue ? 'wrong' : 'correct');
+    fb.textContent = (guessedTrue ? '❌ Sebenarnya ini SILAP. ' : '✅ Betul, ini SILAP! ') + 'f\'\'(x) bermaksud bezakan f\'(x) sekali lagi, bukan kuasakan dua. Contoh: jika f\'(x)=4x³−9x²+2, maka f\'\'(x)=12x²−18x (bezakan sekali lagi), BUKAN (4x³−9x²+2)² (kuasakan dua).';
+  }
+  document.getElementById('diagYes').addEventListener('click', function(){ diagAnswer(true); });
+  document.getElementById('diagNo').addEventListener('click', function(){ diagAnswer(false); });
 
   // ---------- Concavity explorer ----------
   function f(x){ return (x*x*x)/3 - 4*x; }

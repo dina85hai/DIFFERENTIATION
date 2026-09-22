@@ -295,6 +295,21 @@
       </div>
 
       <div class="card" style="margin-top:18px">
+        <h3>Contoh 3: 🔧 Konteks Bengkel (TVET)</h3>
+        <div class="question-banner">Soalan 3: Kos bahan mengikut bilangan komponen yang dihasilkan di sebuah bengkel diberi oleh C(x) = 8x³ ringgit, dengan x ialah bilangan komponen. Cari kadar perubahan kos, C′(x).</div>
+        <div class="formula-fill-card example-stack" style="margin-top:14px">
+          <div class="worked-steps">
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 1</div><div class="worked-step-formula">Kenal pasti power: <span class="n-text">n</span> = <input id="p3n3a" class="formula-box n-box" inputmode="numeric" aria-label="n langkah satu contoh tiga"></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 2</div><div class="worked-step-formula">C′(x) = (8)(<input id="p3n3b" class="formula-box n-box" inputmode="numeric" aria-label="n coefficient contoh tiga">)x<sup><input id="p3n3c" class="formula-box n-box" inputmode="numeric" aria-label="n power contoh tiga"> − 1</sup></div></div>
+            <div class="worked-step-row"><div class="worked-step-label">Langkah 3</div><div class="worked-step-formula result">C′(x) = 24x²</div></div>
+          </div>
+          <div class="formula-note">Tafsiran: C′(x) memberitahu berapa cepat kos bahan bertambah bagi setiap unit tambahan komponen yang dihasilkan — maklumat penting untuk juruteknik merancang belanjawan bengkel.</div>
+          <div style="text-align:center"><button id="checkPowerFormula3" class="primary small">Semak Contoh 3</button></div>
+          <div id="powerFormulaFeedback3" class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
         <h3>Soalan latihan pelbagai function</h3>
         <p>Bezakan setiap function berikut. Setiap soalan menyediakan ruang jalan kerja, kalkulator dan papan kekunci equation matematik.</p>
         <div class="category-launcher" aria-label="Pilih kategori soalan bahagian 3">
@@ -399,6 +414,12 @@
 
     <article class="screen" id="screen-mistakes">
       <div class="section-head"><div><h2>6. Kesilapan Lazim</h2><p>Kenali pola kesilapan supaya anda dapat mengelakkannya semasa menjawab.</p></div><span class="step-pill">SEMAK DIRI</span></div>
+      <div class="card" style="margin-bottom:18px">
+        <h3>🩺 Diagnostik Pantas</h3><p>Sebelum tengok senarai kesilapan di bawah, cuba jawab dahulu (30 saat sahaja).</p>
+        <div class="formula-panel" style="padding:18px"><div class="formula" style="font-size:clamp(22px,4vw,32px)">d/dx(x⁵) = 5x⁵</div></div>
+        <div style="text-align:center;display:flex;gap:10px;justify-content:center;margin-top:14px"><button id="diagYes" class="success-btn">✅ Betul</button><button id="diagNo" class="danger-btn">❌ Silap</button></div>
+        <div id="diagFeedback" class="feedback" style="text-align:center"></div>
+      </div>
       <div class="mistake"><h4>❌ Terlupa mengurangkan power</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(x⁵) = 5x⁵</div><div class="right-box"><b>Betul:</b> d/dx(x⁵) = 5x⁴</div></div><p><b>Sebab:</b> new power ialah n − 1.</p></div>
       <div class="mistake"><h4>❌ Terlupa multiply coefficient</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(3x²) = 2x</div><div class="right-box"><b>Betul:</b> d/dx(3x²) = 6x</div></div><p><b>Sebab:</b> darabkan 3 × 2 dahulu.</p></div>
       <div class="mistake"><h4>❌ Constant tidak ditukar kepada sifar</h4><div class="compare"><div class="wrong-box"><b>Salah:</b> d/dx(7) = 7</div><div class="right-box"><b>Betul:</b> d/dx(7) = 0</div></div><p><b>Sebab:</b> nombor tetap tidak berubah.</p></div>
@@ -575,6 +596,13 @@ $('xSlider').addEventListener('input',drawGraph);
 // Notation tabs
 $('notationTabs').querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{$('notationTabs').querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const text={prime:'Maka, f′(x) = 3x²',dy:'Maka, dy/dx = 3x²',df:'Maka, df/dx = 3x²'};$('notationSentence').textContent=text[b.dataset.note]}));
 
+// Diagnostik Pantas (screen-mistakes)
+function diagAnswer(guessedTrue){
+  showFeedback($('diagFeedback'), (guessedTrue?'❌ Sebenarnya ini SILAP. ':'✅ Betul, ini SILAP! ')+'New power ialah n − 1, bukan kekal n. d/dx(x⁵) = 5x⁴, bukan 5x⁵.', guessedTrue?'no':'ok');
+}
+$('diagYes').addEventListener('click',()=>diagAnswer(true));
+$('diagNo').addEventListener('click',()=>diagAnswer(false));
+
 // Bahagian 3: contoh satu dan dua term dengan kotak n sahaja
 $('checkPowerFormula1').addEventListener('click',()=>{
   const ids=['p3n1a','p3n1b','p3n1c'];
@@ -596,6 +624,16 @@ $('checkPowerFormula2').addEventListener('click',()=>{
     celebrate('Hebat! Anda berjaya melengkapkan contoh satu term dan dua term.');
   }else{
     showFeedback($('powerFormulaFeedback2'),'Semak semula original power setiap term. 2x³ guna n = 3. 5x² guna n = 2.','no');
+  }
+});
+$('checkPowerFormula3').addEventListener('click',()=>{
+  const ids=['p3n3a','p3n3b','p3n3c'];
+  let ok=true;
+  ids.forEach(id=>{if(equivalent($(id).value,'3')) correctInput($(id)); else {wrongInput($(id)); ok=false;}});
+  if(ok){
+    showFeedback($('powerFormulaFeedback3'),'✓ Betul! Untuk C(x) = 8x³, setiap kotak n diisi dengan 3. Jadi C′(x) = (8)(3)x^(3 − 1) = 24x².','ok');
+  }else{
+    showFeedback($('powerFormulaFeedback3'),'Belum tepat. Untuk 8x³, setiap kotak n perlu diisi dengan 3.','no');
   }
 });
 

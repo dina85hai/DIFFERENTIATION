@@ -153,7 +153,7 @@
     <section class="page" data-title="Situasi Sebenar">
       <div class="section-head"><div><span class="tag">TAHAP KONKRIT</span><h2>Rate of change di sekeliling kita</h2><p>Pilih situasi dan gerakkan peluncur. Lihat bagaimana rate of change berubah bila nilai input berubah.</p></div></div>
       <div class="scenario-tabs" id="scenarioTabs">
-        <button class="active" data-s="car">🚗 Kereta</button><button data-s="coffee">☕ Kopi</button><button data-s="population">📈 Populasi</button>
+        <button class="active" data-s="car">🚗 Kereta</button><button data-s="coffee">☕ Kopi</button><button data-s="population">📈 Populasi</button><button data-s="weld">🔧 Kimpalan (TVET)</button>
       </div>
       <div class="grid-2">
         <div class="card">
@@ -234,6 +234,12 @@
 
     <section class="page" data-title="Rujukan dan Kesilapan">
       <div class="section-head"><div><span class="tag">KAD RUJUKAN</span><h2>Formula penting dan kesilapan lazim</h2><p>Gunakan halaman ini sebagai rujukan pantas ketika menjawab soalan.</p></div></div>
+      <div class="card" style="margin-bottom:20px">
+        <div class="section-head" style="margin-bottom:12px"><div><span class="tag" style="background:var(--red2);color:var(--red)">🩺 DIAGNOSTIK PANTAS</span><h2 style="font-size:1.5rem;margin:6px 0">Betul atau silap?</h2><p>Sebelum tengok kad kesilapan di bawah, cuba jawab dahulu (30 saat sahaja).</p></div></div>
+        <div class="formula" style="font-size:1.15rem;padding:16px">(x + h)² = x² + h²</div>
+        <div class="actions"><button class="btn btn-primary" id="diagYes">✅ Betul</button><button class="btn btn-danger" id="diagNo">❌ Silap</button></div>
+        <div class="feedback" id="diagFeedback"></div>
+      </div>
       <div class="grid-2">
         <div>
           <details open><summary>Prinsip pertama</summary><div class="formula" style="margin-top:12px;padding:18px">f′(x) = lim<sub>h→0</sub> <span class="frac"><span>f(x+h)−f(x)</span><span>h</span></span></div></details>
@@ -296,7 +302,8 @@ function point(svg,b,x,y,color,label){svg.appendChild(svgEl('circle',{cx:b.sx(x)
 const scenarioData={
  car:{title:'Speed kereta',text:'Jarak berubah mengikut masa. Gradient graph jarak–masa menunjukkan speed kereta.',label:'Masa, t',unit:'s',metricLabel:'Speed seketika',metricUnit:'m/s',icon:'🚗',fn:t=>2*t*t+2,df:t=>4*t,meaning:(t,m)=>`Pada t = ${t.toFixed(1)} s, kereta bergerak kira-kira ${m.toFixed(1)} meter setiap saat.`,range:[0,6,0,80],axes:['masa','jarak']},
  coffee:{title:'Kopi yang menyejuk',text:'Suhu kopi berkurang dengan masa. Gradient negatif menunjukkan suhu sedang menurun.',label:'Masa, t',unit:'min',metricLabel:'Rate of change suhu',metricUnit:'°C/min',icon:'☕',fn:t=>25+65*Math.exp(-.32*t),df:t=>-20.8*Math.exp(-.32*t),meaning:(t,m)=>`Pada minit ${t.toFixed(1)}, suhu kopi menurun kira-kira ${Math.abs(m).toFixed(1)}°C setiap minit.`,range:[0,10,15,95],axes:['masa','suhu']},
- population:{title:'Pertumbuhan populasi',text:'Populasi bertambah semakin cepat. Gradient graph menunjukkan kadar pertambahan populasi.',label:'Masa, t',unit:'tahun',metricLabel:'Kadar pertumbuhan',metricUnit:'ribu/tahun',icon:'📈',fn:t=>8*Math.exp(.18*t),df:t=>1.44*Math.exp(.18*t),meaning:(t,m)=>`Pada tahun ${t.toFixed(1)}, populasi bertambah kira-kira ${m.toFixed(1)} ribu orang setahun.`,range:[0,10,0,55],axes:['masa','populasi']}
+ population:{title:'Pertumbuhan populasi',text:'Populasi bertambah semakin cepat. Gradient graph menunjukkan kadar pertambahan populasi.',label:'Masa, t',unit:'tahun',metricLabel:'Kadar pertumbuhan',metricUnit:'ribu/tahun',icon:'📈',fn:t=>8*Math.exp(.18*t),df:t=>1.44*Math.exp(.18*t),meaning:(t,m)=>`Pada tahun ${t.toFixed(1)}, populasi bertambah kira-kira ${m.toFixed(1)} ribu orang setahun.`,range:[0,10,0,55],axes:['masa','populasi']},
+ weld:{title:'🔧 Konteks Bengkel: Penyejukan logam kimpalan',text:'Suhu logam yang baru dikimpal turun dengan cepat pada mulanya, kemudian semakin perlahan. Gradient graph suhu–masa menunjukkan kadar penyejukan, sesuatu yang juruteknik kimpalan perlu fahami sebelum mengendalikan bahan.',label:'Masa selepas kimpalan, t',unit:'min',metricLabel:'Kadar penyejukan',metricUnit:'°C/min',icon:'🔧',fn:t=>40+860*Math.exp(-.45*t),df:t=>-387*Math.exp(-.45*t),meaning:(t,m)=>`Pada minit ke-${t.toFixed(1)} selepas kimpalan, suhu logam menurun kira-kira ${Math.abs(m).toFixed(1)}°C setiap minit.`,range:[0,10,0,950],axes:['masa','suhu']}
 };
 let scenario='car';
 function drawScenario(){const d=scenarioData[scenario],sl=document.getElementById('scenarioSlider'),t=+sl.value,y=d.fn(t),m=d.df(t),svg=document.getElementById('scenarioGraph');document.getElementById('scenarioTitle').textContent=d.title;document.getElementById('scenarioText').textContent=d.text;document.getElementById('scenarioLabel').textContent=d.label;document.getElementById('scenarioInputVal').textContent=t.toFixed(1)+' '+d.unit;document.getElementById('scenarioMetricLabel').textContent=d.metricLabel;document.getElementById('scenarioMetric').textContent=m.toFixed(1)+' '+d.metricUnit;document.getElementById('scenarioIcon').textContent=d.icon;document.getElementById('scenarioMeaning').textContent=d.meaning(t,m);const [xmin,xmax,ymin,ymax]=d.range;const b=graphBase(svg,xmin,xmax,ymin,ymax);plot(svg,b,d.fn);lineThrough(svg,b,t,y,m);point(svg,b,t,y,'#dc2626','P');}
@@ -429,6 +436,11 @@ document.getElementById('resetMatch').onclick=renderMatch;
 function renderCoeffFields(){const degree=+document.getElementById('calcDegree').value,defaults=degree===1?[2,3]:degree===2?[2,3,0]:[1,-2,1,0];const labels=degree===1?['a (coefficient x)','b (constant)']:degree===2?['a (coefficient x²)','b (coefficient x)','c (constant)']:['a (coefficient x³)','b (coefficient x²)','c (coefficient x)','d (constant)'];document.getElementById('coeffFields').innerHTML=labels.map((l,i)=>`<label>${l}</label><input class="coeff" type="number" value="${defaults[i]}" step="1">`).join('')}
 function updateCalculator(){const degree=+document.getElementById('calcDegree').value,vals=[...document.querySelectorAll('.coeff')].map(x=>Number(x.value)||0),x0=Number(document.getElementById('calcX').value)||0;let coeff;if(degree===1)coeff=[vals[1],vals[0]];else if(degree===2)coeff=[vals[2],vals[1],vals[0]];else coeff=[vals[3],vals[2],vals[1],vals[0]];const d=derivCoeff(coeff),y0=evalPoly(coeff,x0),m=evalPoly(d,x0),svg=document.getElementById('calcGraph');let ys=[];for(let x=-5;x<=5;x+=.2)ys.push(evalPoly(coeff,x));let ymin=Math.min(...ys,y0)-2,ymax=Math.max(...ys,y0)+2;if(ymax-ymin>60){ymin=-30;ymax=30}const b=graphBase(svg,-5,5,ymin,ymax);plot(svg,b,x=>evalPoly(coeff,x));lineThrough(svg,b,x0,y0,m);point(svg,b,x0,y0,'#dc2626','P');document.getElementById('calcFunc').textContent='f(x)='+polyToText(coeff);document.getElementById('calcDeriv').textContent='f′(x)='+polyToText(d);document.getElementById('calcSlope').textContent=`f′(${x0})=${Number(m.toFixed(3))}`}
 document.getElementById('calcDegree').onchange=()=>{renderCoeffFields();updateCalculator()};document.getElementById('calcBtn').onclick=updateCalculator;
+
+// Diagnostik Pantas
+function diagAnswer(guessedTrue){const f=document.getElementById('diagFeedback');f.className='feedback show '+(guessedTrue?'bad':'good');f.innerHTML=guessedTrue?'❌ Sebenarnya ini SILAP. (x+h)² bukan x²+h². Kena kembangkan penuh: (x+h)² = x² + 2xh + h². Term tengah 2xh sering tertinggal.':'✅ Betul, ini SILAP! (x+h)² bukan x²+h². Kena kembangkan penuh: (x+h)² = x² + 2xh + h². Term tengah 2xh sering tertinggal.'}
+document.getElementById('diagYes').onclick=()=>diagAnswer(true);
+document.getElementById('diagNo').onclick=()=>diagAnswer(false);
 
 // accessibility and controls
 let fontLarge=false;document.getElementById('fontBtn').onclick=()=>{fontLarge=!fontLarge;document.documentElement.style.setProperty('--font',fontLarge?'20px':'clamp(15px,1.1vw,18px)');toast(fontLarge?'Teks dibesarkan':'Saiz teks asal')};document.getElementById('contrastBtn').onclick=()=>{document.body.classList.toggle('high-contrast');toast(document.body.classList.contains('high-contrast')?'Kontras tinggi diaktifkan':'Kontras biasa diaktifkan')};document.getElementById('prevBtn').onclick=()=>goTo(current-1);document.getElementById('nextBtn').onclick=()=>goTo(current===pages.length-1?0:current+1);document.addEventListener('keydown',e=>{if((e.target.tagName==='INPUT'||e.target.tagName==='SELECT'))return;if(e.key==='ArrowRight')goTo(current+1);if(e.key==='ArrowLeft')goTo(current-1)});document.getElementById('resetAll').onclick=()=>{localStorage.removeItem(stateKey);score=totalCorrect=streak=bestStreak=0;visited=new Set([0]);solverStep=0;renderSolver();makePractice();renderMatch();updateStats();toast('Kemajuan telah ditetapkan semula')};
